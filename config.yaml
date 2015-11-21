@@ -11,6 +11,8 @@ params:
     AuthorName: "Joe Miyamoto Philips"
     GitHubUser: "joemphilips"
     SidebarRecentLimit: 5
+    twitterName: "joemphilips"
+    google_analytics: "UA-70447645-1"
 languageCode: "ja"
 countryCode: "ja"
 ...
