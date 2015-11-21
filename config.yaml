@@ -9,7 +9,7 @@ paramlinks:
 params:
     Subtitle: "Purpose of the life is to not think about Purpose of life"
     AuthorName: "Joe Miyamoto Philips"
-    GitHubUser: "joemphilips"
+    githubName: "joemphilips"
     SidebarRecentLimit: 5
     twitterName: "joemphilips"
     google_analytics: "UA-70447645-1"
