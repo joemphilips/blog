@@ -2,7 +2,7 @@
 baseurl: "http://joemphilips.com"
 contentdir: "content/"
 title: "Joe Miyamoto Philips's blog"
-theme: "hugo-zen"
+theme: "purehugo"
 footnotereturnlinkcontens: "↩"
 paramlinks:
     post: /year/:month/:title/

@@ -5,6 +5,6 @@ title = "about"
 
 +++
 
-## This is blog written by joemphilips
+## バイオインフォマティクスの話を中心に書いていきます。
 
 Please take a look!

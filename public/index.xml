@@ -6,16 +6,21 @@
     <description>Recent content on Joe Miyamoto Philips&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Sat, 21 Nov 2015 17:06:36 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 21 Nov 2015 18:12:53 +0900</lastBuildDate>
     <atom:link href="http://joemphilips.com/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>first</title>
-      <link>http://joemphilips.com/post/first/</link>
-      <pubDate>Sat, 21 Nov 2015 17:06:36 +0900</pubDate>
+      <title>Translate snakemake</title>
+      <link>http://joemphilips.com/post/Translate-snakemake/</link>
+      <pubDate>Sat, 21 Nov 2015 18:12:53 +0900</pubDate>
       
-      <guid>http://joemphilips.com/post/first/</guid>
-      <description></description>
+      <guid>http://joemphilips.com/post/Translate-snakemake/</guid>
+      <description>&lt;p&gt;#Snakemakeのチュートリアルを翻訳しました&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://bitbucket.org/johanneskoester/snakemake/wiki/Home&#34;&gt;Snakemake&lt;/a&gt;は主にバイオインフォマティクスに使われるパイプライン作成用ツールです。
+翻訳をGithubに載せました。
+&lt;a href=&#34;https://github.com/joemphilips/Translate_Snakemake_Tutorial&#34;&gt;こちらからどうぞ&lt;/a&gt;&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -26,7 +31,7 @@
       <guid>http://joemphilips.com/about/</guid>
       <description>
 
-&lt;h2 id=&#34;this-is-blog-written-by-joemphilips:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;This is blog written by joemphilips&lt;/h2&gt;
+&lt;h2 id=&#34;バイオインフォマティクスの話を中心に書いていきます:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;バイオインフォマティクスの話を中心に書いていきます。&lt;/h2&gt;
 
 &lt;p&gt;Please take a look!&lt;/p&gt;
 </description>
