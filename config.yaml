@@ -1,0 +1,16 @@
+---
+baseurl: "http://joemphilips.com"
+contentdir: "content/"
+title: "Joe Miyamoto Philips's blog"
+theme: "hugo-zen"
+footnotereturnlinkcontens: "↩"
+paramlinks:
+    post: /year/:month/:title/
+params:
+    Subtitle: "Purpose of the life is to not think about Purpose of life"
+    AuthorName: "Joe Miyamoto Philips"
+    GitHubUser: "joemphilips"
+    SidebarRecentLimit: 5
+languageCode: "ja"
+countryCode: "ja"
+...
