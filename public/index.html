@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joe Miyamoto Philips&#39;s blog &middot; Joe Miyamoto Philips&#39;s blog</title>
 
-    <meta name="description" content="">
+    <meta name="description" content="Purpose of the life is to not think about Purpose of the life">
 
     <meta name="generator" content="Hugo 0.14" />
     <meta name="twitter:card" content="summary">
     
     <meta name="twitter:title" content="Joe Miyamoto Philips&#39;s blog &middot; Joe Miyamoto Philips&#39;s blog">
-    <meta name="twitter:description" content="">
+    <meta name="twitter:description" content="Purpose of the life is to not think about Purpose of the life">
 
     <meta property="og:type" content="article">
     <meta property="og:title" content="Joe Miyamoto Philips&#39;s blog &middot; Joe Miyamoto Philips&#39;s blog">
-    <meta property="og:description" content="">
+    <meta property="og:description" content="Purpose of the life is to not think about Purpose of the life">
 
     <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Oxygen:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
@@ -39,7 +39,7 @@
     <div class="header">
         <hgroup>
             <h1 class="brand-title"><a href="http://joemphilips.com">Joe Miyamoto Philips&#39;s blog</a></h1>
-            <h2 class="brand-tagline"></h2>
+            <h2 class="brand-tagline"> Purpose of the life is to not think about Purpose of the life </h2>
         </hgroup>
 
         <nav class="nav">
@@ -68,6 +68,923 @@
             
             <div class="posts">
                 
+                <h1 class="content-subhead">30 Dec 2015, 15:45</h1>
+                <section class="post">
+                    <header class="post-header">
+
+                        <a href="http://joemphilips.com/post/python_memo/" class="post-title">python_memo</a>
+
+                        <p class="post-meta">
+                            
+                            
+                                under 
+                                
+                                <a class="post-category post-category-hack" href="http://joemphilips.com/categories/hack">hack</a>
+                            
+                        </p>
+                    </header>
+
+                    <div class="post-description">
+                        <p>#Pythonメモ</p>
+
+<p>[TOC]</p>
+
+<p>##基本事項</p>
+
+<hr />
+
+<p><code>print('hello,world!')</code> ()でくくらないとpython3ではエラーになる。</p>
+
+<p>###組み込み型
+####dictionary
+perlで言うハッシュ</p>
+
+<pre><code class="language-python">d = {'a' : 'apple', 'b' : banana, 'c' : orrange}
+
+#keyの値を取得
+for k in d:
+	print k
+#keyとvalueの両方を取得
+for k, v in d.items():
+	print k, '--&gt;', v
+</code></pre>
+
+<p>keyとvalueの候補が既にjリストで存在する場合は以下のように<code>izip</code>で簡単に結合できる</p>
+
+<pre><code class="language-python">names = ['a', 'b', 'c']
+fruits = ['apple', 'banana', 'orrange']
+d = dict(izip(names, colors))
+
+</code></pre>
+
+<p>####list
+perlでいう配列、<code>[]</code>内に複数の要素を書くことで作成する。</p>
+
+<pre><code class="language-python">mylist = ['A', 'B']
+mylist.append('C')	#Cを追加
+mylist.extend(['D', 'E'])	#別のリストと結合
+mylist = mylist + ['D', 'E']	#同上
+</code></pre>
+
+<p><code>append</code>で複数項目のリストを追加すると、リストの中身ではなくlistオブジェクトそのものが追加される</p>
+
+<p>###繰り返し
+for文は</p>
+
+<pre><code class="language-python">for i in [1,2,3,4]
+     print i**2
+</code></pre>
+
+<p>リストの部分は<code>range(4)</code>で書く場合が多い、音が多いがiの値が大きいとメモリを食うので
+<code>xrange(4)</code>
+がベター、<code>python3</code>では<code>range</code>が<code>xrange</code>と同じ働きをする。</p>
+
+<p>逆順にループするときは</p>
+
+<pre><code class="language-python">colors = ['red', 'green', 'blue', 'yellow']
+for c in reversed(colors):
+	print c
+</code></pre>
+
+<p>要素番号も取得したいときは</p>
+
+<pre><code class="language-python">for i, color in enumurate(colors):
+	print i, '--&gt;', color
+
+</code></pre>
+
+<p>###条件分岐
+基本的には</p>
+
+<pre><code class="language-python">if 10 &lt; x :
+	print('10より大きい数字')
+elif 10 == x :
+	print('10です')
+else:
+	print('10より小さい数字です')
+</code></pre>
+
+<p>論理演算子にはand、or、notがある。例</p>
+
+<pre><code class="language-python">if 10 &lt; x and x% 2 == 0 :
+</code></pre>
+
+<p>たまにモジュールのソースコードに以下のような一文が書かれている場合がある。</p>
+
+<pre><code class="language-python">if __name__ == '__main__':
+</code></pre>
+
+<p><code>__name__</code>はそれが存在するモジュールの中の名前になる。<code>__main__</code>というのは対話環境(Rで言う.Globalenv?)で呼ばれたときの値。
+上のように書いておくことにより、そのモジュールがメインモジュール(最初に呼ばれたモジュール)である時にのみ実行する内容にできる。詳しくは<a href="http://jutememo.blogspot.jp/2008/08/python-if-name.html">こちら</a></p>
+
+<p>###文字列操作
+文字列型への返還は
+<code>str()</code>か<code>repr()</code>を使用する。前者は人にやさしい表現に直し、後者は内部実装に近い見た目を返す。</p>
+
+<pre><code class="language-python">str(0.1)	# =&gt; '0.1'
+repr(0.1)	# =&gt; '0.10000000000000001'
+</code></pre>
+
+<p>pythonには<code>printf</code>がない。書式を指定する場合は以下のようにする</p>
+
+<pre><code class="language-python">'%d %o %x' % (100, 100, 100)	# =&gt; '100 144 64'
+</code></pre>
+
+<ul>
+<li><code>%d</code>10進数で表示</li>
+<li><code>%o</code>8進数で表示</li>
+<li><code>%x</code>16進数で表示</li>
+<li><code>%s</code>str()と同じ</li>
+<li><code>%r</code>repr()と同じ</li>
+</ul>
+
+<p>printと組み合わせると&rdquo;&ldquo;内でのオブジェクトの展開ができる。例</p>
+
+<pre><code class="language-python">print &quot;arguments were: %s %s&quot; % (args1, args2 )
+</code></pre>
+
+<p>以下の二つは等価である</p>
+
+<pre><code class="language-python">print(&quot;Executing on %s as %s&quot; % (env.host, env.user))
+
+print(&quot;Executing on %(host)s as %(user)s&quot; % env)
+</code></pre>
+
+<p>####文字列型組み込み関数</p>
+
+<pre><code class="language-python">src = 'I like orange.'
+src.replace('orange', 'apple')
+</code></pre>
+
+<p>####正規表現</p>
+
+<p><code>re</code>を使用する
+コンパイルして、patternオブジェクトを作ってから、match,search,findall,finditer,の4種類を使う。
+- <code>match</code> &hellip; パターンが先頭にある場合にマッチする
+- <code>search</code> &hellip; 全部探す。複数マッチの場合でも、最初の1つしか返してくれない
+- <code>findall</code> &hellip; マッチした部分をすべて配列で返す
+- <code>finditer</code> &hellip; マッチした部分をイテレータで返す。</p>
+
+<p>マッチした結果を適当な変数に入れたら、<code>group()</code>,<code>start()</code>,<code>end()</code>, <code>span()</code>で処理できる</p>
+
+<ul>
+<li><code>group</code> &hellip; マッチした文字列を返す</li>
+<li><code>start</code> &hellip; マッチの開始位置を返す</li>
+<li><code>end</code> &hellip; 終了位置</li>
+<li><code>span</code> &hellip; 開始位置と終了位置</li>
+</ul>
+
+<p>例</p>
+
+<pre><code class="language-python">import re
+pattern = re.compile(r'3.*?7')
+pattern.match(text)
+if matchObj.group():
+    print(matchObj.group())
+</code></pre>
+
+<p><code>group</code>
+で後方参照を行うこともできる</p>
+
+<pre><code class="language-python">pattern = re.compile(&quot;GCC(.+)TATTT(.+)TTTC&quot;)
+m = pattern.search(&lt;対象となるDNA文字列オブジェクト&gt;)
+if m:
+    print(m.group(0))
+    print(m.group(1)
+</code></pre>
+
+<p>正規表現による置換はre.subを用いる。Rのgsubとほぼ同じ。後方参照による置換の例</p>
+
+<pre><code class="language-python">pattern = re.compile(&quot;X(.)X&quot;)
+dna_mod = pattern.sub(r&quot;C¥1C&quot;, &lt;DNA文字列オブジェクト&gt;)
+</code></pre>
+
+<p>文字列にrawを使用しているのがポイント</p>
+
+<p>###入出力
+####ファイル操作
+ファイルを開くときはwith構文を使用する。書き込みの例</p>
+
+<pre><code class="language-python">with open(&quot;filename&quot;, &quot;w&quot;) as file:
+	file.write(&quot;some string&quot;)
+</code></pre>
+
+<p>with構文を使用すると、クラス内で<code>__enter__</code>および<code>__exit__</code>を使用したクラスの場合,メソッド呼び出し前と呼び出し後にそれぞれを実行してくれるようになる
+例</p>
+
+<pre><code class="language-python">import sys
+with open(&quot;mydata.txt&quot;) as m:
+    with open(&quot;outputfile.txt&quot;, 'w') as outfh:
+        for line in m:
+            itemList = line[:-1].split(&quot;\t&quot;)
+            if itemList[0] == 'hoge':
+                print(itemList[1], file = outfh)
+
+
+</code></pre>
+
+<p><code>line.strip()</code>でも改行は削除されるが、空のタブも削除されるため、tsvファイルを扱うには適していない。</p>
+
+<p>一行ずつではなくまるごと読み込みたいときは
+<code>allLines = open('foo.html').read()</code></p>
+
+<p>####標準入力からの取得</p>
+
+<pre><code class="language-python">import sys
+    for line in sys.stdin
+    print line,
+</code></pre>
+
+<p>,をつけることで改行をしなくなる。python3の場合は
+<code>print(line, end = &quot;&quot;)</code>とする。また、</p>
+
+<pre><code class="language-python">f = open('foo.txt', 'w')
+print('hello world', file=hoge.txt)  #ファイルに出力
+print(&quot;hello world&quot;, file=sys.stdout)    #標準出力に出す
+</code></pre>
+
+<p>####コマンドライン引数の取得</p>
+
+<pre><code class="language-python">import sys
+argvs = sys.argv	#argvsにはコマンドライン引数のリストが入る
+argc = len(argvs)
+</code></pre>
+
+<p>####ディレクトリ操作</p>
+
+<pre><code class="language-python">import os.path
+
+myfile = 'Users/user/Document/test.txt'
+os.path.dirname(myfile)   #Users/user/Dockument
+os.path.basename(myfile)    #'test.txt'
+os.path.abspath('test.txt') #絶対パスを返す
+os.path.exists(myfile)  #True
+os.path.isdir(myfile)   #True
+
+###スクリプト名を取得
+import sys
+print(__file__)  #実行時カレントディレクトリからの相対パスを取得
+print os.path.abspath(os.path.dirname(__file__))  #スクリプトのあるディレクトリへの絶対パス
+</code></pre>
+
+<p><code>import os</code>や<code>import shutil</code>すると
+OSにかかわらずディレクトリの削除やコピーなどができるみたい</p>
+
+<p>###正規表現でファイルを探す
+import glob
+glob.glob(&rsquo;*.txt&rsquo;)  #[&lsquo;hoge.txt&rsquo;, &lsquo;huga.txt&rsquo;]</p>
+
+<pre><code>
+##関数定義
+
+---
+引数に*を付けると任意の数の引数をリストで受け取ることができる。
+```python
+def one(*args)
+	print args
+one()	# =&gt; one(1,2,3)
+</code></pre>
+
+<p>アスタリスクを2個にするとリストではなく辞書で受け取る。</p>
+
+<p>アスタリスクが1つの場合も2つの場合も関数に引数を渡すときにすべて一気に渡すための構文が用意されている。例</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; list1 = [1, 2, 3]
+&gt;&gt;&gt; def foo(a, b, c):
+        print a, b, c
+
+&gt;&gt;&gt; foo(*list1)
+1 2 3
+</code></pre>
+
+<p>辞書の場合は</p>
+
+<pre><code class="language-python">dic1 = {'a': 10, 'b': 20, 'c': 30}
+&gt;&gt;&gt; def foo(a = 1, b = 2, c = 3):
+        print a, b, c
+
+&gt;&gt;&gt; foo(**dic1)
+10 20 30
+</code></pre>
+
+<p>基本的なことだが、関数に()を付けるか付けないかでは
+共同が異なる</p>
+
+<pre><code class="language-python">result = myfunc()	#myfunc()の実行結果がはいる
+myfunc2 = myfunc	#myfuncが複製される。(リファレンスではないので、myfuncを削除してもmyfunc2は残る。)
+</code></pre>
+
+<p>###lambda式
+<code>lambda x: x + n for n in range(5)</code>
+とすると、ｎのスコープが関数内に限定されず、以下のように変なことになるので、
+<code>lambda x n=n: x + n for n in range(5)</code>
+とする</p>
+
+<pre><code class="language-python">
+funcs = [lambda x: x+n for n in range(5)]
+for f in funcs:
+... print(f(0))
+...
+4
+4
+4
+4
+4
+
+</code></pre>
+
+<p>##OOP、スコープ</p>
+
+<hr />
+
+<p><code>__init__</code>がコンストラクタ</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; class Coordinate(object):
+...     def __init__(self, x, y):
+...         self.x = x
+</code></pre>
+
+<p><code>locals()</code>で名前空間内(多くの場合は関数内)のすべての値を辞書形式で返す。例</p>
+
+<pre><code class="language-python">def foo(arg):
+	x = 10
+	print locals()
+
+foo(20)	# =&gt; {'x' : 10, 'arg' : 20}
+</code></pre>
+
+<p>グローバルな名前空間については<code>globals()</code>で確認ができる。</p>
+
+<p>###クロージャ
+関数内関数は呼び出し時のlocalスコープの情報を記憶している。つまり</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; def outer(x):
+...     def inner():
+...         print x
+...     return inner
+&gt;&gt;&gt; print1 = outer(1)
+&gt;&gt;&gt; print2 = outer(2)
+&gt;&gt;&gt; print1()
+1
+&gt;&gt;&gt; print2()
+2
+</code></pre>
+
+<p>のようになる。</p>
+
+<p>###デコレータ
+クロージャの一種で関数を受け取って別の関数を返す関数。例</p>
+
+<pre><code class="language-python">&gt;&gt;&gt; def outer(some_func):
+...     def inner():
+...         print &quot;before some_func&quot;
+...         ret = some_func() #1
+...         return ret + 1
+...     return inner
+&gt;&gt;&gt; def foo():
+...     return 1
+&gt;&gt;&gt; decorated = outer(foo) #2
+&gt;&gt;&gt; decorated()
+before some_func
+2
+</code></pre>
+
+<p>実際には関数の返す値の範囲を制限したりするために使うことが多い。
+シンタックスシュガーとして@シンボルが用意されている詳しくは<a href="http://qiita.com/_rdtr/items/d3bc1a8d4b7eb375c368">こちら</a>
+最近は<code>@functools.wraps</code>をデコレータ内で使用する感じにした方が良いかも</p>
+
+<p>##テスト
+<code>unittest</code>を用いる。
+例えばroman1のto_roman()をテストしたい場合は
+<code>/test/test_roman.py</code>　のようなファイルを作り以下のように書く</p>
+
+<pre><code class="language-python">import roman1
+import unitteset
+
+class KnownValues(unittest.TestCase)
+	values = ((1, 'I'),
+			  (2, 'II'),
+			  )
+	def test_to_values(self):	#メソッド名はtestから始まっていなくてはならない
+		for integer, numerical in self.values:
+		result = roman1.to_roman(integer)
+		self.assertEqual(numerical, result)	#TestCaseクラスのメソッド
+
+if __name__ == '__main__':
+	unittest.main()
+
+</code></pre>
+
+<p>テストを実行する際は -v オプションを付ける。
+assert*メソッドにはいろいろある。<a href="http://surgo.jp/2011/12/python-or-unittest2.html">こちら</a>を参照</p>
+
+<p>このケースだと、例外処理が不十分である。つまり、以上に大きい値がto_romanに与えられると、<code>&quot;MMMMMM&quot;</code>のような値が返される可能性があり、これは喜ばしくない。to_romanは3999以上の値はエラーを吐くようにしたい。こういった場合は<code>assertRaises</code>メソッドを使用する。</p>
+
+<pre><code class="language-python">class ToRomanBadInput(unittest.TestCase):
+	def test_too_large(self):
+
+		self.assertRaises(roman1.OutOfRangeError, roman1.to_roman, 4000)
+
+</code></pre>
+
+<p>このようなテストを書いたら、roman1.pyにOutOfRangeErrorを追加する。</p>
+
+<pre><code class="language-python">class OutOfRangeError(ValueError):
+</code></pre>
+
+<p>unittestのメソッドには3つの返り値がある</p>
+
+<ul>
+<li>Pass &hellip; テストに成功した</li>
+<li>Fail &hellip; テストに失敗した</li>
+<li>Error &hellip; コードを実行できなかった。</li>
+</ul>
+
+<p>##例外処理
+例外を補足するには<code>try: except:</code>節を利用する</p>
+
+<pre><code class="language-python">while True:
+	try:
+		n = int(raw_input(&quot;数字を入力してください&quot;))
+		print n
+		break
+	except (ValueError, IndexError):
+		print &quot;例外が発生しました&quot;
+</code></pre>
+
+<p>このように書くと、まずtry:の中を実行し、errorがなければ節を抜ける。errorがあればexcept文の中を実行する。except文に対応するErrorのクラス(この場合はValueError、IndexError)がなければ節から抜ける。
+どのErrorクラスかよくわからない時は、とりあえず、Exceptionクラスを指定しておけばよい？例</p>
+
+<pre><code class="language-python">try:
+	a = int('string')
+except Exception as e:
+	print e.message
+</code></pre>
+
+<p>でもほんとは適切なエラークラスを指定すべき</p>
+
+<p>以下にエラークラスの種類を示す</p>
+
+<ul>
+<li>BaseException &hellip; 全ての例外のベースクラス
+
+<ul>
+<li>Exceprion &hellip; 実行中のアプリケーションを終了させない例外のベースクラス。ユーザー定義の例外はこれをベースをすべき</li>
+<li>StandardError &hellip; よくわからん</li>
+<li>ArithmeticError &hellip; 数値関連のエラー</li>
+<li>LookupError &hellip; 何かを発見した時に発生させるエラー</li>
+<li>EnvironmentError &hellip; pythonの外部から発生するエラーのためのベースクラス</li>
+</ul></li>
+</ul>
+
+<p>より細かい区分は<a href="http://ja.pymotw.com/2/exceptions/">ここ</a>を参照</p>
+
+<p>###型のチェック
+<code>isinstance(n, int)</code>のようにして行う。例</p>
+
+<pre><code class="language-python">if not isinstance(n, int):
+	raise NotIntegerError(&quot;Please give me Integer value!&quot;)
+</code></pre>
+
+<hr />
+
+<p>matplotlib</p>
+
+<p>##logging
+<code>print()</code>に似た情報を出力できる。違いは、情報に重要度の違いを持たせられること。デバッグの時にのみ、出力することができたりする
+<a href="http://docs.python.jp/2/howto/logging.html#logging-basic-tutorial">ここ</a>の&rdquo;基本ロギングチュートリアル&rdquo;を見よ</p>
+
+<pre><code class="language-python">if __name__ == '__main__'
+	logging.basicConfig(level=logging.DEBUG,
+						format='%(asctime)s- %(name)s - %(levelname)s - %(message)s')
+	logging.debug('this is debug message')
+    logging.info('this is info message')
+    logging.warning('this is warning message')
+    logging.error('this is error message')
+    logging.critical('this is critical message')
+</code></pre>
+
+<p>##バージョンの違い、処理系</p>
+
+<hr />
+
+<p><code>from__futute__import division</code>
+とすることで、python3の整数除算の挙動をpython2に取り入れることができる。
+pypy…pythonインタプリタだがそれ自体pythonで記述されている。RPythonで書かれている。
+###python自体のバージョン管理
+python2,3を共存させたいような場合は<code>pyenv</code>が便利
+<code>~/.pyenv</code> に<code>git clone http:\\github.com/yyuu/pyenv.git</code>したものを入れる。
+<code>git clone https://github.com/yyuu/pyenv.git ~/.pyenv</code>
+<code>git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv</code></p>
+
+<p><code>~/.zshrc</code>に以下のように書いておくとよい</p>
+
+<pre><code class="language-sh"># pyenv
+export PYENV_ROOT=&quot;${HOME}/.pyenv&quot;
+if [ -d &quot;${PYENV_ROOT}&quot; ]; then
+export PATH=${PYENV_ROOT}/bin:$PATH
+    eval &quot;$(pyenv init -)&quot;
+fi
+</code></pre>
+
+<p>これで</p>
+
+<pre><code class="language-python">pyenv install anaconda-2.0.1
+pyenv insatll anaconda3-2.0.1
+</code></pre>
+
+<p>のような使い方ができる。以下にコマンド</p>
+
+<ul>
+<li><code>pyenv versions</code> &hellip; 現在のpythonのバージョンを見る。</li>
+<li><code>pyenv versions</code> &hellip; 使用可能なvirtualenvの一覧を見る。</li>
+<li><code>pyenv install -l</code> &hellip; installできるものの一覧</li>
+<li><code>pyenv exec pip install --upgrade pip</code> &hellip; pipを最新にする</li>
+<li><code>pyenv virtualenv 2.7.10 my-virtualenv-2.7.10</code> &hellip; 新しいvirtualenvの作成。
+作成したvirtualenvは$PYENV_ROOT/versions/ に入る</li>
+<li><code>pyenv uninstall my-virtualenv-2.7.10</code> &hellip; 削除</li>
+<li><code>pyenv global my-virtualenv-2.7.10</code> &hellip; システム全体で切り替え。</li>
+<li><code>pyenv local my-virtualenv-2.7.10</code> &hellip; カレントディレクトリのみ切り替え</li>
+</ul>
+
+<p>###anaconda
+数値計算用のパッケージなどがセットになったpythonのディストリビューション</p>
+
+<p>###Rpython
+Rpython…pythonにいくつかの制限を加える代わりに高速化したもの</p>
+
+<p>##他言語との連携
+###R
+昔はRPy2が使用されていたがいまではPypeRが主流</p>
+
+<p>##パッケージ管理
+pyenvが便利？</p>
+
+<hr />
+
+<p>pipのインストールは</p>
+
+<pre><code class="language-bash">sudo apt-get install python-pip pythondev build-essential
+</code></pre>
+
+<p>で行う。
+<code>pip -U install fabric</code>Fabricのインストール
+-Uオプションはすでにインストールされている場合アップグレードしてくれる</p>
+
+<p>###packageの中身
+httplib2というパッケージの場合、以下のようなディレクトリ構成になる</p>
+
+<pre><code>httplib2/
+|
++--README.txt
+|
++--setup.py
+|
++--docs/
+|
++-httplib2/
+	|
+	+--__init__.py
+	|
+	+--hoge.py
+</code></pre>
+
+<p>このうち/docsだけは必須ではなく、<code>MANIFEST.in</code>で明示しなければ配布パッケージには含まれない。</p>
+
+<p>###自分でパッケージを書く場合
+setuptoolsを使う。
+パッケージのrootディレクトリに、<code>setup.py</code>を置き、以下のような感じでメタデータを書く</p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+
+from distutils.core import setup
+
+setup(name='Distutils',
+      version='1.0',
+      description='Python Distribution Utilities',
+      author='Greg Ward',
+      author_email='gward@python.net',
+      url='http://www.python.org/sigs/distutils-sig/',
+      packages=['distutils', 'distutils.command'],
+     )
+</code></pre>
+
+<p>####Manifest.inについて</p>
+
+<pre><code class="language-python">include hoge	#rootディレクトリのhogeという名前のファイルを配布物に含める
+recursive-include huga *.html *.css	#rootディレクトリ以外でも、その名前のファイルがあれば含める。
+</code></pre>
+
+<p>##構成管理</p>
+
+<hr />
+
+<p>facric -&gt; ansibleへと移るのが吉
+###fabric
+基本は以下のように書く</p>
+
+<pre><code class="language-python">from fabric.api import run
+
+def show_uname():
+	run('uname -s')
+</code></pre>
+
+<p>####fabric.api
+基本コマンドのクラス、よく使われるのは
+<code>run,sudo,local,put</code>の４つ、
+- <code>local</code> &hellip; 手元のサーバでそのスクリプトを実行する
+- <code>put</code> &hellip; sftpでファイルを転送する。例</p>
+
+<pre><code class="language-python">from fabric.api import put
+def scp():
+	put('local path', 'remote path')
+</code></pre>
+
+<ul>
+<li><code>get(remote_path, local_path = &lt;current_dir&gt;)</code> &hellip; リモートからファイルをゲット。</li>
+<li><code>open_shell</code> &hellip; デバッグ用。タスクの実行を一時停止し、リモートのシェルを開く。</li>
+<li><code>prompt()</code>    &hellip; ユーザーからの入力を受け付ける</li>
+<li>reboot()  &hellip; 言わずもがな</li>
+</ul>
+
+<p>####fabric.contrib</p>
+
+<ul>
+<li><code>console.confirm(&quot;Message&quot;, default = False)</code>　 &hellip; ユーザに[y/N]での確認を促す。promptの制限版</li>
+</ul>
+
+<p>fabfile.pyという名前で保存し、<code>fab</code>コマンドで実行</p>
+
+<pre><code class="language-sh">fab -H &lt;server_address&gt; show_uname
+#or
+fab -u &lt;user_name&gt; -i &lt;path_to_secret_key&gt; -H &lt;server_address&gt; show_uname
+</code></pre>
+
+<p>-Hで指定する先に<code>localhost</code>を指定することもできる。</p>
+
+<p><code>fab</code>コマンドには引数を与えることもできる(タスク引数)例えばfabfile.py内に以下のように記述し</p>
+
+<pre><code class="language-python">def hello(name=&quot;world&quot;)
+	print(&quot;Hello %s!&quot; % name)
+</code></pre>
+
+<p>シェルで</p>
+
+<pre><code class="language-sh">fab hello:name=jeff
+</code></pre>
+
+<p><code>fabfile/</code>ディレクトリを作ってやり、その中に任意の.pyファイルを入れてやれば、それを実行できる
+taskで分割するときは</p>
+
+<pre><code class="language-python">from fabric.api import task
+
+@task
+def restart():
+	pass
+</code></pre>
+
+<blockquote>
+<p><code>~/.fabricrc</code>に<code>fabfile = hoge.py</code>
+と書いてやると任意の名前のファイルをfabfileとして扱える</p>
+</blockquote>
+
+<p>環境変数やカレントディレクトリを指定したうえで、特定の動作を送ってほしい場合は<code>shell_env,cd,lcd</code>を使用する</p>
+
+<p>環境変数HOGEをlocal、remoteともにfugaで固定する</p>
+
+<pre><code class="language-python">from fabric.api import local, shell_env, run
+
+def envtest():
+	with shell_env(HOGE='fuga'):
+		local('env')
+		run('env')
+</code></pre>
+
+<p>with構文を抜けるとshell_envの効果はなくなる。<code>cd,lcd</code>も同様</p>
+
+<p><em>デフォルトだと<code>~/.ssh/config</code>は利用してくれないのでスクリプト内に以下のように書いておく必要がある</em></p>
+
+<pre><code class="language-python">env.use_ssh_config = True
+</code></pre>
+
+<p>####fabricrc
+bashrcのようなもの、デフォルトだと<code>~/fabricrc</code>を探すが
+<code>-c</code>で指定してやると好きなものを使える</p>
+
+<p>####失敗への対処
+fabricはそれぞれのシェルスクリプトの返り値をチェックして、失敗の場合はそこで停止する。それを変更したい場合は各種モジュールを使う</p>
+
+<pre><code class="language-python">from __future__ import with_statement
+from fabric.api import local, settings, abort
+from fabric.contrib.console import confirm
+
+def test():
+    with settings(warn_only=True):
+        result = local('./manage.py test my_app', capture=True)
+    if result.failed and not confirm(&quot;Tests failed. Continue anyway?&quot;):
+        abort(&quot;Aborting at user request.&quot;)
+</code></pre>
+
+<p>####if文
+ファイルの存在などをシェルスクリプトのif文でチェックして実行したい場合は少し特殊で、</p>
+
+<pre><code class="language-python">code_dir = 'srv/django/myproject'
+with settings(warn_only=True):
+	if run(&quot;test -d %s&quot; % code_dir).failed:
+		run(&quot;git clone user@vchost:path/to/repo/.git %s&quot; % code_dir)
+</code></pre>
+
+<p>####env
+グローバルなシングルトンで、タスク間で共有される設定を入れる。例</p>
+
+<pre><code class="language-python">from fabric.api import env
+env.hosts =['my_server']	#デプロイ先のアドレスを指定。(リストなのでいくつでもよい)
+</code></pre>
+
+<p>よく使われるものには以下がある
+- <code>env.user</code> SSH接続するときのデフォルトユーザ名は自分のローカル名だが、これを設定すると上書きできる
+- <code>password</code>sudoや接続のパスワードを設定する。特に指定しなければ必要になったタイミングで聞いてくるらしい
+- <code>warn_only</code>エラーを検知した時に実行を停止しないか否か。デフォルトはfalse。たいていの場合はenvでグローバルに設定せず,<code>with settings(warn_only = True)</code>の形で指定する。あるいはデコレータ(後述)で指定してもOK
+- <code>env.roledefs</code>複数のホストを役割ごとにまとめるために使用する。例</p>
+
+<pre><code class="language-python">env.roledefs = {
+	'web' : ['www1', 'www2', 'www3']
+	'dns' : ['ns1', 'ns2']
+}
+</code></pre>
+
+<ul>
+<li><code>env.config_file</code>設定を書いたyamlのパスを指定する。fabfile内に<code>env.config_file = 'deploy.yaml'</code>と書いておくと、<code>env.config.&lt;yamlの要素名&gt;</code>の形で参照できるようになる。</li>
+</ul>
+
+<p>envは実際にはdictのサブクラスである。
+ほとんどのenvはデコレータで代用できそうな気もする
+envで指定できる要素の一覧は<a href="http://fabric-ja.readthedocs.org/ja/latest/usage/env.html">こちら</a>を参照</p>
+
+<p>####冪等制の保証
+一応スクリプトだけでもできる</p>
+
+<pre><code class="language-python">def setup_package(package = &quot;apache2&quot;):
+	if run(&quot;dpkg -s %s | grep 'Status:' ; true&quot; %\
+	(package)).find(&quot;installed&quot;) == -1:
+	sudo(&quot;aptitude install '%s'&quot; % (package))
+
+</code></pre>
+
+<p>…が、この方法はやめた方が良い。Cuisineを使用するのが吉</p>
+
+<pre><code class="language-python">def setup_package(package = &quot;apache2&quot;):
+	package_ensure(&quot;%s&quot; % (package))
+</code></pre>
+
+<p>####デコレータ
+特定のホストやroleのみに実行されるタスクの場合はデコレータを使用すると便利</p>
+
+<p>#####@hosts</p>
+
+<pre><code class="language-python">from fabric.api import hosts, run
+@hosts('host1', 'host2')
+def mytask():
+	run('ls /var/www')
+</code></pre>
+
+<p>こうするとenv.hostsを一時的に無視するようになる。</p>
+
+<p>#####@prallel
+複数のサーバに対してタスクを並列に実行する際に使用する。</p>
+
+<p>#####@with_settings
+例</p>
+
+<pre><code class="language-python">@with_settings(warn_only=True)
+def foo():
+</code></pre>
+
+<p>#####@task
+タスクは<code>@task</code>デコレータで囲ってしまうのがよいらしい。</p>
+
+<pre><code class="language-python">@task
+def mytask()
+	run(&quot;uname -a&quot;)
+</code></pre>
+
+<p>エイリアスの設定もできる。こうすることで、 <code>fab --list</code>した時に現れるようになる。</p>
+
+<pre><code class="language-python">@task(alias='dwm')
+def deploy_with_migrations():
+	hoge
+</code></pre>
+
+<p>defalutを使用することで、上位のタスクをデフォルトの挙動として使用することができる。例えば</p>
+
+<pre><code class="language-python">from fabric.api import task
+
+@task
+def migrate():
+    pass
+
+@task
+def push():
+    pass
+
+@task
+def provision():
+    pass
+
+@task
+def full_deploy():
+    if not provisioned:
+        provision()
+    push()
+    migrate()
+</code></pre>
+
+<p>というfabfile.pyがあった時に<code>full_deploy()</code>の上の<code>@task</code>を<code>@task(default=True)</code>にすることで引数なしで<code>fab</code>をするだけで<code>full_deploy</code>を行ってくれる。</p>
+
+<p>####fabコマンド
+<code>fab --list</code>タスクの一覧を表示</p>
+
+<p>基本的には
+<code>fab task1 task2</code>
+のかたちで使用する。
+内部でoptparseライブラリを使用しており、オプションと引数の順番は自由に入れ替えることができる。
+fabfile.pyないしはfabfile/の探索メカニズムはvagrantと同様、カレントディレクトリから登っていく形で探す。</p>
+
+<p><code>--</code>を使用するとワンライナーで任意のリモートシェルコマンドを叩くことができる。例えば</p>
+
+<pre><code class="language-sh">fab -H system1,system2,system3 -- uname -a
+</code></pre>
+
+<p>###ansible
+<a href="http://qiita.com/rasenn/items/d42ed07368ae90605c29">ここを参照</a></p>
+
+<p>####インストール
+RHELの場合は</p>
+
+<pre><code class="language-sh">rpm -ivh http://ftp.riken.jp/Linux/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm	#epelのリポジトリが使用可能になる
+
+yum install ansible
+</code></pre>
+
+<p>Debianの場合は</p>
+
+<pre><code class="language-sh">deb http://ftp.jp.debian.org/debian wheezy-backports main contrib non-free
+apt-get install ansible
+</code></pre>
+
+<p>##各種パッケージ</p>
+
+<hr />
+
+<p>###PyYaml
+<code>pip install pyyaml</code>でインストールする</p>
+
+<pre><code class="language-python">import yaml
+</code></pre>
+
+<p>で使用する。読み込みと書き込みを行える。
+####読み込み</p>
+
+<pre><code class="language-python">import pprint
+f = open('hoge.yaml', 'r')
+data = yaml.load(f)
+pprint.pprint(data)	#いい感じに整形して出力してくれる
+f.close()
+</code></pre>
+
+<p>実際には<code>'r'</code> ではなく<code>'rU'</code>にした方が良い。こちらは改行コードがwindowsでもよしなに計らってくれる。</p>
+
+<p>####書き込み</p>
+
+<pre><code class="language-python">mylist = {'dogs': ['pochi', 'taro', 'kai'],
+          'cats': ['shimajiro', 'tyson']}
+
+f = open('out.yaml', 'w')
+f.write(yaml.dump(mylist))  # 書き込む
+f.close()
+</code></pre>
+
+<p>##可視化</p>
+
+<hr />
+
+<p>bokeh…可視化のライブラリ
+seaborn。。。matplotlibに基づく可視化のライブラリ</p>
+
+<p>##numpy</p>
+
+<hr />
+
+<p>高速な行列演算などをサポートした科学技術計算用のパッケージ
+inport numpy as np     #npでinportするのが慣例
+np.ndarray     #多次元配列を扱うためのクラス。
+np.ndarray     #N次元配列を扱うための</p>
+
+<p>##作図</p>
+
+                    </div>
+                </section>
+                
                 <h1 class="content-subhead">21 Nov 2015, 18:12</h1>
                 <section class="post">
                     <header class="post-header">
@@ -79,13 +996,13 @@
                             
                                 under 
                                 
-                                <a class="post-category post-category-Bioinformatics" href="http://joemphilips.com/categories/bioinformatics">Bioinformatics</a><a class="post-category post-category-python" href="http://joemphilips.com/categories/python">python</a>
+                                <a class="post-category post-category-hack" href="http://joemphilips.com/categories/hack">hack</a>
                             
                         </p>
                     </header>
 
                     <div class="post-description">
-                        <p>#Snakemakeのチュートリアルを翻訳しました</p>
+                        <p>#チュートリアルを翻訳しました</p>
 
 <p><a href="https://bitbucket.org/johanneskoester/snakemake/wiki/Home">Snakemake</a>は主にバイオインフォマティクスに使われるパイプライン作成用ツールです。
 翻訳をGithubに載せました。

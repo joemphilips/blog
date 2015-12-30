@@ -7,11 +7,13 @@ footnotereturnlinkcontens: "↩"
 paramlinks:
     post: /year/:month/:title/
 params:
-    Subtitle: "Purpose of the life is to not think about Purpose of life"
+    description: "Purpose of the life is to not think about Purpose of the life"
     AuthorName: "Joe Miyamoto Philips"
     githubName: "joemphilips"
     SidebarRecentLimit: 5
     twitterName: "joemphilips"
+    disqusShortname: "joemiyamotophilips"
+    themeColor: "theme-base-0b"
     google_analytics: "UA-70447645-1"
 languageCode: "ja"
 countryCode: "ja"
