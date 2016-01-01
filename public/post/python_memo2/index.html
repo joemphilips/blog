@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>pythonメモ2　データ分析編 &middot; JoeMPhilips</title>
+
+  
+  <link rel="stylesheet" href="http://joemphilips.com/css/poole.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/hyde.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://joemphilips.com/touch-icon-144-precomposed.png">
+  <link href="http://joemphilips.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="Pandas,numpy,scipyなど">
+  <meta name="keywords" content="python">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="https://www.gravatar.com/avatar/154408de16dfa049bac95d8a062a0b96?s=200"
+             alt="gravatar" title="JoeMPhilips">
+      
+      <h1>JoeMPhilips</h1>
+      <p class="lead">Purpose of the life is to not think about Purpose of the life</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://joemphilips.com/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://joemphilips.com/about/">About me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/joemphilips"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      
+      
+      <a href="https://www.facebook.com/profile.php?id=100004310417464"><i class="fa fa-facebook-square fa-3x"></i></a>
+      <a href="https://twitter.com/joemphilips"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 <a href="http://joemphilips.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>pythonメモ2　データ分析編</h1>
+    
+
+<h2 id="pythonメモ2-データ分析編:06d972392107d1d424e1dc2213801d7e">Pythonメモ2 ~データ分析編~</h2>
+
+<p>[TOC]</p>
+
+<p>@(備忘録)
+@[python]</p>
+
+<p>##ipython</p>
+
+<p><code>objectname?</code>のようにはてなを最後につけて実行することで、オブジェクトの詳細が見れる。
+<code>objectname??</code> &hellip; さらに詳細に見れる
+またls やcdはそのまま使える</p>
+
+<p><code>!cp a.txt b/</code>のように、先頭に<code>!</code>を付けると内部で<code>os.system()</code>を読んでくれるので、シェルコマンドを直接実行できる。ただしnotebook中で<code>cd</code>や<code>pwd</code>をしたいときは<code>!cd</code>ではなく<code>%cd</code>でなくてはならない</p>
+
+<p><code>files = !ls /usr</code>のようにすると簡単にシステムコマンドのアウトプットをとれる</p>
+
+<p><code>%edit</code> &hellip; エディタを開いて編集</p>
+
+<p>###ipython serverのセットアップ
+<a href="https://thomassileo.name/blog/2012/11/19/setup-a-remote-ipython-notebook-server-with-numpyscipymaltplotlibpandas-in-a-virtualenv-on-ubuntu-server/">ここ</a>を参考にする</p>
+
+<p>###マジックコマンド</p>
+
+<p><code>%quickref</code>や<code>%magic</code>ですべてのマジックコマンドを表示
+<code>%</code>を付けて実行すると、引数を関数の外に書くことができる。例</p>
+
+<pre><code class="language-python">## 実行時間を計測
+%timeit range(1000)
+
+## %%にすると複数行にわたって書ける
+%%timeit x = range(10000)
+max(x)
+</code></pre>
+
+<p><strong><code>%matplitlib inline</code>を実行して置かないとplotできないので注意</strong></p>
+
+<p>####別のフォーマットへの変換
+- <code>ipython nbconvert --to html hoge.ipynb</code> &hellip; htmlへ
+- <code>ipython nbconvett --to html --template basic hoge.ipynb</code> &hellip; ヘッダーなどのないよりシンプルなhtml
+- <code>--to slides</code>
+- <code>--to markdown</code>
+- <code>--to rst</code>
+- <code>--to python</code>
+- <code>--to latex</code>
+ - <code>--template book</code>
+ - <code>--template article</code>
+ - <code>template basic</code></p>
+
+<p>等がある。<code>--post serve</code>を末尾につけると自動でブラウザを開いてくれる
+RISEと呼ばれるパッケージを入れると、notebookの右上にボタンが出て、リアルタイムプレビューができるようになる</p>
+
+<p>##ベイジアン
+変分ベイズならBayesPy、MCMCならStanがよさそう</p>
+
+<p>###BayesPy
+python3のパッケージ。指数型分布族(ガウス、ガンマ、ディリクレなど)にしか使えないっぽい？
+もともと変分ベイズ用のパッケージは
+- <code>Bayes Blocks</code> 整数値のガウシアンのノードにしか対応していない。
+- <code>VIBES</code>　Javaで書かれたもの、もはや過去のもの
+- <code>Infer.NET</code>　完全なオープンソースでない</p>
+
+<p>等がある。</p>
+
+<p>s stochastic variational inference (Hoffman et al., 2013), deterministic annealing (Katahira
+et al., 2008), collapsed inference (Hensman et al., 2012), Riemannian conjugate gradient
+learning (Honkela et al., 2010), parameter expansions (Qi and Jaakkola, 2007) and pattern
+searches (Honkela et al., 2003).
+といったVBの拡張にも対応している</p>
+
+<p>###stan
+<code>.stan</code>という拡張子でstanコードを書く。ガウス混合分布をフィッティングする例</p>
+
+<pre><code class="language-stan">data {
+    int&lt;lower=1&gt; N;
+    int&lt;lower=1&gt; k;
+    real X[N];
+}
+parameters {
+    simplex[k] theta;
+    real mu[k];
+}
+model {
+    real ps[k];
+    for (i in 1:k){
+        mu[i] ~ normal(0, 1.0e+2);  #事前分布として平均0、標準偏差100の事前分布を用いる。
+    }
+    for(i in 1:N){
+        for(j in 1:k){
+            ps[j] &lt;- log(theta[j]) + normal_log(X[i], mu[j], 1.0);
+        }
+        increment_log_prob(log_sum_exp(ps));
+    }
+}
+</code></pre>
+
+<p>Stanコードには4つのブロックがある
+- <code>data</code> 用いるデータを宣言する。このブロックにpythonなどのインターフェイスからデータを渡す。上ではデータ数Nと混合数kを渡している
+- <code>parameters</code> &hellip; モデルのパラメータを宣言するブロック。今回は平均muと混合比thetaがパラメータ。thetaの型であるsymplexはディリクレ分布を事前分布に設定した時に使う特別な型
+- <code>transformed parameters</code> &hellip; parametersを用いて新たなパラメータを宣言する場合に使用する
+- <code>model</code> &hellip; モデルを記述する。</p>
+
+<p>##numpy
+線形のランダムノイズを載せた生成モデルからのデータを作るスクリプト</p>
+
+<pre><code class="language-python">m_true = -0.954
+b = true = 4.294
+f_true = 0.534
+
+N = 50
+x = np.sort(10*np,.random.rand(N))
+yerr = 0.1+0.5*np.random.rand(N)
+y += m_true * x+b_true
+y += np.abs(f_true * y) * np.random.randn(N)
+y += yerr * np.random.randn(N)
+</code></pre>
+
+<p>##scipy</p>
+
+<p>###stats
+<code>scipy.stats.norm</code> &hellip; 正規分布の
+- <code>norm.rvs(loc, scale, size)</code> &hellip; 平均(正確には期待値)<code>loc</code>,標準偏差<code>scale</code>の正規分布から<code>loc</code>個の確率変数を取得。(rvsはrandom variates)
+- <code>norm.pdf(x, loc, scale)</code> &hellip; 平均(正確には期待値)<code>loc</code>, 標準偏差<code>scale</code>,の正規分布の確率密度関数のxでの値を返す。(pdfはprobability density function)
+- <code>norm.cdf</code> &hellip; cumulative densitive function(上の累積版)
+-<code>norm.sf</code> &hellip; <code>1-cdf</code>
+- <code>norm.ppf</code> &hellip; パーセント点関数。累積分布関数(<code>cdf</code>)に近いが、xの代わりにqを指定する。$0=&lt;q=&lt;1$を満たす。
+- <code>norm.interval</code> &hellip; <code>alpha</code>%信頼区間を返す</p>
+
+<p>##matplotlib</p>
+
+<p>###pyplot</p>
+
+<p>例</p>
+
+<pre><code class="language-python">import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.random.normal(size = 100)
+
+plt.hist(x)
+plt.title(&quot;Histgram&quot;)
+plt.xlabel(&quot;x&quot;)
+plt.ylabel(&quot;frequency&quot;)
+plt.show()
+</code></pre>
+
+<p><code>plot.hist(x, normed = True)</code>とすると縦軸が確率になる。<code>bins=20</code>で横幅調整
+2つのヒストグラムを重ねるときは</p>
+
+<pre><code class="language-python">x =  np.random.normal(10, 5, 100)
+y = np.random.normal(20, 5, 100)
+
+plt.hist(x, label = &quot;x&quot;, bins = 20, range = (-10, 40),alpha = 0.5, color = &quot;blue&quot;)
+plt.hist(y, label = &quot;y&quot;, bins = 20, range = (-10, 40), alpha = 0.5, color = &quot;red&quot;)
+plt.legend()
+plt.show()
+</code></pre>
+
+<p>保存したい場合は<code>plt.show()</code>の代わりに、<code>plt.savefig(”ファイル名.png”)</code>を使う。ファイル名に拡張子が入っていると自動で判断して保存してくれる。</p>
+
+<p>使用できる拡張子は
+emf, eps, jpeg, jpg, pdf, png, ps, raw, rgba, svg, svgz, tif, tiff</p>
+
+<p>sshでログインしているときはエラーが出ないよう、以下のコードを書いておく</p>
+
+<pre><code class="language-python">import matplotlib
+matplotlib.use(&quot;Agg&quot;)
+</code></pre>
+
+  </div>
+</div>
+<script src="http://joemphilips.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-70447645-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Joe Miyamoto Philips&#39;s blog</title>
-    <link>http://joemphilips.com/</link>
-    <description>Recent content on Joe Miyamoto Philips&#39;s blog</description>
+    <title>Memo on Joe Miyamoto Philips&#39;s blog</title>
+    <link>http://joemphilips.com/categories/memo/</link>
+    <description>Recent content in Memo on Joe Miyamoto Philips&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
     <lastBuildDate>Fri, 01 Jan 2016 19:23:17 +0900</lastBuildDate>
-    <atom:link href="http://joemphilips.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://joemphilips.com/categories/memo/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>c&#43;&#43;メモ</title>
@@ -1634,39 +1634,6 @@ np.ndarray     #多次元配列を扱うためのクラス。
 np.ndarray     #N次元配列を扱うための&lt;/p&gt;
 
 &lt;p&gt;##作図&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Translate snakemake</title>
-      <link>http://joemphilips.com/post/Translate-snakemake/</link>
-      <pubDate>Sat, 21 Nov 2015 18:12:53 +0900</pubDate>
-      
-      <guid>http://joemphilips.com/post/Translate-snakemake/</guid>
-      <description>&lt;p&gt;#チュートリアルを翻訳しました&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://bitbucket.org/johanneskoester/snakemake/wiki/Home&#34;&gt;Snakemake&lt;/a&gt;は主にバイオインフォマティクスに使われるパイプライン作成用ツールです。
-翻訳をGithubに載せました。
-&lt;a href=&#34;https://github.com/joemphilips/Translate_Snakemake_Tutorial&#34;&gt;こちらからどうぞ&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About me</title>
-      <link>http://joemphilips.com/about/</link>
-      <pubDate>Sat, 21 Nov 2015 17:06:23 +0900</pubDate>
-      
-      <guid>http://joemphilips.com/about/</guid>
-      <description>&lt;p&gt;東京で癌細胞のゲノムデータと格闘する男&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-yaml&#34;&gt;
-好きな漫画: &amp;quot;シグルイ&amp;quot;
-
-好きな映画: &amp;quot;アメリカン・ビューティー&amp;quot;
-
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;随時更新予定&amp;hellip;&lt;/p&gt;
 </description>
     </item>
     

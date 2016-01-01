@@ -6,8 +6,733 @@
     <description>Recent content in Hack on Joe Miyamoto Philips&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja</language>
-    <lastBuildDate>Wed, 30 Dec 2015 15:45:36 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 01 Jan 2016 19:23:17 +0900</lastBuildDate>
     <atom:link href="http://joemphilips.com/categories/hack/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>c&#43;&#43;メモ</title>
+      <link>http://joemphilips.com/post/cpp_memo/</link>
+      <pubDate>Fri, 01 Jan 2016 19:23:17 +0900</pubDate>
+      
+      <guid>http://joemphilips.com/post/cpp_memo/</guid>
+      <description>
+
+&lt;h2 id=&#34;c-メモ:79eb885651d18aea5157e69a01afbc98&#34;&gt;#C++メモ&lt;/h2&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;p&gt;@(備忘録)&lt;/p&gt;
+
+&lt;p&gt;##基本文法
+###hello world&lt;/p&gt;
+
+&lt;p&gt;```cpp:hello world&lt;/p&gt;
+
+&lt;p&gt;#include &lt;stdio.h&gt;
+int main()
+{
+    printf( &amp;ldquo;%s\n&amp;rdquo;, &amp;ldquo;Hello, World&amp;rdquo; );
+    return 0;&lt;/p&gt;
+
+&lt;p&gt;}&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;
+コメントアウトは//か/**/
+
+標準出力は`std::cout`
+よってboostを用いてhello worldを書くと
+```cpp
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;boost/format.hpp&amp;gt;
+
+int main()
+{
+	std::cout &amp;lt;&amp;lt; boost::format(&amp;quot;%s\n&amp;quot;) % &amp;quot;Hello, World&amp;quot;;
+	return 0;
+}
+//%は引数としてbost::format関数に渡していることを示す
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;標準入力から整数を受け取って、標準出力に和を返すプログラムは&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;iostream&amp;gt;
+int main(){
+	int a, b;
+	cin &amp;gt;&amp;gt; a &amp;gt;&amp;gt; b;
+	cout &amp;lt;&amp;lt; a + b &amp;lt;&amp;lt;endl;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;using namespace std;&lt;/code&gt;とすると、coutと書くだけで、std::coutにアクセスできる…が、名前空間が汚されるので協議プログラミング以外では避けた方が良い&lt;/p&gt;
+
+&lt;p&gt;###配列
+繰り返し処理は以下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;int main() {
+    int array[10];
+    for(int i = 0; i &amp;lt; 10; i++)
+        array[i] = i * i;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###oop
+構造体はstructで定義する。それに関数も入れれるようにしたのがクラス&lt;/p&gt;
+
+&lt;p&gt;クラスは以下のように定義する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;struct hoge {
+private:
+	int x;
+	int y;
+public:
+
+	MyConstructor()
+		: x( 0 ), y( 0 );
+	//セッター
+	void set_count( int x ) { this-&amp;gt;x = x; };
+
+	//ゲッター
+	int geet_count() const { return this-&amp;gt;count; };
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コンストラクタはクラス名と同じ名前の関数でも行けるらしい。&lt;/p&gt;
+
+&lt;p&gt;###explicit
+下は暗黙の型変換の例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;class A
+{
+	A( int );
+}
+
+class B
+{
+	B( const A&amp;amp;);
+}
+
+void func()
+{
+	B( 3 );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;BのコンストラクタはAでないといけないように見えるが、３を渡すと自動的に&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;void func()
+{
+	B( A(3) );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;になる。これを防ぐには&lt;code&gt;explicit&lt;/code&gt;を利用する。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;class B
+{
+	explicit B( const A&amp;amp; );
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;特に理由がなければコンストラクタにはexplicitを使用しなくてはならない&lt;/p&gt;
+
+&lt;p&gt;##並列処理
+IntelTBBを使うのが良いらしい。Boostでもできるが、それぞれのスレッドをどのコアに割り当ててやるか指定しなくてはならないので、面倒。&lt;/p&gt;
+
+&lt;p&gt;OpenMPも簡単？&lt;/p&gt;
+
+&lt;p&gt;###OpenMP
+共有メモリ型の並列処理に適した形でコンパイルする。
+が、頻繁にメモリにアクセスするプログラムの場合は一台のマシンでもなぜかMPIを使用した方が早いらしい
+ソース内に&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;#pragma omp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;を付けて、コンパイル時にフラグを付ければOpenMPに対応したコンパイラなら自動的に並列化される。例えばGCCの場合は
+&lt;code&gt;-fopenmp&lt;/code&gt;を付けるだけでよい&lt;/p&gt;
+
+&lt;p&gt;###MPI
+分散メモリ(クラスタマシン)の場合はこちらを使う&lt;/p&gt;
+
+&lt;p&gt;##ライブラリ
+###標準ライブラリ
+####STL
+最もよく使われる標準ライブラリ、下記をincludeして使う&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;algorithm&amp;gt;
+min(a, b)	#小さい方を返す
+max(a, b)
+int a[] = {3, 5, 7, 8, 2}
+sort(a, a+5)	#aをソート
+reverse(a, a+5)	#aを反転
+count(a, a+8, 8)	#a中の8の数をカウント
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;スタックとキュー&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-cpp&#34;&gt;#include &amp;lt;stack&amp;gt;
+#include &amp;lt;queue&amp;gt;
+
+stack&amp;lt;int&amp;gt; S;	#stack&amp;lt;int&amp;gt;というクラスのSというインスタンスを作成。&amp;lt;int&amp;gt;はスタックに格納する値がintであることを示す。
+
+S.push(3);	#Sに3を追加
+S.top()	#Sの先頭要素を取得（削除はしない）
+S.pop()	#Sの先頭要素を削除
+S.size()
+S.empty()
+#queueも似たような感じ
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>javascriptメモ</title>
+      <link>http://joemphilips.com/post/javascript_memo/</link>
+      <pubDate>Fri, 01 Jan 2016 19:20:02 +0900</pubDate>
+      
+      <guid>http://joemphilips.com/post/javascript_memo/</guid>
+      <description>&lt;p&gt;#javascriptメモ&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;@(備忘録)&lt;/p&gt;
+
+&lt;p&gt;[TOC]
+##サードパーティ製ライブラリは
+&lt;a href=&#34;https://cdnjs.com/libraries&#34;&gt;cdnjs&lt;/a&gt;を参照
+##外部ファイルのインクルード&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; language=&amp;quot;JavaScript&amp;quot; src=&amp;quot;a.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###requireJS
+requireメソッドを呼ぶ前に、require.configでオプションを指定する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;script src=&amp;quot;scripts/require.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+&amp;lt;script&amp;gt;
+    require.config({
+        baseUrl:&amp;quot;another/path&amp;quot;,
+        paths: {
+          &amp;quot;some&amp;quot;/some/v1.0
+            },
+        require([&amp;quot;some/module&amp;quot;, &amp;quot;my/module&amp;quot;, &amp;quot;hoge.js&amp;quot;, fuga.js])
+        function(someModule, myModule){//上でrequireされたモジュールがすべてloadされた時に実行されるスクリプト}
+        }
+    })
+
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##周辺知識
+###CSS
+HTMLのスタイルを記述する書式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;body{   ＃HTMLの&amp;lt;body&amp;gt;と&amp;lt;/body&amp;gt;の間に対して以下の書式を適用
+    background-color: white;
+    color: black;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;ここでbodyをセレクタと呼び、HTMLのどこに対して{}内のスタイルを適用するかを示している。
+セレクタには以下がある&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;body&lt;/code&gt; &amp;hellip; タイプセレクタ、bodyタグの中身に対して適用される&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;*&lt;/code&gt; &amp;hellip; ユニバーサル。全てに適用される。&lt;/li&gt;
+&lt;li&gt;- &lt;code&gt;#foo&lt;/code&gt; &amp;hellip; IDセレクタ&lt;/li&gt;
+&lt;li&gt;- &lt;code&gt;.foo&lt;/code&gt; &amp;hellip; クラスセレクタ。指定したクラス名がある要素に適用
+属性セレクタ&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;[foo=&amp;quot;bar&amp;quot;] { color: red; } /* foo属性の値がbarの要素 */
+[foo^=&amp;quot;bar&amp;quot;] { color: red; } /* foo属性の値がbarで始まっている要素 */
+[foo$=&amp;quot;bar&amp;quot;] { color: red; } /* foo属性の値がbarで終わっている要素 */
+[foo*=&amp;quot;bar&amp;quot;] { color: red; } /* foo属性の値がbarを含む要素 */
+A[foo=&amp;quot;bar&amp;quot;] { color: red; } /* foo属性の値がbarのA要素 */
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;実際には以下のように外部ファイルに定義を書いておいてインクルードする場合が多い&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;
+&amp;lt;html&amp;gt;
+  &amp;lt;head&amp;gt;
+    &amp;lt;link href=&amp;quot;test.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot; type=&amp;quot;text/css&amp;quot;&amp;gt;
+  &amp;lt;/head&amp;gt;
+
+  &amp;lt;body&amp;gt;
+    &amp;lt;p&amp;gt;Hello World:D&amp;lt;/p&amp;gt;
+  &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###Jade
+HTMLを見やすくする？みたいな
+例えば一般的なHTML5のテンプレートはこうだが&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;html&amp;gt;
+    &amp;lt;head&amp;gt;
+        &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt;
+        &amp;lt;title&amp;gt;最高にクールなホームページ&amp;lt;/title&amp;gt;
+        &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;./css/app.css&amp;quot;&amp;gt;
+    &amp;lt;/head&amp;gt;
+    &amp;lt;body&amp;gt;
+        &amp;lt;h1&amp;gt;最高にクールなホームページ&amp;lt;/h1&amp;gt;
+        &amp;lt;p&amp;gt;最高にクールなホームページへようこそ。&amp;lt;/p&amp;gt;
+        &amp;lt;script src=&amp;quot;./js/app.js&amp;quot; charset=&amp;quot;UTF-8&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+    &amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Jadeで書くとこうなる、よりpythonライクな感じ&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jade&#34;&gt;doctype html
+html
+  head
+    meta(charset=&#39;UTF-8&#39;)
+    title 最高にクールなホームページ
+    link(rel=&#39;stylesheet&#39;, href=&#39;./css/app.css&#39;)
+  body
+    h1 最高にクールなホームページ
+    p 最高にクールなホームページへようこそ。
+    script(src=&#39;./js/app.js&#39;, charset=&#39;UTF-8&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;他にも&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jade&#34;&gt;section#example-01.example
+p javaScriptでハローワールド
+pre
+    |(function () {
+    |   console.log(&#39;Hello, world.&#39;);
+    | })();
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とかくと&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jade&#34;&gt;&amp;lt;section id=&amp;quot;example-01&amp;quot; class=&amp;quot;example&amp;quot;&amp;gt;
+  &amp;lt;p&amp;gt;JavaScript でハローワールド。&amp;lt;/p&amp;gt;
+  &amp;lt;pre&amp;gt;
+    (function () {
+      console.log(&#39;Hello, world.&#39;);
+    })();
+  &amp;lt;/pre&amp;gt;
+&amp;lt;/section&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;となる
+jadeを書いている時に、コピペした内容もすべてJadeの記法で書き直すと大変なため、以下の様な記法が使える.
+最初の行のdiv(続くdivタグをまるごとスニペット化)と、&lt;code&gt;.&lt;/code&gt;がポイント&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;div#facebook.
+  &amp;lt;div id=&amp;quot;fb-root&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+  &amp;lt;script&amp;gt;
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = &amp;quot;//connect.facebook.net/ja_JP/all.js#xfbml=1&amp;quot;;
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, &#39;script&#39;, &#39;facebook-jssdk&#39;));
+  &amp;lt;/script&amp;gt;
+  &amp;lt;div class=&amp;quot;fb-like&amp;quot; data-send=&amp;quot;false&amp;quot; data-layout=&amp;quot;button_count&amp;quot; data-width=&amp;quot;450&amp;quot; data-show-faces=&amp;quot;false&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;jadeの中ではjavascriptオブジェクトを定義して、それをテンプレート内で使用することができる例えば&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jade&#34;&gt;var package = {
+  title: &#39;最高にクールなホームページ&#39;,
+  description: &#39;最高にクールなホームページです。見ないと損です。&#39;,
+  keywords: [
+    &#39;最高&#39;,
+    &#39;クール&#39;,
+    &#39;世界一&#39;,
+    &#39;天才&#39;
+  ],
+  robots: [
+    &#39;INDEX&#39;,
+    &#39;FOLLOW&#39;,
+    &#39;NOODP&#39;,
+    &#39;NOYDIR&#39;,
+    &#39;NOARCHIVE&#39;
+  ]
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;というオブジェクトを定義して、以下の様な形で使用すると中身を使い回すのに便利&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jade&#34;&gt;doctype html
+html
+  head
+    meta(charset=&#39;UTF-8&#39;)
+    title= package.title
+    meta(name=&#39;description&#39;, content=package.description)
+    meta(name=&#39;keywords&#39;, keywords=package.keywords)
+    meta(name=&#39;robots&#39;, keywords=package.robots)
+  body
+    h1= package.title
+    p #{package.title} にようこそ。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####テンプレート継承&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-jade&#34;&gt;extends _layout
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とかくと、&lt;code&gt;_layout.jade&lt;/code&gt;の内容を継承でき&lt;/p&gt;
+
+&lt;p&gt;##テスト
+###Jasmine
+を用いる&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;expect($result&amp;quot;).not.toEqual(&amp;quot;期待する値&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;###frisby
+REST API のテストに用いる
+テストコードは&lt;code&gt;/spec&lt;/code&gt;以下に置くのが慣習&lt;/p&gt;
+
+&lt;p&gt;##可視化
+###D3.js
+data visualizationのためのライブラリ。
+CSSライクにスタイルを記述できる。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&amp;lt;head&amp;gt;
+   &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt;
+      p {
+         font-family: sans-serif;
+         color: lime;
+      }
+   &amp;lt;/style&amp;gt;
+&amp;lt;/head&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;このようにしてjsファイルのヘッダ部に直接記述するか、
+あるいは外部CSSファイルに記述しておきそれを参照する&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;&amp;lt;head&amp;gt;
+   &amp;lt;link rel=&amp;quot;stylesheet&amp;quot; href=&amp;quot;style.css&amp;quot;&amp;gt;
+&amp;lt;/head&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;基本構文は&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-js&#34;&gt;d3.select(&amp;quot;body&amp;quot;).append(&amp;quot;p&amp;quot;).text(&amp;quot;新しいパラグラフ！&amp;quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;d3  #d3オブジェクトのメソッドであることを明示
+select(&amp;ldquo;body&amp;rdquo;)  #対象となるCSSセレクタを指定(すべてに指定したい場合はselectAll())
+append(&amp;ldquo;p&amp;rdquo;) #&lt;body&gt;内に&lt;p&gt;を追加。
+text(&amp;ldquo;新しいパラグラフ&amp;rdquo;)    #&lt;p&gt;&lt;/p&gt;内に文章を追加&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>pythonメモ2　データ分析編</title>
+      <link>http://joemphilips.com/post/python_memo2/</link>
+      <pubDate>Fri, 01 Jan 2016 19:17:22 +0900</pubDate>
+      
+      <guid>http://joemphilips.com/post/python_memo2/</guid>
+      <description>
+
+&lt;h2 id=&#34;pythonメモ2-データ分析編:06d972392107d1d424e1dc2213801d7e&#34;&gt;Pythonメモ2 ~データ分析編~&lt;/h2&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;p&gt;@(備忘録)
+@[python]&lt;/p&gt;
+
+&lt;p&gt;##ipython&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;objectname?&lt;/code&gt;のようにはてなを最後につけて実行することで、オブジェクトの詳細が見れる。
+&lt;code&gt;objectname??&lt;/code&gt; &amp;hellip; さらに詳細に見れる
+またls やcdはそのまま使える&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;!cp a.txt b/&lt;/code&gt;のように、先頭に&lt;code&gt;!&lt;/code&gt;を付けると内部で&lt;code&gt;os.system()&lt;/code&gt;を読んでくれるので、シェルコマンドを直接実行できる。ただしnotebook中で&lt;code&gt;cd&lt;/code&gt;や&lt;code&gt;pwd&lt;/code&gt;をしたいときは&lt;code&gt;!cd&lt;/code&gt;ではなく&lt;code&gt;%cd&lt;/code&gt;でなくてはならない&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;files = !ls /usr&lt;/code&gt;のようにすると簡単にシステムコマンドのアウトプットをとれる&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;%edit&lt;/code&gt; &amp;hellip; エディタを開いて編集&lt;/p&gt;
+
+&lt;p&gt;###ipython serverのセットアップ
+&lt;a href=&#34;https://thomassileo.name/blog/2012/11/19/setup-a-remote-ipython-notebook-server-with-numpyscipymaltplotlibpandas-in-a-virtualenv-on-ubuntu-server/&#34;&gt;ここ&lt;/a&gt;を参考にする&lt;/p&gt;
+
+&lt;p&gt;###マジックコマンド&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;%quickref&lt;/code&gt;や&lt;code&gt;%magic&lt;/code&gt;ですべてのマジックコマンドを表示
+&lt;code&gt;%&lt;/code&gt;を付けて実行すると、引数を関数の外に書くことができる。例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;## 実行時間を計測
+%timeit range(1000)
+
+## %%にすると複数行にわたって書ける
+%%timeit x = range(10000)
+max(x)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;%matplitlib inline&lt;/code&gt;を実行して置かないとplotできないので注意&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;####別のフォーマットへの変換
+- &lt;code&gt;ipython nbconvert --to html hoge.ipynb&lt;/code&gt; &amp;hellip; htmlへ
+- &lt;code&gt;ipython nbconvett --to html --template basic hoge.ipynb&lt;/code&gt; &amp;hellip; ヘッダーなどのないよりシンプルなhtml
+- &lt;code&gt;--to slides&lt;/code&gt;
+- &lt;code&gt;--to markdown&lt;/code&gt;
+- &lt;code&gt;--to rst&lt;/code&gt;
+- &lt;code&gt;--to python&lt;/code&gt;
+- &lt;code&gt;--to latex&lt;/code&gt;
+ - &lt;code&gt;--template book&lt;/code&gt;
+ - &lt;code&gt;--template article&lt;/code&gt;
+ - &lt;code&gt;template basic&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;等がある。&lt;code&gt;--post serve&lt;/code&gt;を末尾につけると自動でブラウザを開いてくれる
+RISEと呼ばれるパッケージを入れると、notebookの右上にボタンが出て、リアルタイムプレビューができるようになる&lt;/p&gt;
+
+&lt;p&gt;##ベイジアン
+変分ベイズならBayesPy、MCMCならStanがよさそう&lt;/p&gt;
+
+&lt;p&gt;###BayesPy
+python3のパッケージ。指数型分布族(ガウス、ガンマ、ディリクレなど)にしか使えないっぽい？
+もともと変分ベイズ用のパッケージは
+- &lt;code&gt;Bayes Blocks&lt;/code&gt; 整数値のガウシアンのノードにしか対応していない。
+- &lt;code&gt;VIBES&lt;/code&gt;　Javaで書かれたもの、もはや過去のもの
+- &lt;code&gt;Infer.NET&lt;/code&gt;　完全なオープンソースでない&lt;/p&gt;
+
+&lt;p&gt;等がある。&lt;/p&gt;
+
+&lt;p&gt;s stochastic variational inference (Hoffman et al., 2013), deterministic annealing (Katahira
+et al., 2008), collapsed inference (Hensman et al., 2012), Riemannian conjugate gradient
+learning (Honkela et al., 2010), parameter expansions (Qi and Jaakkola, 2007) and pattern
+searches (Honkela et al., 2003).
+といったVBの拡張にも対応している&lt;/p&gt;
+
+&lt;p&gt;###stan
+&lt;code&gt;.stan&lt;/code&gt;という拡張子でstanコードを書く。ガウス混合分布をフィッティングする例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-stan&#34;&gt;data {
+    int&amp;lt;lower=1&amp;gt; N;
+    int&amp;lt;lower=1&amp;gt; k;
+    real X[N];
+}
+parameters {
+    simplex[k] theta;
+    real mu[k];
+}
+model {
+    real ps[k];
+    for (i in 1:k){
+        mu[i] ~ normal(0, 1.0e+2);  #事前分布として平均0、標準偏差100の事前分布を用いる。
+    }
+    for(i in 1:N){
+        for(j in 1:k){
+            ps[j] &amp;lt;- log(theta[j]) + normal_log(X[i], mu[j], 1.0);
+        }
+        increment_log_prob(log_sum_exp(ps));
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Stanコードには4つのブロックがある
+- &lt;code&gt;data&lt;/code&gt; 用いるデータを宣言する。このブロックにpythonなどのインターフェイスからデータを渡す。上ではデータ数Nと混合数kを渡している
+- &lt;code&gt;parameters&lt;/code&gt; &amp;hellip; モデルのパラメータを宣言するブロック。今回は平均muと混合比thetaがパラメータ。thetaの型であるsymplexはディリクレ分布を事前分布に設定した時に使う特別な型
+- &lt;code&gt;transformed parameters&lt;/code&gt; &amp;hellip; parametersを用いて新たなパラメータを宣言する場合に使用する
+- &lt;code&gt;model&lt;/code&gt; &amp;hellip; モデルを記述する。&lt;/p&gt;
+
+&lt;p&gt;##numpy
+線形のランダムノイズを載せた生成モデルからのデータを作るスクリプト&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;m_true = -0.954
+b = true = 4.294
+f_true = 0.534
+
+N = 50
+x = np.sort(10*np,.random.rand(N))
+yerr = 0.1+0.5*np.random.rand(N)
+y += m_true * x+b_true
+y += np.abs(f_true * y) * np.random.randn(N)
+y += yerr * np.random.randn(N)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;##scipy&lt;/p&gt;
+
+&lt;p&gt;###stats
+&lt;code&gt;scipy.stats.norm&lt;/code&gt; &amp;hellip; 正規分布の
+- &lt;code&gt;norm.rvs(loc, scale, size)&lt;/code&gt; &amp;hellip; 平均(正確には期待値)&lt;code&gt;loc&lt;/code&gt;,標準偏差&lt;code&gt;scale&lt;/code&gt;の正規分布から&lt;code&gt;loc&lt;/code&gt;個の確率変数を取得。(rvsはrandom variates)
+- &lt;code&gt;norm.pdf(x, loc, scale)&lt;/code&gt; &amp;hellip; 平均(正確には期待値)&lt;code&gt;loc&lt;/code&gt;, 標準偏差&lt;code&gt;scale&lt;/code&gt;,の正規分布の確率密度関数のxでの値を返す。(pdfはprobability density function)
+- &lt;code&gt;norm.cdf&lt;/code&gt; &amp;hellip; cumulative densitive function(上の累積版)
+-&lt;code&gt;norm.sf&lt;/code&gt; &amp;hellip; &lt;code&gt;1-cdf&lt;/code&gt;
+- &lt;code&gt;norm.ppf&lt;/code&gt; &amp;hellip; パーセント点関数。累積分布関数(&lt;code&gt;cdf&lt;/code&gt;)に近いが、xの代わりにqを指定する。$0=&amp;lt;q=&amp;lt;1$を満たす。
+- &lt;code&gt;norm.interval&lt;/code&gt; &amp;hellip; &lt;code&gt;alpha&lt;/code&gt;%信頼区間を返す&lt;/p&gt;
+
+&lt;p&gt;##matplotlib&lt;/p&gt;
+
+&lt;p&gt;###pyplot&lt;/p&gt;
+
+&lt;p&gt;例&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.random.normal(size = 100)
+
+plt.hist(x)
+plt.title(&amp;quot;Histgram&amp;quot;)
+plt.xlabel(&amp;quot;x&amp;quot;)
+plt.ylabel(&amp;quot;frequency&amp;quot;)
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;plot.hist(x, normed = True)&lt;/code&gt;とすると縦軸が確率になる。&lt;code&gt;bins=20&lt;/code&gt;で横幅調整
+2つのヒストグラムを重ねるときは&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;x =  np.random.normal(10, 5, 100)
+y = np.random.normal(20, 5, 100)
+
+plt.hist(x, label = &amp;quot;x&amp;quot;, bins = 20, range = (-10, 40),alpha = 0.5, color = &amp;quot;blue&amp;quot;)
+plt.hist(y, label = &amp;quot;y&amp;quot;, bins = 20, range = (-10, 40), alpha = 0.5, color = &amp;quot;red&amp;quot;)
+plt.legend()
+plt.show()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;保存したい場合は&lt;code&gt;plt.show()&lt;/code&gt;の代わりに、&lt;code&gt;plt.savefig(”ファイル名.png”)&lt;/code&gt;を使う。ファイル名に拡張子が入っていると自動で判断して保存してくれる。&lt;/p&gt;
+
+&lt;p&gt;使用できる拡張子は
+emf, eps, jpeg, jpg, pdf, png, ps, raw, rgba, svg, svgz, tif, tiff&lt;/p&gt;
+
+&lt;p&gt;sshでログインしているときはエラーが出ないよう、以下のコードを書いておく&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;import matplotlib
+matplotlib.use(&amp;quot;Agg&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>SQLメモ</title>
+      <link>http://joemphilips.com/post/SQL_memo/</link>
+      <pubDate>Fri, 01 Jan 2016 19:14:42 +0900</pubDate>
+      
+      <guid>http://joemphilips.com/post/SQL_memo/</guid>
+      <description>
+
+&lt;h2 id=&#34;sql-rdbmsメモ:ae538a595cad7f218a9f92da0c18639c&#34;&gt;#SQL,RDBMSメモ&lt;/h2&gt;
+
+&lt;p&gt;@(備忘録)&lt;/p&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;p&gt;##SQLの基本構文&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select myentry from mytable where [検索条件] order by hoge;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;コメントは#ではなく-- や/*ほげ*/の形にする
+予約語(select等)を識別子として使用する場合は&amp;rdquo;(シングルクオート)で囲む
+###COUNT
+レコード数(列数)を数えるには&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;SELECT COUNT(*)
+FROM &amp;lt;テーブル名&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;SELECT COUNT(DISTINCT &amp;lt;列名&amp;gt;)&lt;/p&gt;
+
+&lt;p&gt;###mysql
+&lt;code&gt;mysql -u root@localhost -p&lt;/code&gt;rootとしてパスワードつきで起動(@localhostは省略可能)&lt;/p&gt;
+
+&lt;p&gt;###join&lt;/p&gt;
+
+&lt;p&gt;###sqlite
+####コマンドラインでのコマンド
+&lt;code&gt;sqlite3 &amp;lt;database_name&amp;gt;&lt;/code&gt; &amp;hellip; データベースの作成とインタプリタの起動。データベース名はなんでもよいが拡張子名には&lt;code&gt;db&lt;/code&gt;あるいは&lt;code&gt;sqlite3&lt;/code&gt;とつける&lt;/p&gt;
+
+&lt;p&gt;####インタプリタでのコマンド
+&lt;code&gt;.show&lt;/code&gt; &amp;hellip; 区切り文字などのパラメータ状態の表示
+&lt;code&gt;;&lt;/code&gt;が入力されるまでは1つの文とみなされる。それまでは自由に改行できる
+&lt;code&gt;.help&lt;/code&gt; &amp;hellip; ヘルプ
+&lt;code&gt;.tables&lt;/code&gt; &amp;hellip; tableの一覧を確認
+&lt;code&gt;.databases&lt;/code&gt; &amp;hellip; 接続されているデータベースの一覧
+&lt;code&gt;select * from &amp;lt;table_name&amp;gt;;&lt;/code&gt; &amp;hellip; sqlの実行
+&lt;code&gt;.schema &amp;lt;table_name&amp;gt;&lt;/code&gt; &amp;hellip; テーブル定義を確認
+&lt;code&gt;.dump &amp;lt;table_name&amp;gt;&lt;/code&gt; &amp;hellip; ダンプimp&lt;/p&gt;
+
+&lt;p&gt;####テーブルの基本操作
+テーブルの作成&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;create table test(val1, val2)   #データ型の指定なし
+create table test2(val1 text, val2 mumeric) #データ型を指定
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;行の挿入&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;insert into test values(null, 48);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;データ型の確認&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;select typeof(val1)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;####tsv,csv
+#####インポート&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;create table table_name (name text, param1 int, param2 int) #あらかじめテーブルを作成(必須かは不明)
+.separator &amp;quot;\t&amp;quot;
+.import data.tsv table_name
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;#####エクスポート&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sql&#34;&gt;.header off
+.mode tabs
+.output hoge3.csv
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Makeメモ</title>
+      <link>http://joemphilips.com/post/Make_memo/</link>
+      <pubDate>Fri, 01 Jan 2016 19:08:13 +0900</pubDate>
+      
+      <guid>http://joemphilips.com/post/Make_memo/</guid>
+      <description>
+
+&lt;h2 id=&#34;makeメモ:233499923183c8ac82af8bea603e4f92&#34;&gt;Makeメモ&lt;/h2&gt;
+
+&lt;p&gt;[TOC]&lt;/p&gt;
+
+&lt;p&gt;@(備忘録)&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;make --just-print&lt;/code&gt;
+するとmakeの実行するコマンドの一覧が見れる。&lt;/p&gt;
+
+&lt;p&gt;configure時に
+&lt;code&gt;--prefix=/usr/xxxx&lt;/code&gt;
+のように指定してやると、make install 先のディレクトリが/usr/xxxxになる。&lt;/p&gt;
+
+&lt;p&gt;#makeflow&lt;/p&gt;
+
+&lt;p&gt;makeに非常に似た構文でかけるパイプ作成ツール。シェルよりもfault toleranceが高い。&lt;/p&gt;
+
+&lt;p&gt;#minimal make&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;ターゲット:依存するファイル
+    コマンド
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とすると、&lt;em&gt;ターゲットが存在しない&lt;/em&gt; ||  &lt;em&gt;依存するファイルの更新履歴がターゲットより新しい&lt;/em&gt;
+時にのみ実行してくれる。なお、インデントはタブでなくてはならない&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-make&#34;&gt;.PHONY:clean
+
+clean:
+    rm -f file*.txt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;とすると&lt;code&gt;make clean&lt;/code&gt;で中間結果の削除ができる&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>pythonメモ</title>

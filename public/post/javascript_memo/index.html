@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>javascriptメモ &middot; JoeMPhilips</title>
+
+  
+  <link rel="stylesheet" href="http://joemphilips.com/css/poole.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/hyde.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/hyde-x.css">
+  <link rel="stylesheet" href="http://joemphilips.com/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://joemphilips.com/touch-icon-144-precomposed.png">
+  <link href="http://joemphilips.com/favicon.png" rel="icon">
+
+  
+  
+  
+  
+
+  <meta name="description" content="personal memo for JS">
+  <meta name="keywords" content="javascript">
+  
+</head>
+<body class="theme-base-0b">
+<div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      
+        <img src="https://www.gravatar.com/avatar/154408de16dfa049bac95d8a062a0b96?s=200"
+             alt="gravatar" title="JoeMPhilips">
+      
+      <h1>JoeMPhilips</h1>
+      <p class="lead">Purpose of the life is to not think about Purpose of the life</p>
+    </div>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item"><a href="http://joemphilips.com/">Blog</a></li>
+      
+      <li class="sidebar-nav-item"><a href="http://joemphilips.com/about/">About me</a></li>
+      
+    </ul>
+
+    <ul class="sidebar-nav">
+      <li class="sidebar-nav-item">
+      <a href="https://github.com/joemphilips"><i class="fa fa-github-square fa-3x"></i></a>
+      
+      
+      
+      
+      <a href="https://www.facebook.com/profile.php?id=100004310417464"><i class="fa fa-facebook-square fa-3x"></i></a>
+      <a href="https://twitter.com/joemphilips"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      <a href="" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      </li>
+    </ul>
+
+    
+
+    <p>Copyright &copy; 2016 <a href="http://joemphilips.com/license/">License</a><br/>
+       Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
+  </div>
+</div>
+
+
+<div class="content container">
+  <div class="post">
+    <h1>javascriptメモ</h1>
+    <p>#javascriptメモ</p>
+
+<hr />
+
+<p>@(備忘録)</p>
+
+<p>[TOC]
+##サードパーティ製ライブラリは
+<a href="https://cdnjs.com/libraries">cdnjs</a>を参照
+##外部ファイルのインクルード</p>
+
+<pre><code class="language-js">&lt;script type=&quot;text/javascript&quot; language=&quot;JavaScript&quot; src=&quot;a.js&quot;&gt;&lt;/script&gt;
+</code></pre>
+
+<p>###requireJS
+requireメソッドを呼ぶ前に、require.configでオプションを指定する</p>
+
+<pre><code class="language-html">&lt;script src=&quot;scripts/require.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    require.config({
+        baseUrl:&quot;another/path&quot;,
+        paths: {
+          &quot;some&quot;/some/v1.0
+            },
+        require([&quot;some/module&quot;, &quot;my/module&quot;, &quot;hoge.js&quot;, fuga.js])
+        function(someModule, myModule){//上でrequireされたモジュールがすべてloadされた時に実行されるスクリプト}
+        }
+    })
+
+&lt;/script&gt;
+</code></pre>
+
+<p>##周辺知識
+###CSS
+HTMLのスタイルを記述する書式</p>
+
+<pre><code class="language-css">body{   ＃HTMLの&lt;body&gt;と&lt;/body&gt;の間に対して以下の書式を適用
+    background-color: white;
+    color: black;
+}
+</code></pre>
+
+<p>ここでbodyをセレクタと呼び、HTMLのどこに対して{}内のスタイルを適用するかを示している。
+セレクタには以下がある</p>
+
+<ul>
+<li><code>body</code> &hellip; タイプセレクタ、bodyタグの中身に対して適用される</li>
+<li><code>*</code> &hellip; ユニバーサル。全てに適用される。</li>
+<li>- <code>#foo</code> &hellip; IDセレクタ</li>
+<li>- <code>.foo</code> &hellip; クラスセレクタ。指定したクラス名がある要素に適用
+属性セレクタ</li>
+</ul>
+
+<pre><code class="language-html">[foo=&quot;bar&quot;] { color: red; } /* foo属性の値がbarの要素 */
+[foo^=&quot;bar&quot;] { color: red; } /* foo属性の値がbarで始まっている要素 */
+[foo$=&quot;bar&quot;] { color: red; } /* foo属性の値がbarで終わっている要素 */
+[foo*=&quot;bar&quot;] { color: red; } /* foo属性の値がbarを含む要素 */
+A[foo=&quot;bar&quot;] { color: red; } /* foo属性の値がbarのA要素 */
+</code></pre>
+
+<p>実際には以下のように外部ファイルに定義を書いておいてインクルードする場合が多い</p>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;link href=&quot;test.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+  &lt;/head&gt;
+
+  &lt;body&gt;
+    &lt;p&gt;Hello World:D&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>###Jade
+HTMLを見やすくする？みたいな
+例えば一般的なHTML5のテンプレートはこうだが</p>
+
+<pre><code class="language-html">&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;UTF-8&quot;&gt;
+        &lt;title&gt;最高にクールなホームページ&lt;/title&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;./css/app.css&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;最高にクールなホームページ&lt;/h1&gt;
+        &lt;p&gt;最高にクールなホームページへようこそ。&lt;/p&gt;
+        &lt;script src=&quot;./js/app.js&quot; charset=&quot;UTF-8&quot;&gt;&lt;/script&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>Jadeで書くとこうなる、よりpythonライクな感じ</p>
+
+<pre><code class="language-jade">doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title 最高にクールなホームページ
+    link(rel='stylesheet', href='./css/app.css')
+  body
+    h1 最高にクールなホームページ
+    p 最高にクールなホームページへようこそ。
+    script(src='./js/app.js', charset='UTF-8')
+</code></pre>
+
+<p>他にも</p>
+
+<pre><code class="language-jade">section#example-01.example
+p javaScriptでハローワールド
+pre
+    |(function () {
+    |   console.log('Hello, world.');
+    | })();
+</code></pre>
+
+<p>とかくと</p>
+
+<pre><code class="language-jade">&lt;section id=&quot;example-01&quot; class=&quot;example&quot;&gt;
+  &lt;p&gt;JavaScript でハローワールド。&lt;/p&gt;
+  &lt;pre&gt;
+    (function () {
+      console.log('Hello, world.');
+    })();
+  &lt;/pre&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>となる
+jadeを書いている時に、コピペした内容もすべてJadeの記法で書き直すと大変なため、以下の様な記法が使える.
+最初の行のdiv(続くdivタグをまるごとスニペット化)と、<code>.</code>がポイント</p>
+
+<pre><code class="language-html">div#facebook.
+  &lt;div id=&quot;fb-root&quot;&gt;&lt;/div&gt;
+  &lt;script&gt;
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = &quot;//connect.facebook.net/ja_JP/all.js#xfbml=1&quot;;
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  &lt;/script&gt;
+  &lt;div class=&quot;fb-like&quot; data-send=&quot;false&quot; data-layout=&quot;button_count&quot; data-width=&quot;450&quot; data-show-faces=&quot;false&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<p>jadeの中ではjavascriptオブジェクトを定義して、それをテンプレート内で使用することができる例えば</p>
+
+<pre><code class="language-jade">var package = {
+  title: '最高にクールなホームページ',
+  description: '最高にクールなホームページです。見ないと損です。',
+  keywords: [
+    '最高',
+    'クール',
+    '世界一',
+    '天才'
+  ],
+  robots: [
+    'INDEX',
+    'FOLLOW',
+    'NOODP',
+    'NOYDIR',
+    'NOARCHIVE'
+  ]
+};
+</code></pre>
+
+<p>というオブジェクトを定義して、以下の様な形で使用すると中身を使い回すのに便利</p>
+
+<pre><code class="language-jade">doctype html
+html
+  head
+    meta(charset='UTF-8')
+    title= package.title
+    meta(name='description', content=package.description)
+    meta(name='keywords', keywords=package.keywords)
+    meta(name='robots', keywords=package.robots)
+  body
+    h1= package.title
+    p #{package.title} にようこそ。
+</code></pre>
+
+<p>####テンプレート継承</p>
+
+<pre><code class="language-jade">extends _layout
+</code></pre>
+
+<p>とかくと、<code>_layout.jade</code>の内容を継承でき</p>
+
+<p>##テスト
+###Jasmine
+を用いる</p>
+
+<pre><code class="language-js">expect($result&quot;).not.toEqual(&quot;期待する値&quot;);
+</code></pre>
+
+<p>###frisby
+REST API のテストに用いる
+テストコードは<code>/spec</code>以下に置くのが慣習</p>
+
+<p>##可視化
+###D3.js
+data visualizationのためのライブラリ。
+CSSライクにスタイルを記述できる。</p>
+
+<pre><code class="language-js">&lt;head&gt;
+   &lt;style type=&quot;text/css&quot;&gt;
+      p {
+         font-family: sans-serif;
+         color: lime;
+      }
+   &lt;/style&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>このようにしてjsファイルのヘッダ部に直接記述するか、
+あるいは外部CSSファイルに記述しておきそれを参照する</p>
+
+<pre><code class="language-js">&lt;head&gt;
+   &lt;link rel=&quot;stylesheet&quot; href=&quot;style.css&quot;&gt;
+&lt;/head&gt;
+</code></pre>
+
+<p>基本構文は</p>
+
+<pre><code class="language-js">d3.select(&quot;body&quot;).append(&quot;p&quot;).text(&quot;新しいパラグラフ！&quot;);
+</code></pre>
+
+<p>d3  #d3オブジェクトのメソッドであることを明示
+select(&ldquo;body&rdquo;)  #対象となるCSSセレクタを指定(すべてに指定したい場合はselectAll())
+append(&ldquo;p&rdquo;) #<body>内に<p>を追加。
+text(&ldquo;新しいパラグラフ&rdquo;)    #<p></p>内に文章を追加</p>
+
+  </div>
+</div>
+<script src="http://joemphilips.com/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script>
+  var _gaq=[['_setAccount','UA-70447645-1'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+</body>
+</html>
+

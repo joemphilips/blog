@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>Bioinformatics &middot; JoeMPhilips</title>
+  <title>SQLメモ &middot; JoeMPhilips</title>
 
   
   <link rel="stylesheet" href="http://joemphilips.com/css/poole.css">
@@ -26,10 +26,10 @@
   
   
   
-  <link href="http://joemphilips.com/tags/bioinformatics/index.xml" rel="alternate" type="application/rss+xml" title="Joe Miyamoto Philips&#39;s blog &middot; JoeMPhilips" />
+  
 
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="personal memo for SQL and RDBMS">
+  <meta name="keywords" content="SQL,RDBMS">
   
 </head>
 <body class="theme-base-0b">
@@ -61,7 +61,7 @@
       <a href="https://www.facebook.com/profile.php?id=100004310417464"><i class="fa fa-facebook-square fa-3x"></i></a>
       <a href="https://twitter.com/joemphilips"><i class="fa fa-twitter-square fa-3x"></i></a>
       
-      <a href="http://joemphilips.com/tags/bioinformatics/index.xml" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
+      <a href="" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
       </li>
     </ul>
 
@@ -74,23 +74,84 @@
 
 
 <div class="content container">
-  <ul class="posts">
-  
-    <li><a href="http://joemphilips.com/post/python_memo/">pythonメモ</a>
+  <div class="post">
+    <h1>SQLメモ</h1>
     
-    &middot;
-    <a class="label" href="http://joemphilips.com/categories/hack">hack</a><a class="label" href="http://joemphilips.com/categories/memo">memo</a>
-    </span>
-    &middot; <time>Dec 30, 2015</time></li>
-  
-    <li><a href="http://joemphilips.com/post/Translate-snakemake/">Translate snakemake</a>
-    
-    &middot;
-    <a class="label" href="http://joemphilips.com/categories/hack">hack</a>
-    </span>
-    &middot; <time>Nov 21, 2015</time></li>
-  
-  </ul>
+
+<h2 id="sql-rdbmsメモ:ae538a595cad7f218a9f92da0c18639c">#SQL,RDBMSメモ</h2>
+
+<p>@(備忘録)</p>
+
+<p>[TOC]</p>
+
+<p>##SQLの基本構文</p>
+
+<pre><code class="language-sql">select myentry from mytable where [検索条件] order by hoge;
+</code></pre>
+
+<p>コメントは#ではなく-- や/*ほげ*/の形にする
+予約語(select等)を識別子として使用する場合は&rdquo;(シングルクオート)で囲む
+###COUNT
+レコード数(列数)を数えるには</p>
+
+<pre><code class="language-sql">SELECT COUNT(*)
+FROM &lt;テーブル名&gt;
+</code></pre>
+
+<p>SELECT COUNT(DISTINCT &lt;列名&gt;)</p>
+
+<p>###mysql
+<code>mysql -u root@localhost -p</code>rootとしてパスワードつきで起動(@localhostは省略可能)</p>
+
+<p>###join</p>
+
+<p>###sqlite
+####コマンドラインでのコマンド
+<code>sqlite3 &lt;database_name&gt;</code> &hellip; データベースの作成とインタプリタの起動。データベース名はなんでもよいが拡張子名には<code>db</code>あるいは<code>sqlite3</code>とつける</p>
+
+<p>####インタプリタでのコマンド
+<code>.show</code> &hellip; 区切り文字などのパラメータ状態の表示
+<code>;</code>が入力されるまでは1つの文とみなされる。それまでは自由に改行できる
+<code>.help</code> &hellip; ヘルプ
+<code>.tables</code> &hellip; tableの一覧を確認
+<code>.databases</code> &hellip; 接続されているデータベースの一覧
+<code>select * from &lt;table_name&gt;;</code> &hellip; sqlの実行
+<code>.schema &lt;table_name&gt;</code> &hellip; テーブル定義を確認
+<code>.dump &lt;table_name&gt;</code> &hellip; ダンプimp</p>
+
+<p>####テーブルの基本操作
+テーブルの作成</p>
+
+<pre><code class="language-sql">create table test(val1, val2)   #データ型の指定なし
+create table test2(val1 text, val2 mumeric) #データ型を指定
+</code></pre>
+
+<p>行の挿入</p>
+
+<pre><code class="language-sql">insert into test values(null, 48);
+</code></pre>
+
+<p>データ型の確認</p>
+
+<pre><code class="language-sql">select typeof(val1)
+</code></pre>
+
+<p>####tsv,csv
+#####インポート</p>
+
+<pre><code class="language-sql">create table table_name (name text, param1 int, param2 int) #あらかじめテーブルを作成(必須かは不明)
+.separator &quot;\t&quot;
+.import data.tsv table_name
+</code></pre>
+
+<p>#####エクスポート</p>
+
+<pre><code class="language-sql">.header off
+.mode tabs
+.output hoge3.csv
+</code></pre>
+
+  </div>
 </div>
 <script src="http://joemphilips.com/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
