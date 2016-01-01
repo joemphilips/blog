@@ -2,19 +2,28 @@
 baseurl: "http://joemphilips.com"
 contentdir: "content/"
 title: "Joe Miyamoto Philips's blog"
-theme: "purehugo"
+author:
+    name: "JoeMPhilips"
+theme: "hyde-x"
+MetaDataFormat: "yaml"
+paginate: 10
 footnotereturnlinkcontens: "↩"
 paramlinks:
     post: /year/:month/:title/
 params:
-    description: "Purpose of the life is to not think about Purpose of the life"
-    AuthorName: "Joe Miyamoto Philips"
-    githubName: "joemphilips"
+    truncate: "true"
+    highlight: "sunburst"
+    tagline: "Purpose of the life is to not think about Purpose of the life"
+    AuthorName: "JoeMPhilips"
+    github: "https://github.com/joemphilips"
     SidebarRecentLimit: 5
-    twitterName: "joemphilips"
+    facebook: "https://www.facebook.com/profile.php?id=100004310417464"
     disqusShortname: "joemiyamotophilips"
-    themeColor: "theme-base-0b"
-    google_analytics: "UA-70447645-1"
+    theme: "theme-base-0b"
+    googleAnalytics: "UA-70447645-1"
+    twitter: "https://twitter.com/joemphilips"
+    rss: true
+    gravatarHash: 154408de16dfa049bac95d8a062a0b96
 languageCode: "ja"
 countryCode: "ja"
 ...

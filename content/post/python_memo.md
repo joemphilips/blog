@@ -3,26 +3,25 @@ Categories = ["hack"]
 Description = "Memo for python"
 Tags = ["Bioinformatics", "python"]
 date = "2015-12-30T15:45:36+09:00"
-title = "python_memo"
+title = "pythonメモ"
+draft = false
 
 +++
 
 
-#Pythonメモ
-
-
-[TOC]
 
 
 ##基本事項
 
----
 `print('hello,world!')` ()でくくらないとpython3ではエラーになる。
 
 
 ###組み込み型
+
 ####dictionary
+
 perlで言うハッシュ
+
 ```python
 d = {'a' : 'apple', 'b' : banana, 'c' : orrange}
 
@@ -36,6 +35,7 @@ for k, v in d.items():
 keyとvalueの候補が既にjリストで存在する場合は以下のように`izip`で簡単に結合できる
 
 ```python
+
 names = ['a', 'b', 'c']
 fruits = ['apple', 'banana', 'orrange']
 d = dict(izip(names, colors))
@@ -43,6 +43,7 @@ d = dict(izip(names, colors))
 ```
 
 ####list
+
 perlでいう配列、`[]`内に複数の要素を書くことで作成する。
 ```python
 mylist = ['A', 'B']

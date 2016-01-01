@@ -10,24 +10,20 @@
     <atom:link href="http://joemphilips.com/categories/hack/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>python_memo</title>
+      <title>pythonメモ</title>
       <link>http://joemphilips.com/post/python_memo/</link>
       <pubDate>Wed, 30 Dec 2015 15:45:36 +0900</pubDate>
       
       <guid>http://joemphilips.com/post/python_memo/</guid>
-      <description>&lt;p&gt;#Pythonメモ&lt;/p&gt;
-
-&lt;p&gt;[TOC]&lt;/p&gt;
-
-&lt;p&gt;##基本事項&lt;/p&gt;
-
-&lt;hr /&gt;
+      <description>&lt;p&gt;##基本事項&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;print(&#39;hello,world!&#39;)&lt;/code&gt; ()でくくらないとpython3ではエラーになる。&lt;/p&gt;
 
-&lt;p&gt;###組み込み型
-####dictionary
-perlで言うハッシュ&lt;/p&gt;
+&lt;p&gt;###組み込み型&lt;/p&gt;
+
+&lt;p&gt;####dictionary&lt;/p&gt;
+
+&lt;p&gt;perlで言うハッシュ&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;d = {&#39;a&#39; : &#39;apple&#39;, &#39;b&#39; : banana, &#39;c&#39; : orrange}
 
@@ -41,14 +37,16 @@ for k, v in d.items():
 
 &lt;p&gt;keyとvalueの候補が既にjリストで存在する場合は以下のように&lt;code&gt;izip&lt;/code&gt;で簡単に結合できる&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;names = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;
+names = [&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]
 fruits = [&#39;apple&#39;, &#39;banana&#39;, &#39;orrange&#39;]
 d = dict(izip(names, colors))
 
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;####list
-perlでいう配列、&lt;code&gt;[]&lt;/code&gt;内に複数の要素を書くことで作成する。&lt;/p&gt;
+&lt;p&gt;####list&lt;/p&gt;
+
+&lt;p&gt;perlでいう配列、&lt;code&gt;[]&lt;/code&gt;内に複数の要素を書くことで作成する。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;mylist = [&#39;A&#39;, &#39;B&#39;]
 mylist.append(&#39;C&#39;)	#Cを追加

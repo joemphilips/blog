@@ -7,21 +7,21 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
-  <title>pythonメモ &middot; JoeMPhilips</title>
+  <title>python_memo &middot; Your Name</title>
 
   
-  <link rel="stylesheet" href="http://joemphilips.com/css/poole.css">
-  <link rel="stylesheet" href="http://joemphilips.com/css/hyde.css">
-  <link rel="stylesheet" href="http://joemphilips.com/css/poole-overrides.css">
-  <link rel="stylesheet" href="http://joemphilips.com/css/hyde-overrides.css">
-  <link rel="stylesheet" href="http://joemphilips.com/css/hyde-x.css">
-  <link rel="stylesheet" href="http://joemphilips.com/css/highlight/sunburst.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/poole-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-overrides.css">
+  <link rel="stylesheet" href="http://localhost:1313/css/hyde-x.css">
+  
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
   
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://joemphilips.com/touch-icon-144-precomposed.png">
-  <link href="http://joemphilips.com/favicon.png" rel="icon">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:1313/touch-icon-144-precomposed.png">
+  <link href="http://localhost:1313/favicon.png" rel="icon">
 
   
   
@@ -29,37 +29,32 @@
   
 
   <meta name="description" content="Memo for python">
-  <meta name="keywords" content="">
+  <meta name="keywords" content="your,default,page,keywords">
   
 </head>
-<body class="theme-base-0b">
+<body>
 <div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
       
-        <img src="https://www.gravatar.com/avatar/154408de16dfa049bac95d8a062a0b96?s=200"
-             alt="gravatar" title="JoeMPhilips">
+      <h1>Your Name</h1>
       
-      <h1>JoeMPhilips</h1>
-      <p class="lead">Purpose of the life is to not think about Purpose of the life</p>
     </div>
 
     <ul class="sidebar-nav">
-      <li class="sidebar-nav-item"><a href="http://joemphilips.com/">Blog</a></li>
-      
-      <li class="sidebar-nav-item"><a href="http://joemphilips.com/about/">About me</a></li>
+      <li class="sidebar-nav-item"><a href="http://localhost:1313/">Blog</a></li>
       
     </ul>
 
     <ul class="sidebar-nav">
       <li class="sidebar-nav-item">
-      <a href="https://github.com/joemphilips"><i class="fa fa-github-square fa-3x"></i></a>
       
       
       
       
-      <a href="https://www.facebook.com/profile.php?id=100004310417464"><i class="fa fa-facebook-square fa-3x"></i></a>
-      <a href="https://twitter.com/joemphilips"><i class="fa fa-twitter-square fa-3x"></i></a>
+      
+      
+      
       
       <a href="" type="application/rss+xml"><i class="fa fa-rss-square fa-3x"></i></a>
       </li>
@@ -67,7 +62,7 @@
 
     
 
-    <p>Copyright &copy; 2016 <a href="http://joemphilips.com/license/">License</a><br/>
+    <p>Copyright &copy; 2016 <a href="http://localhost:1313/license/">License</a><br/>
        Powered by <a href="http://gohugo.io">Hugo</a> and <a href="https://github.com/zyro/hyde-x">Hyde-X</a></p>
   </div>
 </div>
@@ -75,16 +70,25 @@
 
 <div class="content container">
   <div class="post">
-    <h1>pythonメモ</h1>
-    <p>##基本事項</p>
+    <h1>python_memo</h1>
+    <span class="post-date">Dec 30, 2015 &middot; 7 minute read &middot; <a href="http://localhost:1313/blog/2015/12/30/python_memo/#disqus_thread">Comments</a>
+    
+    <br/>
+    <a class="label" href="http://localhost:1313/categories/hack">hack</a>
+    </span>
+    <p>#Pythonメモ</p>
+
+<p>[TOC]</p>
+
+<p>##基本事項</p>
+
+<hr />
 
 <p><code>print('hello,world!')</code> ()でくくらないとpython3ではエラーになる。</p>
 
-<p>###組み込み型</p>
-
-<p>####dictionary</p>
-
-<p>perlで言うハッシュ</p>
+<p>###組み込み型
+####dictionary
+perlで言うハッシュ</p>
 
 <pre><code class="language-python">d = {'a' : 'apple', 'b' : banana, 'c' : orrange}
 
@@ -98,16 +102,14 @@ for k, v in d.items():
 
 <p>keyとvalueの候補が既にjリストで存在する場合は以下のように<code>izip</code>で簡単に結合できる</p>
 
-<pre><code class="language-python">
-names = ['a', 'b', 'c']
+<pre><code class="language-python">names = ['a', 'b', 'c']
 fruits = ['apple', 'banana', 'orrange']
 d = dict(izip(names, colors))
 
 </code></pre>
 
-<p>####list</p>
-
-<p>perlでいう配列、<code>[]</code>内に複数の要素を書くことで作成する。</p>
+<p>####list
+perlでいう配列、<code>[]</code>内に複数の要素を書くことで作成する。</p>
 
 <pre><code class="language-python">mylist = ['A', 'B']
 mylist.append('C')	#Cを追加
@@ -972,17 +974,38 @@ np.ndarray     #N次元配列を扱うための</p>
 <p>##作図</p>
 
   </div>
+  <div id="disqus_thread"></div>
 </div>
-<script src="http://joemphilips.com/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 
-<script>
-  var _gaq=[['_setAccount','UA-70447645-1'],['_trackPageview']];
-  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-  s.parentNode.insertBefore(g,s)}(document,'script'));
+
+<script type="text/javascript">
+var disqus_shortname = "your_disqus_shortname";
+(function () {
+    var s = document.createElement('script'); s.async = true;
+    s.type = 'text/javascript';
+    s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+}());
 </script>
 
-</body>
+
+
+<script type="text/javascript">
+    var disqus_shortname = "your_disqus_shortname";
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+<script data-no-instant>document.write('<script src="http://'
+        + (location.host || 'localhost').split(':')[0]
+		+ ':1313/livereload.js?mindelay=10"></'
+        + 'script>')</script></body>
 </html>
 
