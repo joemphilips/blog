@@ -7,21 +7,16 @@ title: "GEMINIメモ"
 ---
 
 
-GEMINI
----
-
-[TOC]
-
-@(ブログ)
-
 ヒトゲノムのannotation統合のためのツール
-(元はここ)[http://gemini.readthedocs.org/en/latest/]
-ENCODE tracks, UCSC tracks, OMIM, dbSNP, KEGG, and HPRD
-のでーたがある。
-SQLでクエリをかけれる
-SQLite内に保存時テイル
+[元はここ](http://gemini.readthedocs.org/en/latest/)
 
-##インストール
+ENCODE tracks, UCSC tracks, OMIM, dbSNP, KEGG, and HPRD
+のデータがある。
+SQLでクエリをかけられる。
+
+SQLite内に保存している
+
+## インストール
 結構時間がかかるので注意(10時間位)
 ```sh
  wget https://raw.github.com/arq5x/gemini/master/gemini/scripts/gemini_install.py
@@ -34,7 +29,7 @@ root権限無しでインストールする場合
 
 `cd /usr/local/share/gemini/gemini && bash master-test.sh` ... インストール成功の可否をテスト(これも結構時間がかかる)
 
-###各種コマンド
+### 各種コマンド
 
 - `gemini update` ... geminiをアップデート
 - `gemini update --dataonly` ... データのみアップデート
@@ -42,7 +37,7 @@ root権限無しでインストールする場合
 `gemini load my`
 
 
-##メモ
+## メモ
 annovarは面倒くさい。GEMINIならほぼ常にVCFで扱える。
 Annovarは完全なオープンソースでない。
 GEMINIはsnpEffやVEPのつけたアノテーションにさらに足してくれる。

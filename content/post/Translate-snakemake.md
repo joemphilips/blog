@@ -7,7 +7,7 @@ title = "Translate snakemake"
 
 +++
 
-#チュートリアルを翻訳しました
+# チュートリアルを翻訳しました
 
 [Snakemake](https://bitbucket.org/johanneskoester/snakemake/wiki/Home)は主にバイオインフォマティクスに使われるパイプライン作成用ツールです。
 翻訳をGithubに載せました。

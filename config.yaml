@@ -13,7 +13,7 @@ paramlinks:
 params:
     truncate: "true"
     highlight: "sunburst"
-    tagline: "Purpose of the life is to not think about Purpose of the life"
+    tagline: "Purpose of life is to not think about Purpose of life"
     AuthorName: "JoeMPhilips"
     github: "https://github.com/joemphilips"
     SidebarRecentLimit: 5

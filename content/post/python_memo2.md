@@ -6,16 +6,7 @@ keywords: ["python"]
 title: "pythonメモ2　データ分析編"
 ---
 
-
-Pythonメモ2 ~データ分析編~
----
-
-[TOC]
-
-@(備忘録)
-@[python]
-
-##ipython
+## ipython
 
 `objectname?`のようにはてなを最後につけて実行することで、オブジェクトの詳細が見れる。
 `objectname??` ... さらに詳細に見れる
@@ -27,10 +18,10 @@ Pythonメモ2 ~データ分析編~
 
 `%edit` ... エディタを開いて編集
 
-###ipython serverのセットアップ
+### ipython serverのセットアップ
 [ここ](https://thomassileo.name/blog/2012/11/19/setup-a-remote-ipython-notebook-server-with-numpyscipymaltplotlibpandas-in-a-virtualenv-on-ubuntu-server/)を参考にする
 
-###マジックコマンド
+### マジックコマンド
 
 `%quickref`や`%magic`ですべてのマジックコマンドを表示
 `%`を付けて実行すると、引数を関数の外に書くことができる。例
@@ -46,7 +37,7 @@ max(x)
 
 **`%matplitlib inline`を実行して置かないとplotできないので注意**
 
-####別のフォーマットへの変換
+#### 別のフォーマットへの変換
 - `ipython nbconvert --to html hoge.ipynb` ... htmlへ
 - `ipython nbconvett --to html --template basic hoge.ipynb` ... ヘッダーなどのないよりシンプルなhtml
 - `--to slides`
@@ -61,10 +52,10 @@ max(x)
 等がある。`--post serve`を末尾につけると自動でブラウザを開いてくれる
 RISEと呼ばれるパッケージを入れると、notebookの右上にボタンが出て、リアルタイムプレビューができるようになる
 
-##ベイジアン
+## ベイジアン
 変分ベイズならBayesPy、MCMCならStanがよさそう
 
-###BayesPy
+### BayesPy
 python3のパッケージ。指数型分布族(ガウス、ガンマ、ディリクレなど)にしか使えないっぽい？
 もともと変分ベイズ用のパッケージは
 - `Bayes Blocks` 整数値のガウシアンのノードにしか対応していない。
@@ -79,7 +70,7 @@ learning (Honkela et al., 2010), parameter expansions (Qi and Jaakkola, 2007) an
 searches (Honkela et al., 2003).
 といったVBの拡張にも対応している
 
-###stan
+### stan
 `.stan`という拡張子でstanコードを書く。ガウス混合分布をフィッティングする例
 
 ```stan
@@ -111,7 +102,7 @@ Stanコードには4つのブロックがある
 - `transformed parameters` ... parametersを用いて新たなパラメータを宣言する場合に使用する
 - `model` ... モデルを記述する。
 
-##numpy
+## numpy
 線形のランダムノイズを載せた生成モデルからのデータを作るスクリプト
 
 ```python
@@ -128,23 +119,24 @@ y += yerr * np.random.randn(N)
 ```
 
 
-##scipy
+## scipy
 
 
 
-###stats
+### stats
 `scipy.stats.norm` ... 正規分布の
+
 - `norm.rvs(loc, scale, size)` ... 平均(正確には期待値)`loc`,標準偏差`scale`の正規分布から`loc`個の確率変数を取得。(rvsはrandom variates)
 - `norm.pdf(x, loc, scale)` ... 平均(正確には期待値)`loc`, 標準偏差`scale`,の正規分布の確率密度関数のxでの値を返す。(pdfはprobability density function)
 - `norm.cdf` ... cumulative densitive function(上の累積版)
 -`norm.sf` ... `1-cdf`
-- `norm.ppf` ... パーセント点関数。累積分布関数(`cdf`)に近いが、xの代わりにqを指定する。$0=<q=<1$を満たす。
-- `norm.interval` ... `alpha`%信頼区間を返す
+- `norm.ppf` ... パーセント点関数。累積分布関数(`cdf`)に近いが、xの代わりにqを指定する。`$ 0=<q=<1 $`を満たす。
+- `norm.interval` ... `alpha` %信頼区間を返す
 
 
-##matplotlib
+## matplotlib
 
-###pyplot
+### pyplot
 
 例
 

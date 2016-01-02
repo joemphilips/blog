@@ -6,13 +6,6 @@ keywords: ["Make"]
 title: "Makeメモ"
 ---
 
-Makeメモ
----
-
-[TOC]
-
-@(備忘録)
-
 `make --just-print`
 するとmakeの実行するコマンドの一覧が見れる。
 
@@ -20,11 +13,11 @@ configure時に
 `--prefix=/usr/xxxx`
 のように指定してやると、make install 先のディレクトリが/usr/xxxxになる。
 
-#makeflow
+# makeflow
 
 makeに非常に似た構文でかけるパイプ作成ツール。シェルよりもfault toleranceが高い。
 
-#minimal make
+# minimal make
 
 ```make
 ターゲット:依存するファイル

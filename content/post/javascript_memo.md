@@ -1,26 +1,19 @@
 ---
 categories: ["hack", "memo"]
 date: 2016-01-01T19:20:02+09:00
-description: "personal memo for JS"
+description: "personal memo for JS,CSS,html"
 keywords: ["javascript"]
 title: "javascriptメモ"
 ---
 
-
-#javascriptメモ
-
-----------
-@(備忘録)
-
-[TOC]
-##サードパーティ製ライブラリは
+## サードパーティ製ライブラリは
 [cdnjs](https://cdnjs.com/libraries)を参照
-##外部ファイルのインクルード
+## 外部ファイルのインクルード
 
 ```js
 <script type="text/javascript" language="JavaScript" src="a.js"></script>
 ```
-###requireJS
+### requireJS
 requireメソッドを呼ぶ前に、require.configでオプションを指定する
 
 ```html
@@ -39,8 +32,8 @@ requireメソッドを呼ぶ前に、require.configでオプションを指定�
 </script>
 ```
 
-##周辺知識
-###CSS
+## 周辺知識
+### CSS
 HTMLのスタイルを記述する書式
 ```css
 body{   ＃HTMLの<body>と</body>の間に対して以下の書式を適用
@@ -78,7 +71,7 @@ A[foo="bar"] { color: red; } /* foo属性の値がbarのA要素 */
 </html>
 ```
 
-###Jade
+### Jade
 HTMLを見やすくする？みたいな
 例えば一般的なHTML5のテンプレートはこうだが
 ```html
@@ -180,25 +173,25 @@ html
     p #{package.title} にようこそ。
 ```
 
-####テンプレート継承
+#### テンプレート継承
 ```jade
 extends _layout
 ```
 とかくと、`_layout.jade`の内容を継承でき
 
-##テスト
-###Jasmine
+## テスト
+### Jasmine
 を用いる
 
 ```js
 expect($result").not.toEqual("期待する値");
 ```
-###frisby
+### frisby
 REST API のテストに用いる
 テストコードは`/spec`以下に置くのが慣習
 
-##可視化
-###D3.js
+## 可視化
+### D3.js
 data visualizationのためのライブラリ。
 CSSライクにスタイルを記述できる。
 
@@ -226,5 +219,9 @@ d3.select("body").append("p").text("新しいパラグラフ！");
 ```
 d3  #d3オブジェクトのメソッドであることを明示
 select("body")  #対象となるCSSセレクタを指定(すべてに指定したい場合はselectAll())
+
+```js
 append("p") #<body>内に<p>を追加。
 text("新しいパラグラフ")    #<p></p>内に文章を追加
+
+```

@@ -6,13 +6,6 @@ keywords: ["Bioinformatics", "RDF", "Semantic Web", "SPARQL"]
 title: "RDF_SPARQLメモ"
 ---
 
-RDF,SPARQLメモ
----
-
-@(備忘録)
-
-[TOC]
-
 
 RDF化しているBiological Databaseの一覧
 
@@ -27,7 +20,7 @@ RDF化しているBiological Databaseの一覧
     5. Copy Number
     6. Trace-gene-sample relationship(?)
 
-##基本文法
+## 基本文法
 森薫の生まれた場所を取得する例
 ```sql
 PREFIX dbpedia: <http://dbpedia.org/resource/>
