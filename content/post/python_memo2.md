@@ -58,17 +58,22 @@ RISEと呼ばれるパッケージを入れると、notebookの右上にボタ�
 ### BayesPy
 python3のパッケージ。指数型分布族(ガウス、ガンマ、ディリクレなど)にしか使えないっぽい？
 もともと変分ベイズ用のパッケージは
+
 - `Bayes Blocks` 整数値のガウシアンのノードにしか対応していない。
 - `VIBES`　Javaで書かれたもの、もはや過去のもの
 - `Infer.NET`　完全なオープンソースでない
 
 等がある。
 
-s stochastic variational inference (Hoffman et al., 2013), deterministic annealing (Katahira
-et al., 2008), collapsed inference (Hensman et al., 2012), Riemannian conjugate gradient
-learning (Honkela et al., 2010), parameter expansions (Qi and Jaakkola, 2007) and pattern
-searches (Honkela et al., 2003).
+- stochastic variational inference (Hoffman et al., 2013), deterministic annealing (Katahira
+et al., 2008)
+- collapsed inference (Hensman et al., 2012)
+- Riemannian conjugate gradient learning (Honkela et al., 2010)
+- parameter expansions (Qi and Jaakkola, 2007)
+- pattern searches (Honkela et al., 2003).
+
 といったVBの拡張にも対応している
+
 
 ### stan
 `.stan`という拡張子でstanコードを書く。ガウス混合分布をフィッティングする例
@@ -97,6 +102,7 @@ model {
 }
 ```
 Stanコードには4つのブロックがある
+
 - `data` 用いるデータを宣言する。このブロックにpythonなどのインターフェイスからデータを渡す。上ではデータ数Nと混合数kを渡している
 - `parameters` ... モデルのパラメータを宣言するブロック。今回は平均muと混合比thetaがパラメータ。thetaの型であるsymplexはディリクレ分布を事前分布に設定した時に使う特別な型
 - `transformed parameters` ... parametersを用いて新たなパラメータを宣言する場合に使用する
@@ -117,7 +123,6 @@ y += m_true * x+b_true
 y += np.abs(f_true * y) * np.random.randn(N)
 y += yerr * np.random.randn(N)
 ```
-
 
 ## scipy
 

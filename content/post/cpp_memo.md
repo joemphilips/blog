@@ -10,8 +10,7 @@ title: "c++メモ"
 ## 基本文法
 ### hello world
 
-```cpp:hello world
-
+```cpp
 #include <stdio.h>
 int main()
 {
@@ -48,7 +47,7 @@ int main(){
 }
 ```
 
-`using namespace std;`とすると、coutと書くだけで、std::coutにアクセスできる…が、名前空間が汚されるので協議プログラミング以外では避けた方が良い
+`using namespace std;`とすると、coutと書くだけで、std::coutにアクセスできる…が、名前空間が汚されるので競技プログラミング以外では避けた方が良い
 
 ### 配列
 繰り返し処理は以下

@@ -246,6 +246,8 @@ OSにかかわらずディレクトリの削除やコピーなどができるみ
 
 
 ### 正規表現でファイルを探す
+
+```python
 import glob
 glob.glob('*.txt')  #['hoge.txt', 'huga.txt']
 
@@ -580,7 +582,7 @@ recursive-include huga *.html *.css	#rootディレクトリ以外でも、その
 ## 構成管理
 
 ---
-facric -> ansibleへと移るのが吉
+fabric -> ansibleへと移るのが吉
 ### fabric
 基本は以下のように書く
 ```python
