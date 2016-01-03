@@ -22,6 +22,7 @@ params:
     theme: "theme-base-0b"
     googleAnalytics: "UA-70447645-1"
     twitter: "https://twitter.com/joemphilips"
+    slideshare: "http://www.slideshare.net/JyouMiyamoto"
     rss: true
     gravatarHash: 154408de16dfa049bac95d8a062a0b96
 languageCode: "ja"
