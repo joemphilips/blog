@@ -8,23 +8,16 @@ draft = false
 
 +++
 
-    #Pythonメモ
-
-------------
-@(備忘録)
-
-[TOC]
 
 
-##基本事項
+## 基本事項
 
----
 `print('hello,world!')` ()でくくらないとpython3ではエラーになる。
 複数の変数に同じ値を代入するには
 `a = b = c = ("hoge", fuga)`
 Noneは特別なデータ型
 
-###print
+### print
 以下のようにしてフォーマットする
 **python3では`format`を使用するのがベター**
 
@@ -40,34 +33,40 @@ print("Hello! %(hoge)d %(piyo)d" % {'hoge':a, 'piyo':b})
 ```
 
 `str.format()`を用いてもよい(format関数を参照)
-:
-###基本演算子
-`type(1)`    ... intを返す
-`isinstance(1, int)` ... Trueを返す
-`11/2` ... 5.5
-`11//2` ... 6
-`11%2` ...
-`-11//2` ... -6
-`**` ... べき乗
 
-###組み込み型
+### 基本演算子
+
+- `type(1)`    ... intを返す
+- `isinstance(1, int)` ... Trueを返す
+- `11/2` ... 5.5
+- `11//2` ... 6
+- `11%2` ...
+- `-11//2` ... -6
+- `**` ... べき乗
+
+### 組み込み型
 色々あるが、特に大事なのは3つ
-- リスト ... [] #配列ともいう
-- タプル ... () #Cでいうstructに近い
-- 集合 ... {}   #dictionaryとも
+
+- リスト ...`[]`配列ともいう
+- タプル ... `()` Cでいうstructに近い
+- 集合 ... `{}`   dictionaryとも
 
 タプルはデータの追加や削除が行えない。集合は数学の集合と同じで、同じ値のデータが複数代入されても1つしか残らない。
 `tuple()`や`list()`でそれぞれの型を変換できる
 
-####tuple
+#### tuple
 `a, b = ("A", "B")`でまとめて代入できる
-`A = ("hoge", "fuga")`  tupleの作成
-実は()は必要ない
-`A = "hoge", "fuga"`
-インデックスで参照できる点はリストと同じだが、代入はできない
-`A[0] #hogeが出力`
 
-#####名前付きタプル
+- `A = ("hoge", "fuga")` tupleの作成
+
+実は()は必要ない
+
+`A = "hoge", "fuga"`
+
+インデックスで参照できる点はリストと同じだが、代入はできない
+`A[0]` ... hogeが出力
+
+##### 名前付きタプル
 通常のタプルのふるまいに加えて、オブジェクトのようにchainメソッドで参照することができる。`collections`モジュールをimportすること
 
 ```python
@@ -76,28 +75,30 @@ Point = namedtuple('Point3d', 'x y z')
 point = Point(10, 20 ,30)
 point   # => Point3d(x=10,y=20,z=30)
 ```
+
 通常のように`point[0]`で参照することもできるし`point.x`で参照することもできる
 
 構造体(struct)を作るときに便利
 
 
-#####タプルの技
+##### タプルの技
+
 ```python
 (MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY) = range(7)
 ```
 それぞれの曜日名に数字を代入
 
-####dictionary
+#### dictionary
 perlで言うハッシュ
 `d["key"]`でkeyに対応する値を取得できる
 
 ```python
 d = {'a' : 'apple', 'b' : banana, 'c' : orrange}
 
-#keyを取得
+# keyを取得
 for k in d:
     print k
-#keyとvalueの両方を取得
+# keyとvalueの両方を取得
 for k, v in d.items(): #iteritemsでもいいらしい、違いは不明
     print k, '-->', v
 ```
@@ -110,7 +111,7 @@ fruits = ['apple', 'banana', 'orrange']
 d = dict(izip(names, colors))
 
 ```
-#####辞書のメソッド
+##### 辞書のメソッド
 `setdefault()` ... `difaultdict`を使用しなくても、これでデフォルトの値を設定することができる
 
 ```python
@@ -121,7 +122,7 @@ sef group_by(dict):
     return d
 ```
 
-######dictを等分割する
+###### dictを等分割する
 
 ```python
 from itertools import islice
@@ -132,10 +133,10 @@ def split_dict(data, SIZE=10000):
         yield {k:data[k] for k in islice(it, SIZE)}
 ```
 
-####list
+#### list
 perlでいう配列、`[]`内に複数の要素を書くことで作成する。
 
-#####スライス
+##### スライス
 配列の一部を除いた配列を返す。タプルの操作と全く同様。(extend、appendを除く)
 
 ```python
@@ -147,7 +148,7 @@ mylist = mylist + ['D', 'E']    #同上
 `append`で複数項目のリストを追加すると、リストの中身ではなくlistオブジェクトそのものが追加される
 **注意: result = list1.extend(list2)とするとresultにはNoneが入る!!!**
 
-#####要素の取り出し、修正
+##### 要素の取り出し、修正
 ```python
 mylist.count('new') # mylistにnewが含まれている場合、その個数を返す
 'new' in mylist #TrueかFalseを返す
@@ -168,7 +169,7 @@ a = [2, 3, 4]
 a[::-1] # => [4,3,2]
 ```
 
-#####同じ要素を持つ配列の作成
+##### 同じ要素を持つ配列の作成
 
 ```python
 lst = [1] * 3   #要素がすべて1、長さ3の配列を作成
@@ -188,7 +189,7 @@ memo = [[0] * 10 for x in xrange(10)]
 ```pytyon
 w = v[:]    #値をコピー
 w = v   #参照をコピーするので無意味
-#多次元の場合は以下のようにする
+# 多次元の場合は以下のようにする
 
 from copy import deepcopy
 w = deepcopy(v)
@@ -201,7 +202,7 @@ w = deepcopy(v)
 four_lists = [[] for __ in range(4)]
 ```
 
-#####便利な技
+##### 便利な技
 ```python
 >>> query = 'user=pilgrim&database=master&password=PapayaWhip'
 >>> a_list = query.split('&')
@@ -221,7 +222,7 @@ myarg = ["hoge", "fuga"]
 myfunc(*myarg)  #第一引数に"hoge",第2に"fuga"が入る
 ```
 
-######listを等分割する
+###### listを等分割する
 n個ずつに分割する場合は
 `[mylist[i:i+n] for i in range(0, len(mylist), n)]`
 この方法だと、最後の部分リストが極端に小さい場合がありうる。それを避けたい場合は
@@ -260,7 +261,7 @@ for x in chunk(mylist, 2):
 ```
 
 
-####set
+#### set
 集合ともいう、辞書と同様、{}で作成する。集合をbool値のようにifで評価すると
 空の場合はFalse、そうでなければTrueを返す
 
@@ -273,7 +274,7 @@ myset.remove("hoge")    #hogeを削除、なければ例外
 myset.discard("hoge")   #hogeを削除、なければ何もしない
 myset.pop("hoge") ... "hoge"を非復元抽出、順番というものがないので、indexは使えない
 ```
-#####集合演算
+##### 集合演算
 ```python
 30 in myset #TrueかFalseを返す
 myset.union(b_set)    #2つの集合を合体(和集合)
@@ -282,13 +283,13 @@ myset.difference(b_set) #mysetにはあるがb_setにはないものの集合(�
 myset.symmetric_difference(両方の差集合)
 ```
 
-#####booleanを返す集合演算
+##### booleanを返す集合演算
 ```python
 myset.issubset(b_set)   #mysetの要素の全てがb_setに含まれていれば真
 myset.issuperset(b_set) #上の逆
 ```
 
-###繰り返し
+### 繰り返し
 for文は
 ```python
 for i in [1,2,3,4]
@@ -321,16 +322,16 @@ for (text number) in zip(list1, list2):
 
 ```
 
-####辞書のループ
+#### 辞書のループ
 普通にforを回すとキーのみを取得する。iteritemsを使用するのが良い
 ```python
 for k,v in d.iteritems():
     print(k, '--->', v)
 ```
 
-####itertools
+#### itertools
 
-#####`itertools.count(n)`
+##### `itertools.count(n)`
 n以降無限回続くイテレータを生成
 
 ```python
@@ -342,7 +343,7 @@ for i in itr:
 
 # => 5 6 7 8 9 10
 ```
-#####`itertools.cycle()`
+##### `itertools.cycle()`
 引数として与えたイテレータの要素を延々返す
 
 ```python[
@@ -355,7 +356,7 @@ for i,j in enumerate(itr):
 # => A B C A B C
 ```
 
-#####`itertools.repeat()`
+##### `itertools.repeat()`
 第二引数　回繰り返す
 ```python
 itr = itertools.repeat("YAH!", 3)
@@ -363,21 +364,21 @@ print([i for i in itr])
 
 # => ['YAH!', 'YAH!', 'YAH!']
 ```
-#####`itertools.chain()`
+##### `itertools.chain()`
 
 ```python
 itertools.chain("ABC", range(5))
 print(list(itr))
 # => ['A', 'B', 'C', 0, 1, 2, 3, 4]
 ```
-#####`itertools.compress()`
+##### `itertools.compress()`
 第二引数`selector`が真になるデータを返すイテレータ.
 ```python
 itr = itertools.compress('ABCDEF', [1, 0, 1, 0, 0, 1])
 print(list(itr))
 # => ['A', 'B', 'C']
 ```
-#####`itertools.dropwhile(predicate, iterable)`
+##### `itertools.dropwhile(predicate, iterable)`
 predicateが真である限りiterableから要素を返すイテレータを生成
 
 ```python
@@ -387,7 +388,7 @@ itr = itertools.takewhile(p,l)
 print(list(itr))
 # => [1,4,2,1]
 ```
-#####`itertools.groupby()`
+##### `itertools.groupby()`
 連続する要素をグループ化する
 ```python
 for k, g in itertools.groupby(sorted("AAAABBCCCDDDEEEFFAAACC"), key=list):
@@ -396,7 +397,7 @@ for k, g in itertools.groupby(sorted("AAAABBCCCDDDEEEFFAAACC"), key=list):
 ```
 
 
-###条件分岐
+### 条件分岐
 基本的には
 ```python
 if 10 < x :
@@ -421,13 +422,13 @@ if __name__ == '__main__':
 `__name__`はそれが存在するモジュールの中の名前になる。`__main__`というのは対話環境(Rで言う.Globalenv?)で呼ばれたときの値。
 上のように書いておくことにより、そのモジュールがメインモジュール(最初に呼ばれたモジュール)である時にのみ実行する内容にできる。詳しくは[こちら](http://jutememo.blogspot.jp/2008/08/python-if-name.html)
 
-####三項演算子
+#### 三項演算子
 
 ```python
 x = "OK" if n == 10 else "NG"
 ```
 
-###文字列操作
+### 文字列操作
 文字列型への返還は
 `str()`か`repr()`を使用する。前者は人にやさしい表現に直し、後者は内部実装に近い見た目を返す。
 ```python
@@ -456,7 +457,7 @@ print("Executing on %s as %s" % (env.host, env.user))
 print("Executing on %(host)s as %(user)s" % env)
 ```
 
-#####format関数
+##### format関数
 文字列オブジェクトの中に別の文字列を代入するときは`format()`を使用する。例
 
 ```python
@@ -477,14 +478,14 @@ myarray = ['miyamoto', 'mypass']
 ```
 .1は、小数第1位に丸めることを指し、fは指数表記やその他の小数記法ではなく固定小数表記にすることを指す
 
-######書式指定
+###### 書式指定
 - d ... 10進数
 - X ... 16
 - o ... 8
 - b ... 2
 -
 
-#####その他の便利な関数
+##### その他の便利な関数
 3重引用符を使うと複数行入力ができる。例
 ```python
 s = '''hogehoge
@@ -495,20 +496,20 @@ s.splitlines()  # => ['hogehoge', 'fugafuga']
 `.lower()`,`.upper()`で大文字小文字の変換ができる
 
 
-####文字列エンコーディングについて
+#### 文字列エンコーディングについて
 pythonはすべてUnicodeとして格納している
 ```python
 s = '深入　python'
 len(s) #9を返す
 ```
 
-#####replace
+##### replace
 文字列を置換する
 ```python
 "hoge".replace("og", "OG")  # => "hOGe"
 ```
 
-####正規表現
+#### 正規表現
 `re`パッケージを使う.
 最も単純な使い方はこんな感じ
 ```python
@@ -547,7 +548,7 @@ if matchobj:
 - `sub` ... 元の文字列を置き換えたものを返す。
 - `split` ... 元の文字列を分割したものを返す
 
-#####後方参照
+##### 後方参照
 `re.sub`の場合`\1`,`\2`で参照する。
 
 ```python
@@ -555,10 +556,10 @@ re.sub(r'(\d)(\d+)', r"abc\1-\2", "A123B")  # => 'Aabc1-23B'
 ```
 マッチオブジェクトの場合、`group`で参照する。後述
 
-####マッチオブジェクトのメソッド
+#### マッチオブジェクトのメソッド
 マッチオブジェクトのゲッターには上に書いたような`end()`、`span()`、`group()`、`start()`などがある。
 
-#####`match.group()`
+##### `match.group()`
 - `match.group(0)`  マッチした文字列全体を返す。
 - `match.group(1)`  正規表現中に丸括弧()がある場合、1番目の()の中身を返す(後方参照)
 
@@ -575,9 +576,9 @@ re.sub(r'(\d)(\d+)', r"abc\1-\2", "A123B")  # => 'Aabc1-23B'
 ```
 
 
-###ファイル操作
+### ファイル操作
 open関数によってファイルオブジェクトを生成し、そのメソッドを用いて操作を行う
-####クラシックなやり方
+#### クラシックなやり方
 ```python
 f = open("hoge.txt")
 lines2 = f.readlines()
@@ -589,7 +590,7 @@ for line in lines2
 - `readlines()` ... 全て読み込む。一度しかできず、2回目を呼び出すとからのリストが帰るので注意
 - `readlines()` ...一行ごとの読み込む
 
-####python3では
+#### python3では
 ファイルを開くときはwith構文を使用する
 ```python
 with open("filename", "w") as file:
@@ -597,7 +598,7 @@ with open("filename", "w") as file:
 ```
 with構文を使用すると、クラス内で`__enter__`および`__exit__`を使用したクラスの場合,メソッド呼び出し前と呼び出し後にそれぞれを実行してくれるようになる
 
-#####ファイルオブジェクト
+##### ファイルオブジェクト
 ファイルオブジェクトにforを適用すると、行を要素とするイテレータとして扱われる
 ```python
 with open("filename", "r") as f:
@@ -605,10 +606,10 @@ with open("filename", "r") as f:
         print(line)
 ```
 
-######ファイルオブジェクトのメソッド
+###### ファイルオブジェクトのメソッド
 
 
-###os、shutil
+### os、shutil
 
 スクリプト中で相対パスを指定すると、fileのあるディレクトリではなく実行時のディレクトリから始めてしまうため
 `filename = os.path.join(os.path.dirname(__file__), '../test.txt')`
@@ -674,9 +675,9 @@ path = 'test'
 files = [relpath(x, path) for x in glob(join(path, '*'))]
 ```
 
-###os,sys
+### os,sys
 
-####自作パッケージ内で外部モジュールを使用するとき
+#### 自作パッケージ内で外部モジュールを使用するとき
 は,`sys.path.insert`を使用する。appendとはサーチする順番が違うらしい、あとなぜか第一引数に1を与えなくてはならない
 まず`external/`をパッケージ内に用意しておき、その中に`pip install --target`でインストールする。
 次に自作モジュール内に以下のように記述する。
@@ -685,18 +686,18 @@ sys.path.insert(1, os.path.join(os.path.dirname(os.path.abspath(__file__)), "ext
 ```
 あとは普通にimportできる
 
-###glob
+### glob
 
 
 
-###コマンドライン引数の取得
+### コマンドライン引数の取得
 ```python
 import sys
 argvs = sys.argv    #argvsにはコマンドライン引数のリストが入る
 argc = len(argvs)
 ```
 
-###標準入出力
+### 標準入出力
 普通の
 
 - `input()` ... 自動で改行を取り除く、モジュールをimportする必要がない。
@@ -740,7 +741,7 @@ for line in sys.stdin:
 
 ```
 
-##関数定義
+## 関数定義
 
 ---
 引数に*を付けると任意の数の引数をタプルで受け取ることができる。
@@ -778,7 +779,7 @@ myfunc2 = myfunc    #myfuncが複製される。(リファレンスではない�
 
 引数の数が多すぎたり、デフォルトのない引数を与えずに関数を呼び出したりすると、TypeErrorが発生する。
 
-###docstring
+### docstring
 google style と numpy style があるが、google style に統一する
 
 関数、メソッド、オブジェクト、モジュールの最初にトリプルクォート`""""""`で囲んだ文字列があればdocstringとして認識され、`func.__doc__`で読める。docstring中で、\\(バッククォート)を使う場合はrを付ける。
@@ -866,7 +867,7 @@ if __name__ == "__main__"
 インタラクティブシェルから`import doctest`して`doctest.testfile("usage.txt")`
 あるいは`python -m doctest -v usage.txt `
 
-##OOP、スコープ
+## OOP、スコープ
 
 ---
 
@@ -916,7 +917,7 @@ if __name__ == '__main__':
 
 
 
-###新スタイルクラスと旧スタイルクラス
+### 新スタイルクラスと旧スタイルクラス
 旧 ... type(myins)は常に`instance`を返す
 新 ... type(myins)は`myins.__class__`と同じく、クラス名を返す。ただし`myins.__class__`をオーバーライドすることもできるので、絶対ではない
 あと、特殊メソッド名がいくつか追加されている。
@@ -924,13 +925,13 @@ if __name__ == '__main__':
 python3ではすべて新スタイル
 
 
-###オブジェクトの操作
+### オブジェクトの操作
 ```python
 ins.__class__   #insのクラスがわかる
 ins.__doc__ #insのdocstring(使い方)がわかる
 ```
 
-####クラスメソッドとスタティックメソッド
+#### クラスメソッドとスタティックメソッド
 いずれもインスタンス変数にアクセスできないようなメソッド、`@clasmethod`,`@staticmethod`でデコレートする。
 クラスメソッドは引数としてクラスを渡す必要がある。絶対名で渡していない(clsとするのが慣習)ため、継承するとサブクラス内のスコープになる
 staticmethodは、引数にクラスをとらず、絶対名で参照するため、継承しても親クラスのスコープになる
@@ -948,7 +949,7 @@ class MyClass():
         print "%s, class_var: %s" % (MyClass, MyClass.class_var)
 ```
 
-####クラス変数
+#### クラス変数
 pythonクラス変数はシングルトンであるので以下のような挙動を示す。
 ```python
 class A():
@@ -960,13 +961,13 @@ x.a = "This creates a new instance attribures for x!"
 y.a # => "This is class attribute"
 A.a = "This changes class attribute for A"
 y.a # => "This changes class attribute for A"
-#x.aはそのままである
+# x.aはそのままである
 
 
 ```
 
 
-####イテレータの実装
+#### イテレータの実装
 クラスに`__iter__`メソッドと`__netx__`メソッドを付ければよい。前者は`iter(my_instance)`あるいは`for p in myinstance:`で自動的に読みだされる
 `__next__`はforループのたびに実行される。例
 
@@ -1000,7 +1001,7 @@ foo(20) # => {'x' : 10, 'arg' : 20}
 ```
 グローバルな名前空間については`globals()`で確認ができる。
 
-###クロージャ
+### クロージャ
 関数内関数は呼び出し時のlocalスコープの情報を記憶している。つまり
 ```python
 >>> def outer(x):
@@ -1016,7 +1017,7 @@ foo(20) # => {'x' : 10, 'arg' : 20}
 ```
 のようになる。
 
-###デコレータ
+### デコレータ
 クロージャの一種で関数を受け取って別の関数を返す関数。例
 ```python
 >>> def outer(some_func):
@@ -1071,7 +1072,7 @@ del samp.x
 
 
 ##関数型プログラミング
-###lambda式について
+### lambda式について
 defと同様に関数オブジェクトを行えるので、以下の2つの式は等価
 ```python
 def add(x, y):
@@ -1086,7 +1087,7 @@ def sum(numbers):
     for t in numbers:
         t += n
         return t
-#これはlambda式では書けない
+# これはlambda式では書けない
 sorted(strings, lambda s: len(s))   #sorted関数の引数として、関数オブジェクトを与える
 ```
 
@@ -1159,7 +1160,7 @@ stripped_list = [line.strip() for line in line_list
 
 ```
 
-###generator,ジェネレータ
+### generator,ジェネレータ
 例えば、インプットが次のような形式だったとき
 ```
 a1
@@ -1182,7 +1183,7 @@ if __name__ == '__main__':
     a = list(get_input())
 ```
 
-##pep8
+## pep8
 
 open文などが長い場合は \ を使用してインデントしてもよい
 例
@@ -1200,7 +1201,7 @@ sample = ('http://www.data.jma.go.jp/obd/stats/etrn/view/daily_s1.php?'
           'prec_no=44&block_no=47662&year=2012&month=8&day=&view=')
 ```
 
-##テスト
+## テスト
 `unittest`を用いる。
 例えばroman1のto_roman()をテストしたい場合は
 `/test/test_roman.py`　のようなファイルを作り以下のように書く
@@ -1272,11 +1273,11 @@ unittestのメソッドには3つの返り値がある
 まとめてテストを実行するときは以下のようにする
 `python -m unittest discover <test_directory>`
 
-####mock
+#### mock
 モックオブジェクトを用意するライブラリ。
 python3.3以降では標準になっている
 
-#####メソッドをMockインスタンスに差し替える
+##### メソッドをMockインスタンスに差し替える
 *注: 実際にはMagicMockを使用した方が良い。後述*
 Bクラスが、Aクラスのインスタンスを引数として受け取り、内部でAクラスのメソッドを読んでいる場合、AのメソッドをMockオブジェクトに差し替えてやることで、依存関係を切り離せる
 
@@ -1300,14 +1301,14 @@ b = B(a)
 b.b_test()
 ```
 
-#####インスタンスを丸ごとモックオブジェクトにする
+##### インスタンスを丸ごとモックオブジェクトにする
 Mockの引数に`spec=<Mockしたいクラス>`を指定する
 ```python
 a = Mock(spec=A)
 a.a_test.return_value = 'mocked_spec'
 ```
 
-#####mockしたいクラスが例外を出す場合
+##### mockしたいクラスが例外を出す場合
 例外を出すメソッドに`side_effect`を設定する
 
 
@@ -1318,10 +1319,10 @@ a.a_test.side_effect = ValueError
 b = B(a)
 b.b_test()
 ```
-#####特定の状況下(例: `__main__`から呼んだとき)でのみmockを使う
+##### 特定の状況下(例: `__main__`から呼んだとき)でのみmockを使う
 `@patch`を使用する
 
-#####magicmock
+##### magicmock
 `mock.Mock`のラッパー、メソッドや、インスタンスだけでなくクラスでも関数でもなんでもシミュレートできる。
 ```python
 fro mock import MagicMock
@@ -1337,7 +1338,7 @@ user.get_name = MagicMock(return_value = 'mock')
 使う際はpatch化するか、`setUp()`内で使用する
 
 
-##例外処理
+## 例外処理
 例外を補足するには`try: except:`節を利用する
 (実際にはこれで十分な気がする…)
 
@@ -1381,7 +1382,7 @@ Exceptionクラスを継承した時は、`__init__()`を用いて属性をセ�
 
 以下にエラークラスの種類を示す
 
-####Errorクラスの種類
+#### Errorクラスの種類
 
 - `BaseException` ... 全ての例外のベースクラス
 - `Exception` ... 実行中のアプリケーションを終了させない例外のベースクラス。ユーザー定義の例外はこれをベースをすべき
@@ -1396,7 +1397,7 @@ Exceptionクラスを継承した時は、`__init__()`を用いて属性をセ�
 
 より細かい区分は[ここ](http://ja.pymotw.com/2/exceptions/)を参照
 
-###型のチェック
+### 型のチェック
 `isinstance(n, int)`のようにして行う。例
 
 ```python
@@ -1407,9 +1408,9 @@ if not isinstance(n, int):
 第二引数にタプルを与えれば、複数の型を同時に検査できる
 
 ```python
-#これは
+# これは
 if isinstance(value, list) or isinstance(value, tuple):
-#以下と同等
+# 以下と同等
 if isinstance(value, (list, tuple)):
 
 
@@ -1418,7 +1419,7 @@ if isinstance(value, (list, tuple)):
 ---
 matplotlib
 
-##logging
+## logging
 **実際にはloggingではなくGetLoggerでloggerを最初に作ってしまった方が良い。後述**
 `print()`に似た情報を出力できる。違いは、情報に重要度の違いを持たせられること。デバッグの時にのみ、出力することができたりする
 [ここ](http://docs.python.jp/2/howto/logging.html#logging-basic-tutorial)の"基本ロギングチュートリアル"を見よ
@@ -1435,7 +1436,7 @@ if __name__ == '__main__'
 ```
 デフォルトだと、ログレベルが`loggin.WARNING`になっているため`logging.debug()`や`logging.info()`の内容は出力されない。
 
-###http://pieces.openpolitics.com/2012/04/python-logging-best-practices/
+### http://pieces.openpolitics.com/2012/04/python-logging-best-practices/
 loggingパッケージでは4つのタイプのオブジェクトが作れる。
 
 1. Loggers ... 後述
@@ -1450,7 +1451,7 @@ basicConfigの設定が大量にあるときは
 
 loggerはシングルトンなので、モジュールにつき一つ用意する。
 
-#####loggerは階層的である
+##### loggerは階層的である
 例えば`foo.bar`と`foo.baz`というライブラリがあった場合,
 ```python
 from logging import getLogger
@@ -1467,7 +1468,7 @@ logger.debug('Records: %s', records)    #recordsを埋め込む
 
 
 
-###loggingのベストプラクティス
+### loggingのベストプラクティス
 結論から言うと
 ```python
 from logging import getLogger,StreamHandler,DEBUG
@@ -1480,7 +1481,7 @@ logger.addHandler(handler)
 こう書けばよい
 
 
-####なんで？
+#### なんで？
 ```python
 logging.debug()
 logging.basicConfig(lovel = loggin.DEBUG)
@@ -1520,7 +1521,7 @@ from <modname> import get_module_logger
 logger = get_module_logger(__name__)
 ```
 
-###logger
+### logger
 `logger.info()` ... プログラムの通常の操作中に発生したイベントの報告。
 `logger.warn()` ... アプリケーションのユーザーに対して渡す警告
 
@@ -1534,7 +1535,7 @@ except Exception as e:
 ```
 
 `logger.error()`に似るが、スタックトレースを一緒にダンプする。例外ハンドラだけで使用するべき(？)
-###handler
+### handler
 出力先を指定するオブジェクト。`logger.addHandler()`によって`logger`オブジェクトにくっつく。
 
 `logger.hadlers` ... 現在のハンドラ一覧。デフォルトは空
@@ -1549,7 +1550,7 @@ logger.addHandler(fh)   #追加
 
 他にもSMTPでメールを送ったり、Syslogへの出力もできる
 
-###Formatter
+### Formatter
 `logging.Formatter()`でフォーマッタを生成し、それを`handler.formatter`に代入することで使用可能になる。フォーマッタの例
 
 ```python
@@ -1565,23 +1566,23 @@ logger.debug('debug message')
 ```
 コマンドラインには`2005-03-19 15:10:26,618 - simple_example - DEBUG - debug message`とでる
 
-###Filter
+### Filter
 あんまり使わない
 
-##バージョンの違い、処理系
+## バージョンの違い、処理系
 
 ---
 `from__futute__import division`
 とすることで、python3の整数除算の挙動をpython2に取り入れることができる。
 pypy…pythonインタプリタだがそれ自体pythonで記述されている。RPythonで書かれている。
 
-###pip
+### pip
 パッケージマネージャ
 `pip install git+url`でgithubから直接落とせる
 
 
 
-###python自体のバージョン管理
+### python自体のバージョン管理
 python2,3を共存させたいような場合は`pyenv`が便利
 `~/.pyenv` に`git clone http:\\github.com/yyuu/pyenv.git`したものを入れる。
 `git clone https://github.com/yyuu/pyenv.git ~/.pyenv`
@@ -1618,22 +1619,22 @@ pyenv insatll anaconda3-2.0.1
 - `pyenv global my-virtualenv-2.7.10` ... システム全体で切り替え。
 - `pyenv local my-virtualenv-2.7.10` ... カレントディレクトリのみ切り替え
 
-####pyenvの仕組み
+#### pyenvの仕組み
 `rbenv`とほぼ同じらしい
-#####pip
+##### pip
 `~/.pyenv/shims`がpipを横取りする。具体的には下記の手順で実行される
  1. `PATH`からpipの実行ファイルを探す。
  2. `~/.pyenv/shims`の中にあるpipを見つける
  3. このpipを実行し、コマンドをpyenvに渡す
 
-#####python自体
+##### python自体
 `~/.pyenv/versions`に入っている
 以下の手順に従ってどのpythonのバージョンを使用するか決める
 1. `PYENV_VERSION`環境変数
 2. カレントディレクトリにある`.python-version`ファイル。なければ親ディレクトリをホームまでさかのぼって探す
 3. `~/.pyenv/version`、`pyenv global`で変更できる
 
-###anaconda
+### anaconda
 数値計算用のパッケージなどがセットになったpythonのディストリビューション
 
 `conda`コマンドの機能のいくつかは`pyenv`とかぶる。モジュールのバージョンも指定できる点
@@ -1666,19 +1667,19 @@ pyyaml=3.11
 環境を作ったら
 `source activate <環境名(ディレクトリ)>`でactivateする
 
-###Rpython
+### Rpython
 Rpython…pythonにいくつかの制限を加える代わりに高速化したもの
 
-####jupyter
+#### jupyter
 `/usr/local/share/jupyter/kernels`に様々な言語のカーネルが入っている
 `~/.python/kernels`ユーザー別のkernel
 
-#####jupyter のインストール
+##### jupyter のインストール
 pyenv でanaconda環境に切り替えたのち
 `pip install jupyter`
 
 
-#####jupyter/notebookのインストール
+##### jupyter/notebookのインストール
 nodejsとnpmが入っていることをはっきりさせる
 `sudo apt-get install nodejs-legacy npm`
 macなら `brew install node`
@@ -1690,7 +1691,7 @@ pip install --pre -e .
 jupyter notebook
 ```
 
-#####ipythonの設定
+##### ipythonの設定
 
 `pip3 install ipython`
 
@@ -1708,7 +1709,7 @@ c = get_config()
 # 全てのIPから接続を許可
 c.NotebookApp.ip = '*'
 c.NotebookApp.password = u'sha1:bcd259ccf...<先ほどの鍵をコピペ>'
-#ブラウザは立ち上げない
+# ブラウザは立ち上げない
 c.NotebookApp.open_browser = False
 
 # 特定のポートに指定(デフォルトは8888)
@@ -1717,16 +1718,16 @@ c.NotebookApp.port = 9999
 後はローカルのブラウザから
 `http://<サーバのIP>:9999`でログイン
 
-###ipython
+### ipython
 `%run ~/source/mycode.py` ... 外部スクリプトの実行
 起動時に自動で実行されるスクリプトは
 `~/.ipython/profile_default/startup/*.py`
 
-##他言語との連携
-###R
+## 他言語との連携
+### R
 昔はRPy2が使用されていたがいまではPypeRが主流
 
-##パッケージ管理
+## パッケージ管理
 pyenvが便利？
 
 ---
@@ -1741,20 +1742,20 @@ sudo apt-get install python-pip pythondev
 - `pip freeze` ... 現在の仮想環境下にインストールされているパッケージとそのバージョンを出力。自分でパッケージを作ったときは`pip freeze > requirement.txt`とかすると便利。
 - `pip install -r requirements.txt` ... テキストファイル内のパッケージを一気にインストール
 
-####パッケージのパス
+#### パッケージのパス
 1. インストール時にデフォルトで設定されている物
 例: `/usr/lib64/python2.6`
 2. $PYTHONPATHに設定されているもの(追加するときは普通ここに設定する)
 3. `sys.path`に格納されているもの`sys.path.append()`で追加できる
 
-####ソースのダウンロード
+#### ソースのダウンロード
 `pip install <package_name> --download="/path/to/downloaded/files"`でパッケージとそのDependencyのダウンロードのみを行う
 
-####wheel
+#### wheel
 eggではなくこれを使うのが今風らしい
 
 
-###packageの中身
+### packageの中身
 httplib2というパッケージの場合、以下のようなディレクトリ構成になる
 ```
 httplib2/
@@ -1818,7 +1819,7 @@ setup(
 )
 ```
 
-####Manifest.inについて
+#### Manifest.inについて
 これを書かないと、配布物のうち`*.py`ファイル以外は配布対象にならない
 
 ```python
@@ -1838,14 +1839,14 @@ __path__ = extend_path(__path__, __name__)
 ```
 こうすると、複数の異なるディレクトリにまたがったパッケージを一つのディレクトリにある普通のパッケージとして扱えるらしい。
 
-#####exportする関数を限定
+##### exportする関数を限定
 `__all__ = []`を定義しておくと、`from <pkg> import *`した時に、all内の要素のみをimportする
 
-#####初期実行
+##### 初期実行
 `__init__.py`内のコードはそのディレクトリ内のものをインポートした際に一度だけ実行される
 
 
-#####内部の隠蔽
+##### 内部の隠蔽
 
 ```
 /foo
@@ -1855,11 +1856,11 @@ __path__ = extend_path(__path__, __name__)
 と書いておくと、`import foo`でいきなりPIYOが使えるようになる。
 
 
-##構成管理
+## 構成管理
 
 ---
 facric -> ansibleへと移るのが吉
-###fabric
+### fabric
 基本は以下のように書く
 ```python
 from fabric.api import run
@@ -1868,7 +1869,7 @@ def show_uname():
     run('uname -s')
 ```
 
-####fabric.api
+#### fabric.api
 基本コマンドのクラス、よく使われるのは
 `run,sudo,local,put`の４つ、
 - `local` ... 手元のサーバでそのスクリプトを実行する
@@ -1884,7 +1885,7 @@ def scp():
 - `prompt()`    ... ユーザーからの入力を受け付ける
 - reboot()  ... 言わずもがな
 
-####fabric.contrib
+#### fabric.contrib
 
 - `console.confirm("Message", default = False)`　 ... ユーザに[y/N]での確認を促す。promptの制限版
 
@@ -1892,7 +1893,7 @@ def scp():
 fabfile.pyという名前で保存し、`fab`コマンドで実行
 ```sh
 fab -H <server_address> show_uname
-#or
+# or
 fab -u <user_name> -i <path_to_secret_key> -H <server_address> show_uname
 ```
 -Hで指定する先に`localhost`を指定することもできる。
@@ -1907,7 +1908,7 @@ def hello(name="world")
 fab hello:name=jeff
 ```
 
-####task
+#### task
 
 `fabfile/`ディレクトリを作ってやり、その中に任意の.pyファイルを入れてやれば、それを実行できる
 taskで分割するときは,`default`を設定してやると便利
@@ -1957,12 +1958,12 @@ with構文を抜けるとshell_envの効果はなくなる。`cd,lcd`も同様
 env.use_ssh_config = True
 ```
 
-####fabricrc
+#### fabricrc
 bashrcのようなもの、デフォルトだと`~/fabricrc`を探すが
 `-c`で指定してやると好きなものを使える
 
 
-####失敗への対処
+#### 失敗への対処
 fabricはそれぞれのシェルスクリプトの返り値をチェックして、失敗の場合はそこで停止する。それを変更したい場合は各種モジュールを使う
 ```python
 from __future__ import with_statement
@@ -1976,7 +1977,7 @@ def test():
         abort("Aborting at user request.")
 ```
 
-####if文
+#### if文
 ファイルの存在などをシェルスクリプトのif文でチェックして実行したい場合は少し特殊で、
 
 ```python
@@ -1986,7 +1987,7 @@ with settings(warn_only=True):
         run("git clone user@vchost:path/to/repo/.git %s" % code_dir)
 ```
 
-####env
+#### env
 グローバルなシングルトンで、タスク間で共有される設定を入れる。例
 ```python
 from fabric.api import env
@@ -2011,7 +2012,7 @@ envは実際にはdictのサブクラスである。
 envで指定できる要素の一覧は[こちら](http://fabric-ja.readthedocs.org/ja/latest/usage/env.html)を参照
 
 
-####冪等制の保証
+#### 冪等制の保証
 一応スクリプトだけでもできる
 ```python
 def setup_package(package = "apache2"):
@@ -2027,7 +2028,7 @@ def setup_package(package = "apache2"):
     package_ensure("%s" % (package))
 ```
 
-####デコレータ
+#### デコレータ
 特定のホストやroleのみに実行されるタスクの場合はデコレータを使用すると便利
 
 #####@hosts
@@ -2088,7 +2089,7 @@ def full_deploy():
 というfabfile.pyがあった時に`full_deploy()`の上の`@task`を`@task(default=True)`にすることで引数なしで`fab`をするだけで`full_deploy`を行ってくれる。
 
 
-####fabコマンド
+#### fabコマンド
 `fab --list`タスクの一覧を表示
 
 基本的には
@@ -2103,14 +2104,14 @@ fabfile.pyないしはfabfile/の探索メカニズムはvagrantと同様、カ�
 fab -H system1,system2,system3 -- uname -a
 ```
 
-###cuisine
+### cuisine
 fabric 単体では冪統制を保証することができない
 `pip install cuisine`しておくと便利
 
-###ansible
+### ansible
 [ここを参照](http://qiita.com/rasenn/items/d42ed07368ae90605c29)
 
-####インストール
+#### インストール
 RHELの場合は
 ```sh
 rpm -ivh http://ftp.riken.jp/Linux/fedora/epel/7/x86_64/e/epel-release-7-5.noarch.rpm   #epelのリポジトリが使用可能になる
@@ -2125,7 +2126,7 @@ apt-get install ansible
 
 
 
-##各種パッケージ
+## 各種パッケージ
 
 ---
 ###高速化
@@ -2136,7 +2137,7 @@ apt-get install ansible
 2. 並列処理
 3. 言語レベルの高速化(Numpy,Numba,Cython)
 
-####プロファイリング
+#### プロファイリング
 [ここ](http://shkh.hatenablog.com/entry/2013/08/16/221205)に詳しい
 
 1. ipytyonの`%time`と`%timeit`を使用する。後者は何回か計算を行って平均をとる。また`%prun`というものもあり、これはcProfileへのショートカットである
@@ -2156,21 +2157,21 @@ p.sort_stats("time").print_stats(10)
 5. Benchmarkerを使う
 
 
-#####cProfile
+##### cProfile
 
 
 
-####コーディングレベル
+#### コーディングレベル
 リスト内包表記を使うこと
 
-####並列処理
+#### 並列処理
 `multiprocessing`でプロセスベースの並列処理
 オーバーヘッドが大きいので、十数秒以上かかる処理の時のみ用いること
 `Process`クラスのインスタンスを作る方法と`Pool`クラスのインスタンスを作る方法の2種類がある。後者の方が手軽
 
 `multiprocessing.cpu_count()` ... cpuの数を取得
 
-#####Processクラス
+##### Processクラス
 インスタンスを複数作成したのち、`start()`すると別プロセスとして起動する。最後に`join`する
 ```python
 import multiprocessing as mp
@@ -2182,8 +2183,8 @@ p.join()
 
 返り値がほしいときはPoolかQueueを使用する。
 
-#####poolクラス
-######pool.map
+##### poolクラス
+###### pool.map
 mapを手軽に並列化
 ```python
 from multiprocessing import Pool
@@ -2195,7 +2196,7 @@ pool.close()
 pool.join()
 ```
 
-######pool.apply_async
+###### pool.apply_async
 forを手軽に並列化
 
 ```python
@@ -2209,7 +2210,7 @@ pool.close()
 pool.join()
 ```
 
-#####Queueクラス
+##### Queueクラス
 `Queue.Queue`とほぼ同じ、並列するプロセス内で`queue.put`するか`queue.get`するかしてデータを扱う。
 
 以下の例がわかりやすい。queueのインスタンスは引数として与えずにグローバルに定義している。
@@ -2237,7 +2238,7 @@ q.join()       # 全タスクが完了するまでブロック
 ####言語レベルの高速化
 numpyscipyを使っても早くならないときは
 blas,lapack,atlasが入っているか確認する
-#####numpy
+##### numpy
 ---
 高速な行列演算などをサポートした科学技術計算用のパッケージ
 import numpy as np     #npでinportするのが慣例
@@ -2251,9 +2252,9 @@ a * 3   #=>array([0, 3, 6, 9])
 np.exp(a)   #それぞれをeの指数に直す
 ```
 
-#####scipy
+##### scipy
 scipy.sparseで疎行列を扱える
-#####Numba
+##### Numba
 LLVMの基づいたpythonコンパイラ、
 `@numba.jit`でデコレートするだけでオッケー
 明示的に型を指定したい場合(あまりお勧めしていない)は
@@ -2267,12 +2268,12 @@ with
 yield from
 list, set ,dict等
 
-#####pyston
+##### pyston
 同じくLLVMコンパイラ
 
-#####cython
+##### cython
 
-###pythonオブジェクトのシリアライズ
+### pythonオブジェクトのシリアライズ
 `pickle`を使用する。
 高速化が目的ならdillを使用した方が良い。
 データの受け渡しが目的ならjsonを使用した方が良い。
@@ -2297,7 +2298,7 @@ b = pickle.dumps(obj)   #bytesクラスのオブジェクトが入る
 ```
 
 
-###シェルコマンドの実行
+### シェルコマンドの実行
 `subprocess`を使用する。昔は`os.system`を実行していたが、これはサポートされなくなりつつある。例
 ```python
 import subprocess
@@ -2312,7 +2313,7 @@ ret = subprocexx.check_output(cmd.split(" "))
 print ret   #これだとパイプを用いた処理はできないかも…
 ```
 
-###paver
+### paver
 makeとfabricの中間
 
 - `@consume_args` ... 引数をとる
@@ -2342,7 +2343,7 @@ def hello():
 ```
 
 
-###collections
+### collections
 ちょっと使い勝手のいいデータ構造が使える
 ####`defaultdict` ... 要素がdictにあれば、その値を1増やし、なければ新たに作る。という処理に使う
 
@@ -2382,14 +2383,14 @@ count.most_commont(2)   #[('c', 3), ('b', 2)]
 
 ####`namedtuple`
 
-###PyYaml
+### PyYaml
 `pip install pyyaml`でインストールする
 ```python
 import yaml
 ```
 で使用する。読み込みと書き込みを行える。
 
-###json
+### json
 標準ライブラリ、jsonのよみかきが行える
 `json.load()`で辞書型になる
 
@@ -2405,7 +2406,7 @@ f.close()
 実際には`'r'` ではなく`'rU'`にした方が良い。こちらは改行コードがwindowsでもよしなに計らってくれる。
 
 
-####書き込み
+#### 書き込み
 ```python
 mylist = {'dogs': ['pochi', 'taro', 'kai'],
           'cats': ['shimajiro', 'tyson']}
@@ -2415,7 +2416,7 @@ f.write(yaml.dump(mylist))  # 書き込む
 f.close()
 ```
 
-##argparse
+## argparse
 引数処理を行う。最小限の例は
 ```python
 import argparse
@@ -2451,7 +2452,7 @@ if args.gpu >= 0:
     cuda.check_cuda_available()
 ```
 
-##tempfile
+## tempfile
 
 ```python
 import tempfile
@@ -2463,14 +2464,14 @@ fh.close()  #closeすると消える
 `NamedTemporaryFile` ... 名前がついてる以外は同じ
 `SpooledTempraryFile(max_size = 100000)` ... ファイルサイズが`max_size`を超えるか`fileno()`が呼ばれるまではメモリ上で処理される以外は、同じ
 
-##filecomp
+## filecomp
 ```python
 import filecmp
 filecmp.cmp("hoge.txt", "fuga.txt") #完全一致ならTrueを返す
 filecmp.dircmp()    #directoryならこちら
 ```
 
-##markdown
+## markdown
 ```python
 import markdown
 md = markdown.Markdown()
@@ -2487,7 +2488,7 @@ list
 print(md.convert(sample_markdown))
 ```
 
-##gitpublish
+## gitpublish
 restructuredTextなどをGitでパブリッシュするためのパッケージ
 
 ```python
@@ -2496,16 +2497,16 @@ gitrepo = core.GitRepo('/home/miyamoto/mygitproject')
 
 ```
 
-##reSTructuredText
+## reSTructuredText
 `pip install docutils`すると
 `rst2html`でhtmlにできる。
 `rst2s5`でhtmlスライドにできる
 
-###markdownと違う点
+### markdownと違う点
 
 ####見出し
 
-#####h1見出し
+##### h1見出し
 
 ```
 ========
@@ -2514,14 +2515,14 @@ title 1
 ```
 ここで、title1が上下の線より長いと怒られる。
 
-#####h2
+##### h2
 下だけ=
 ```
 title 2
 ========
 ```
 
-#####h3
+##### h3
 ハイフンで囲む
 
 ```
@@ -2530,7 +2531,7 @@ title 3
 -------
 ```
 
-#####h4
+##### h4
 下だけハイフン
 
 ```
@@ -2539,13 +2540,13 @@ title 4
 ```
 
 h5やh6はない
-####ラインブロック
+#### ラインブロック
 
 |ここの部分の
 |文章はそのまま
 |生の文字列になる
 
-####replace
+#### replace
 
 .. |hoge| replace:: ほげ
 と書いておくとほかの|hoge|がほげに変換される。いっぱいあるときは、別ファイルに書いておいて
@@ -2553,8 +2554,8 @@ h5やh6はない
 .. include:: definition.txt
 とする
 
-####リンク
-####外部リンク
+#### リンク
+#### 外部リンク
 markdownと違い、外部参照のリンクはドキュメントの末尾にまとめて書かれる。
 
 ここでのポイントは、..と\_
@@ -2563,7 +2564,7 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 >.. _`Plone CMS`: http://plone.org
 >.. _Zope: http://zope.org
 
-####内部リンク
+#### 内部リンク
 
 ```
 .. _ex-hoge:
@@ -2582,7 +2583,7 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 
 ```
 
-####ソースコードの記述
+#### ソースコードの記述
 インラインリテラルは\`\`を2つずつつける必要がある。
 `print("hoge")` -> reST中では\`\`print("hoge")\`\`
 
@@ -2592,7 +2593,7 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 >               #ここの空白は必須
 >    1 + 1
 
-####テーブル
+#### テーブル
 =====  =====  =======
 A      B      A and B
 =====  =====  =======
@@ -2628,14 +2629,14 @@ True   True   True
 
 
 
-###ディレクティブ
+### ディレクティブ
 Sphinx拡張のものと、rst標準のものがある
 
-####目次
+#### 目次
 
 .. contents::
 
-####toctree
+#### toctree
 章や節に番号を振りたいときは
 .. toctree::
    :maxdepth: 2
@@ -2645,12 +2646,12 @@ Sphinx拡張のものと、rst標準のものがある
    design
    implementation
 
-####画像
+#### 画像
 .. image:: gnu.png
 で画像を表示できる。`gnu.png`のところは、rstファイルからの相対パスや絶対パスも指定できる。
 html出力すると、`_static`のようなディレクトリにコピーされる。
 
-####引用
+#### 引用
 Sphinx拡張の機能
 
 This Idea is originally from [Ref]_
@@ -2658,14 +2659,14 @@ This Idea is originally from [Ref]_
 .. [Ref] Book or article reference or url
 
 
-####TODO
+#### TODO
 ```
 .. todo:: ブロック図を描く
 
 .. todolist::   #文書中の全てのTODOリストを集めて表示
 ```
 
-##Sphinx
+## Sphinx
 SphinxはreSTから以下の形式のドキュメントを出力するプログラム
 
 - html
@@ -2675,10 +2676,10 @@ SphinxはreSTから以下の形式のドキュメントを出力するプログ�
 - PDF ... 拡張機能
 - docx ... 拡張機能
 
-###インストール
+### インストール
 `sudo apt-get install python-sphinx`
 
-###始める
+### 始める
 `sphinx-quickstart`,以下のディレクトリとファイルを作成する
 
 - Makefile
@@ -2692,7 +2693,7 @@ SphinxはreSTから以下の形式のドキュメントを出力するプログ�
 
 `make latex`,`make latexpdf`、`make html`等でrenderする.詳細は`make help`で
 
-###テーマの変更
+### テーマの変更
 Sphinx組み込みのテーマなら簡単。
 ```
 html_theme = "classic"
@@ -2703,19 +2704,19 @@ html_theme_options = {
 ```
 詳しく[こちら][http://docs.sphinx-users.jp/theming.html#using-a-theme]
 
-###Sphinx拡張
+### Sphinx拡張
 下で書いているもの以外にもdocstringをドキュメント中に組み込んだり、Graphviz、継承関係図、カバレッジなどを取り込むことができる
-####sphinx.ext.todo
+#### sphinx.ext.todo
 rstファイルの中で
 `.. todo::`という記法でtodoを作成できる
 `.. todolist::`ディレクティブを使用すると、ドキュメント内のすべてのTODOをリストにして表示する
 
-####sphinx.ext.jsmath、Sphinx.ext.pngmath
+#### sphinx.ext.jsmath、Sphinx.ext.pngmath
 それぞれjsMath(Java
 script)、dvipngを利用して数式を表示する
 *現在はjsmathではなく、mathjax*を使う
 
-####mathjax
+#### mathjax
 
 `.. math::`ディレクティブを使用できるようになる。その中ではlatex記法で書く。例
 
@@ -2732,21 +2733,21 @@ script)、dvipngを利用して数式を表示する
 
 :label:を付けると、数式にラベルと数式番号を付けることができ、:eq:を用いて参照することができる。例 :eq:\`euler\`
 
-####plnatuml
+#### plnatuml
 uml図が作れる
 
 
-####S6
+#### S6
 スライドショーが作れる
 
-####sphinx.ext.inheritance_diagram
+#### sphinx.ext.inheritance_diagram
 継承関係図を表示
 
-##可視化
+## 可視化
 
 ---
 bokeh…可視化のライブラリ
 seaborn。。。matplotlibに基づく可視化のライブラリ
 
-##作図
+## 作図
 
