@@ -1420,6 +1420,9 @@ if isinstance(value, (list, tuple)):
 matplotlib
 
 ## logging
+
+たいていは単に`logger = logging.getLogger(__name__)`をそれぞれのスクリプトで行って、メインスクリプトで`basicConfig()`で必要に応じて設定を変えればOK。
+
 **実際にはloggingではなくGetLoggerでloggerを最初に作ってしまった方が良い。後述**
 `print()`に似た情報を出力できる。違いは、情報に重要度の違いを持たせられること。デバッグの時にのみ、出力することができたりする
 [ここ](http://docs.python.jp/2/howto/logging.html#logging-basic-tutorial)の"基本ロギングチュートリアル"を見よ
