@@ -2342,11 +2342,17 @@ print ret   # retの型はstrになる
 
 ```python
 
-proc = subprocess.Popen('ls', stdout=subprocess.PIPE, stdin=subprocess.PIPE) # インスタンス化した時点で実行が開始される
+proc = subprocess.Popen('ls', stdout=subprocess.PIPE, stderr=subprocess.PIPE) # インスタンス化した時点で実行が開始される
 
 proc.wait() # 実行が完了するまで待つ
+
+# 出力結果はcommunicate()で受け取る
+stdout_data, stderr_data = p.communicate() # でかすぎるデータはメモリを圧迫するので、以下のようにする
+
 for l in proc.stdout:
-    print(l)    # コマンドの実行結果は擬似ファイルハンドラとして扱える
+    print(l)    # コマンドの実行結果は擬似ファイルハンドラとして扱える。よって以下のようにもできる
+proc.stdout.read()
+proc.returncode # 終了ステータス
 
 ```
 
