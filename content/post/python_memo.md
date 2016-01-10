@@ -2312,7 +2312,7 @@ subprocess.call(cmd, shell = True)
 
 ```python
 cmd = "ls -lt"
-ret = subprocexx.check_output(cmd.split(" "))
+ret = subprocess.check_output(cmd.split(" ")) # strではなく配列で与える
 print ret   #これだとパイプを用いた処理はできないかも…
 ```
 

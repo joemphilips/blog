@@ -14,6 +14,10 @@ menu = 'main'
 
 好きな映画: "アメリカン・ビューティー"
 
+mail: "joemphilips_gmail.com" # replace _ with @
+
 ```
+
+
 
 随時更新予定
