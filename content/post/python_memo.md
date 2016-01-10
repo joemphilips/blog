@@ -2301,19 +2301,53 @@ b = pickle.dumps(obj)   #bytesクラスのオブジェクトが入る
 ```
 
 
-### シェルコマンドの実行
-`subprocess`を使用する。昔は`os.system`を実行していたが、これはサポートされなくなりつつある。例
-```python
-import subprocess
-cmd = "ls -lt | head -n 5"
-subprocess.call(cmd, shell = True)
-```
-実行結果を取得するときは
+### シェルコマンドの実行(`subprocess`)
+`subprocess.call`, `subprocess.check_output`, `subprocess.check_call`のいずれかを使用する。いずれも内部でsubprocess.Popenを使用している
+
+昔は`os.system`を実行していたが、これはサポートされなくなりつつある。例
+
+#### `check_call`, `call`
+
+返り値は終了コードになる。`check_call`の場合、終了コードが0以外ならば`CalledProcessError`をraiseする。
+
+標準出力、標準エラー出力はともに親プロセスとなるpython
+VMのストリームに渡される。
 
 ```python
+
+import subprocess
+cmd = "ls -lt | head -n 5"
+subprocess.call(cmd, shell = True) # コマンドはstrで渡す
+```
+
+`call(cmd, cwd='/bin')` ... 実行ディレクトリを指定
+
+#### `check_output`
+
+実行結果を取得する事ができる。パイプを用いた処理はできない
+
+```python
+
 cmd = "ls -lt"
 ret = subprocess.check_output(cmd.split(" ")) # strではなく配列で与える
-print ret   #これだとパイプを用いた処理はできないかも…
+print ret   # retの型はstrになる
+
+```
+
+#### `subprocess.Popen`
+
+実行結果を取得しつつ、終了ステータスのチェックも行うなど、より詳細な操作をする際に使用する。
+
+また、`check_output`では標準エラー出力が出ないので、なぜ失敗したのかわからない場合がある、そういう時にも使える
+
+```python
+
+proc = subprocess.Popen('ls', stdout=subprocess.PIPE, stdin=subprocess.PIPE) # インスタンス化した時点で実行が開始される
+
+proc.wait() # 実行が完了するまで待つ
+for l in proc.stdout:
+    print(l)    # コマンドの実行結果は擬似ファイルハンドラとして扱える
+
 ```
 
 ### paver
