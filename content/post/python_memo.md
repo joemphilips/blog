@@ -2786,11 +2786,8 @@ uml図が作れる
 #### sphinx.ext.inheritance_diagram
 継承関係図を表示
 
-## 可視化
+## Web Application Flamework
 
----
-bokeh…可視化のライブラリ
-seaborn。。。matplotlibに基づく可視化のライブラリ
+### Flask
 
-## 作図
-
+Django, Pyramid などと比べて軽量なフレームワーク
