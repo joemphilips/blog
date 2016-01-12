@@ -2301,19 +2301,59 @@ b = pickle.dumps(obj)   #bytesクラスのオブジェクトが入る
 ```
 
 
-### シェルコマンドの実行
-`subprocess`を使用する。昔は`os.system`を実行していたが、これはサポートされなくなりつつある。例
-```python
-import subprocess
-cmd = "ls -lt | head -n 5"
-subprocess.call(cmd, shell = True)
-```
-実行結果を取得するときは
+### シェルコマンドの実行(`subprocess`)
+`subprocess.call`, `subprocess.check_output`, `subprocess.check_call`のいずれかを使用する。いずれも内部でsubprocess.Popenを使用している
+
+昔は`os.system`を実行していたが、これはサポートされなくなりつつある。例
+
+#### `check_call`, `call`
+
+返り値は終了コードになる。`check_call`の場合、終了コードが0以外ならば`CalledProcessError`をraiseする。
+
+標準出力、標準エラー出力はともに親プロセスとなるpython
+VMのストリームに渡される。
 
 ```python
+
+import subprocess
+cmd = "ls -lt | head -n 5"
+subprocess.call(cmd, shell = True) # コマンドはstrで渡す
+```
+
+`call(cmd, cwd='/bin')` ... 実行ディレクトリを指定
+
+#### `check_output`
+
+実行結果を取得する事ができる。パイプを用いた処理はできない
+
+```python
+
 cmd = "ls -lt"
-ret = subprocexx.check_output(cmd.split(" "))
-print ret   #これだとパイプを用いた処理はできないかも…
+ret = subprocess.check_output(cmd.split(" ")) # strではなく配列で与える
+print ret   # retの型はstrになる
+
+```
+
+#### `subprocess.Popen`
+
+実行結果を取得しつつ、終了ステータスのチェックも行うなど、より詳細な操作をする際に使用する。
+
+また、`check_output`では標準エラー出力が出ないので、なぜ失敗したのかわからない場合がある、そういう時にも使える
+
+```python
+
+proc = subprocess.Popen('ls', stdout=subprocess.PIPE, stderr=subprocess.PIPE) # インスタンス化した時点で実行が開始される
+
+proc.wait() # 実行が完了するまで待つ
+
+# 出力結果はcommunicate()で受け取る
+stdout_data, stderr_data = p.communicate() # でかすぎるデータはメモリを圧迫するので、以下のようにする
+
+for l in proc.stdout:
+    print(l)    # コマンドの実行結果は擬似ファイルハンドラとして扱える。よって以下のようにもできる
+proc.stdout.read()
+proc.returncode # 終了ステータス
+
 ```
 
 ### paver
@@ -2746,11 +2786,8 @@ uml図が作れる
 #### sphinx.ext.inheritance_diagram
 継承関係図を表示
 
-## 可視化
+## Web Application Flamework
 
----
-bokeh…可視化のライブラリ
-seaborn。。。matplotlibに基づく可視化のライブラリ
+### Flask
 
-## 作図
-
+Django, Pyramid などと比べて軽量なフレームワーク
