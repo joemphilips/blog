@@ -846,6 +846,7 @@ class ExampleClass(object):
     """
 
     def __init__(self, param1, param2, param3):
+
 ```
 
 **`__init__(self)`に関する説明は、`__init__(self)`以下に書いてもよいし、クラスの説明のところに書いてもよい、いずれにせよ統一した方がいい**
@@ -855,12 +856,14 @@ class ExampleClass(object):
 ### doctest
 
 モジュールをテストする場合は一番下に
+
 ```python
 
 if __name__ == "__main__"
     import doctest
     doctest.testmod()
 ```
+
 と書いておき,`python module.py -v`で実行
 
 外部ファイルにdocstringを用意しておいて、それを用いてテストする場合は
