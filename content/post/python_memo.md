@@ -1426,7 +1426,6 @@ matplotlib
 
 たいていは単に`logger = logging.getLogger(__name__)`をそれぞれのスクリプトで行って、メインスクリプトで`basicConfig()`で必要に応じて設定を変えればOK。
 
-**実際にはloggingではなくGetLoggerでloggerを最初に作ってしまった方が良い。後述**
 `print()`に似た情報を出力できる。違いは、情報に重要度の違いを持たせられること。デバッグの時にのみ、出力することができたりする
 [ここ](http://docs.python.jp/2/howto/logging.html#logging-basic-tutorial)の"基本ロギングチュートリアル"を見よ
 
@@ -1477,12 +1476,14 @@ logger.debug('Records: %s', records)    #recordsを埋め込む
 ### loggingのベストプラクティス
 結論から言うと
 ```python
+
 from logging import getLogger,StreamHandler,DEBUG
 logger = getLogger(__name__)    #以降、このファイルでログが出たということがはっきりする。
 handler = StreamHandler()
 handler.setLevel(DEBUG)
 logger.setLevel(DEBUG)
 logger.addHandler(handler)
+
 ```
 こう書けばよい
 
@@ -1555,6 +1556,11 @@ logger.addHandler(fh)   #追加
 そうでない場合(モジュールとして実行された場合)は、コンソールに出力するためには上記の`Filehandler('test.log', 'a+')`を`StreamHandler()`に変更する必要がある
 
 他にもSMTPでメールを送ったり、Syslogへの出力もできる
+
+#### QueueHandler、QueueListener
+python 3.2以降で追加、リモートジョブのロギングをする。
+
+
 
 ### Formatter
 `logging.Formatter()`でフォーマッタを生成し、それを`handler.formatter`に代入することで使用可能になる。フォーマッタの例
@@ -2240,6 +2246,28 @@ for item in source():
 q.join()       # 全タスクが完了するまでブロック
 ```
 
+#### zmq
+`multiprocessing.Queue`でクラスタ間の連携も可能なので、こちらを使用する意味はあまりない。
+
+
+```python
+import zmq
+
+def ventilator():
+    context = zmp.Context()
+
+    ventilator_send = context.socket(zmq.PUSH)
+    ventinator_send.bind("tcp://127.0.0.1:5557")
+
+    time.sleep(1)
+
+    for num in range(10000):
+        work_message = { 'num': num }
+        ventinator_send.send_json(work_message)
+
+    time.sleep(1)
+
+```
 
 ####言語レベルの高速化
 numpyscipyを使っても早くならないときは
