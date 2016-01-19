@@ -1629,14 +1629,19 @@ pyenv insatll anaconda3-2.0.1
 - `pyenv uninstall my-virtualenv-2.7.10` ... 削除
 - `pyenv global my-virtualenv-2.7.10` ... システム全体で切り替え。
 - `pyenv local my-virtualenv-2.7.10` ... カレントディレクトリのみ切り替え
+- `pyenv virtualenvs` ... 作成したvirtualenvの一覧を表示
 
 #### pyenvの仕組み
 `rbenv`とほぼ同じらしい
 ##### pip
 `~/.pyenv/shims`がpipを横取りする。具体的には下記の手順で実行される
+
  1. `PATH`からpipの実行ファイルを探す。
  2. `~/.pyenv/shims`の中にあるpipを見つける
  3. このpipを実行し、コマンドをpyenvに渡す
+
+よって、`~/.pyenv/shims`のパスが`/usr/local/`等よりも先に来ていないと正常に環境を構築できない可能性がある
+
 
 ##### python自体
 `~/.pyenv/versions`に入っている
