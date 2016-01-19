@@ -1598,7 +1598,6 @@ pypy…pythonインタプリタだがそれ自体pythonで記述されている�
 python2,3を共存させたいような場合は`pyenv`が便利
 `~/.pyenv` に`git clone http:\\github.com/yyuu/pyenv.git`したものを入れる。
 `git clone https://github.com/yyuu/pyenv.git ~/.pyenv`
-`git clone https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv`
 
 `$PYENV_ROOT`を指定すればそこにインストールされる。
 デフォルトでは`$HOME/.pyenv/versions`以下に入る
@@ -1645,6 +1644,12 @@ pyenv insatll anaconda3-2.0.1
 1. `PYENV_VERSION`環境変数
 2. カレントディレクトリにある`.python-version`ファイル。なければ親ディレクトリをホームまでさかのぼって探す
 3. `~/.pyenv/version`、`pyenv global`で変更できる
+
+### virtual-env
+`pyenv`のプラグイン、pipを横取りして、環境ごとに異なったパッケージを管理する
+
+- pyenv virtualenv 3.5.0 new_3.5.0` ... 新しい環境の作成
+
 
 ### anaconda
 数値計算用のパッケージなどがセットになったpythonのディストリビューション
