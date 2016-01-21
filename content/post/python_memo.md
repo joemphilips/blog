@@ -1593,7 +1593,6 @@ pypy…pythonインタプリタだがそれ自体pythonで記述されている�
 `pip install git+url`でgithubから直接落とせる
 
 
-
 ### python自体のバージョン管理
 python2,3を共存させたいような場合は`pyenv`とそのプラグイン`virtualenv`が便利
 `~/.pyenv` に`git clone http:\\github.com/yyuu/pyenv.git`したものを入れる。
@@ -1642,6 +1641,7 @@ pyenv insatll anaconda3-2.0.1
 
 よって、`~/.pyenv/shims`のパスが`/usr/local/`等よりも先に来ていないと正常に環境を構築できない可能性がある
 
+まれに`samtools`等、pipでインストールできない
 
 ##### python自体
 `~/.pyenv/versions`に入っている
@@ -1662,7 +1662,15 @@ pyenv insatll anaconda3-2.0.1
 
 `pip install -r requirements.txt`
 
-でそれらを入れる
+でそれらを入れる。
+
+バージョンを考慮せず、全て最新のものを入れたい場合は
+
+`cat requirements.txt | grep -v '^\-e' | cut -d = -f1 | xargs pip install -U`
+
+あるいは
+
+`cat requirements.txt | grep -v '^\-e' | cut -d = -f2 | xargs -L1 pip install -U`
 
 
 ### anaconda
