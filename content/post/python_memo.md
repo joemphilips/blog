@@ -1602,6 +1602,7 @@ python2,3を共存させたいような場合は`pyenv`とそのプラグイン`
 デフォルトでは`$HOME/.pyenv/versions`以下に入る
 
 `~/.zshrc`に以下のように書いておくとよい
+
 ```sh
 # pyenv
 export PYENV_ROOT="${HOME}/.pyenv"
@@ -1611,11 +1612,14 @@ export PATH=${PYENV_ROOT}/bin:$PATH
 
 fi
 ```
+
 これで
+
 ```python
 pyenv install anaconda-2.0.1
 pyenv insatll anaconda3-2.0.1
 ```
+
 のような使い方ができる。以下にコマンド
 
 
@@ -1641,7 +1645,8 @@ pyenv insatll anaconda3-2.0.1
 
 よって、`~/.pyenv/shims`のパスが`/usr/local/`等よりも先に来ていないと正常に環境を構築できない可能性がある
 
-まれに`samtools`等、pipでインストールできない
+まれに`samtools`等、pipでインストールできないコマンドがある。その時は`~/.pyenv/shims/samtools`を消すとか、`pip
+install pysam`とかで解決する場合がある
 
 ##### python自体
 `~/.pyenv/versions`に入っている
