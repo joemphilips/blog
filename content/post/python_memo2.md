@@ -53,7 +53,9 @@ max(x)
 RISEと呼ばれるパッケージを入れると、notebookの右上にボタンが出て、リアルタイムプレビューができるようになる
 
 ## ベイジアン
-変分ベイズならBayesPy、MCMCならStanがよさそう
+
+~~変分ベイズならBayesPy、MCMCならStanがよさそう~~
+最近はStanでも、共益事前分布の場合は勝手に変分近似してくれるらしい
 
 ### BayesPy
 python3のパッケージ。指数型分布族(ガウス、ガンマ、ディリクレなど)にしか使えないっぽい？
@@ -180,4 +182,9 @@ sshでログインしているときはエラーが出ないよう、以下の�
 import matplotlib
 matplotlib.use("Agg")
 ```
+
+## pandas
+
+## luigi
+
 

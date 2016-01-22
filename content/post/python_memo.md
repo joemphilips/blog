@@ -916,6 +916,7 @@ class Hoge:
 if __name__ == '__main__':
     #普通にargparseでパース
     hoge = Hoge()   #引数を渡す必要はない
+
 ```
 
 
@@ -931,6 +932,7 @@ python3ではすべて新スタイル
 ### オブジェクトの操作
 ```python
 ins.__class__   #insのクラスがわかる
+ins.__class__.mro() #insの継承関係がすべてわかる
 ins.__doc__ #insのdocstring(使い方)がわかる
 ```
 
@@ -2204,9 +2206,10 @@ p.sort_stats("time").print_stats(10)
 ##### cProfile
 
 
+#### 並行処理
 
-#### コーディングレベル
-リスト内包表記を使うこと
+- 高レベルAPI `Twisted`
+- 低レベルAPI `pyev`
 
 #### 並列処理
 `multiprocessing`でプロセスベースの並列処理
@@ -2610,7 +2613,7 @@ gitrepo = core.GitRepo('/home/miyamoto/mygitproject')
 
 ### markdownと違う点
 
-####見出し
+> #### 見出し
 
 ##### h1見出し
 
