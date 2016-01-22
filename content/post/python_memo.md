@@ -214,12 +214,16 @@ four_lists = [[] for __ in range(4)]
 >>> a_dict = dict(a_list_of_lists)
 >>> a_dict
 {'password': 'PapayaWhip', 'user': 'pilgrim', 'database': 'master'}
+
 ```
 
 関数の引数にリストを渡す際、アスタリスク\*を付けると展開して渡される
+
 ```python
+
 myarg = ["hoge", "fuga"]
-myfunc(*myarg)  #第一引数に"hoge",第2に"fuga"が入る
+myfunc(*myarg)  # 第一引数に"hoge",第2に"fuga"が入る
+
 ```
 
 ###### listを等分割する
@@ -1044,7 +1048,8 @@ before some_func
 
 デコレートされた関数は定義した時点でデコレートされているので、テストするときはデコレータを含めた状態でテストすることになる。
 
-####`property`
+#### `property`
+
 同じ名前の関数をセッター、ゲッター、deleter
 として働くときに、それぞれ異なる動作をするようにしたいときに利用する。例
 
@@ -1076,7 +1081,7 @@ del samp.x
 `x`は削除されず、printされるのみになる。
 
 
-##関数型プログラミング
+## 関数型プログラミング
 ### lambda式について
 defと同様に関数オブジェクトを行えるので、以下の2つの式は等価
 ```python
@@ -1096,9 +1101,9 @@ def sum(numbers):
 sorted(strings, lambda s: len(s))   #sorted関数の引数として、関数オブジェクトを与える
 ```
 
-###高階関数
+### 高階関数
 関数を引数に取る関数。
-####`filter`
+#### `filter`
 組み込み関数。
 第一引数に「Booleanを返す関数」
 第二引数に「配列(リスト)」
@@ -1508,7 +1513,7 @@ from logging import getLogger
 logger = getLogger(__name__)
 ```
 
-###複数のファイルにまたがるモジュールで共通の`logger`を使用する場合
+### 複数のファイルにまたがるモジュールで共通の`logger`を使用する場合
 `__init__.py`に、以下のように書いておく。
 
 ```python
@@ -1820,7 +1825,8 @@ httplib2/
 ```
 このうち/docsだけは必須ではなく、`MANIFEST.in`で明示しなければ配布パッケージには含まれない。
 
-###自分でパッケージを書く場合
+### 自分でパッケージを書く場合
+
 setuptoolsを使う。
 パッケージのrootディレクトリに、`setup.py`を置き、以下のような感じでメタデータを書く
 ```python
@@ -1842,7 +1848,7 @@ setup(name='Distutils',
 `packages = ['foo']`を指定すると、setup.pyのあるディレクトリからの相対パスで
 `lib/foo/__init__.py`が存在することを確約したことになる
 
-####`setup()`内で指定可能な要素
+#### `setup()`内で指定可能な要素
 - `install_requires` ... dependency packageの文字列リスト
 - `dependency_links` ... `install_requires`がPyPIにない時、こちらでgithubのリポジトリURLの文字列(のリスト)を指定する
 - `tests_require`=['mock', 'nose']
@@ -1873,11 +1879,11 @@ include hoge    #rootディレクトリのhogeという名前のファイルを�
 recursive-include huga *.html *.css #rootディレクトリ以外でも、その名前のファイルがあれば含める。
 ```
 
-####\_\_init\_\_.pyについて
+#### \_\_init\_\_.pyについて
 空ファイルで構わない。おいておくと、そのファイルの存在するディレクトリ名がパッケージ名になり
 `from <__init__.pyのあるパッケージ名>.<script名> import <関数名>`の形でinportできるようになる
 
-#####複数ディレクトリを1つのパッケージとしてまとめる
+##### 複数ディレクトリを1つのパッケージとしてまとめる
 場合によっては以下のように書く場合もある
 ```python
 from pkgutil import extend_path
@@ -1974,7 +1980,7 @@ def full_deploy():
 `@task`デコレータでラップしてやると、`fab --list`で表示されるようになる。また
 `@task(alias=hoge)`もできる
 
-####`fabfile.py`の分割
+#### `fabfile.py`の分割
 fabfaile/
     |-`__init__.py`
     |-`hoge.py`
@@ -2077,7 +2083,7 @@ def setup_package(package = "apache2"):
 #### デコレータ
 特定のホストやroleのみに実行されるタスクの場合はデコレータを使用すると便利
 
-#####@hosts
+##### @hosts
 ```python
 from fabric.api import hosts, run
 @hosts('host1', 'host2')
@@ -2086,17 +2092,17 @@ def mytask():
 ```
 こうするとenv.hostsを一時的に無視するようになる。
 
-#####@prallel
+##### @prallel
 複数のサーバに対してタスクを並列に実行する際に使用する。
 
-#####@with_settings
+##### @with_settings
 例
 ```python
 @with_settings(warn_only=True)
 def foo():
 ```
 
-#####@task
+##### @task
 タスクは`@task`デコレータで囲ってしまうのがよいらしい。
 ```python
 @task
@@ -2175,7 +2181,7 @@ apt-get install ansible
 ## 各種パッケージ
 
 ---
-###高速化
+### 高速化
 まずプロファイリングを行ったうえで
 優先順位は
 
@@ -2304,7 +2310,7 @@ def ventilator():
 
 ```
 
-####言語レベルの高速化
+#### 言語レベルの高速化
 numpyscipyを使っても早くならないときは
 blas,lapack,atlasが入っているか確認する
 ##### numpy
@@ -2454,7 +2460,7 @@ def hello():
 
 ### collections
 ちょっと使い勝手のいいデータ構造が使える
-####`defaultdict` ... 要素がdictにあれば、その値を1増やし、なければ新たに作る。という処理に使う
+#### `defaultdict` ... 要素がdictにあれば、その値を1増やし、なければ新たに作る。という処理に使う
 
 ```python
 from collections import defaultdict
@@ -2476,7 +2482,7 @@ for i in s:
         d[i] = 1
 ```
 
-####`Counter`
+#### `Counter`
 辞書を継承している
 単語などの出現頻度を数えるのに便利
 
@@ -2490,7 +2496,7 @@ count.most_commont(2)   #[('c', 3), ('b', 2)]
 
 
 
-####`namedtuple`
+#### `namedtuple`
 
 ### PyYaml
 `pip install pyyaml`でインストールする
@@ -2503,7 +2509,7 @@ import yaml
 標準ライブラリ、jsonのよみかきが行える
 `json.load()`で辞書型になる
 
-####読み込み
+#### 読み込み
 
 ```python
 import pprint
@@ -2613,7 +2619,7 @@ gitrepo = core.GitRepo('/home/miyamoto/mygitproject')
 
 ### markdownと違う点
 
-> #### 見出し
+#### 見出し
 
 ##### h1見出し
 
@@ -2621,11 +2627,12 @@ gitrepo = core.GitRepo('/home/miyamoto/mygitproject')
 ========
 title 1
 ========
+
 ```
 ここで、title1が上下の線より長いと怒られる。
 
 ##### h2
-下だけ=
+下だけ`=`
 ```
 title 2
 ========
@@ -2650,10 +2657,12 @@ title 4
 
 h5やh6はない
 #### ラインブロック
+`|`で囲む
 
-|ここの部分の
-|文章はそのまま
-|生の文字列になる
+
+\|ここの部分の
+\|文章はそのまま
+\|生の文字列になる
 
 #### replace
 
@@ -2703,6 +2712,8 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 >    1 + 1
 
 #### テーブル
+
+```
 =====  =====  =======
 A      B      A and B
 =====  =====  =======
@@ -2712,8 +2723,11 @@ False  True   False
 True   True   True
 =====  =====  =======
 
+```
+
 ただし、これは書くのが難しいのでcsvやListを使用する
 
+```
 .. csv-table:: Frozen Delights!
    :header: "Treat", "Quantity", "Description"
    :widths: 15, 10, 30
@@ -2736,7 +2750,7 @@ True   True   True
      - If we took the bones out, it wouldn't be
        crunchy, now would it?
 
-
+```
 
 ### ディレクティブ
 Sphinx拡張のものと、rst標準のものがある
