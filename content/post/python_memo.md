@@ -2657,6 +2657,14 @@ if args.gpu >= 0:
     cuda.check_cuda_available()
 ```
 
+ハイフンから始まらないポジション引数の場合
+
+```python
+parser.add_argument('integers', metavar='N', type=int, nargs='+',
+                    help='an integer for the accumulator')
+
+```
+
 ## tempfile
 
 ```python
