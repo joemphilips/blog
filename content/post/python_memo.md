@@ -2549,6 +2549,43 @@ class DeepChainMap(ChainMap):
 
 #### `namedtuple`
 
+
+
+```python
+from collections import namedtuple
+
+Point = namedtuple('Point', ('x', 'y')) # コンストラクタを作成
+p = Point(11, y=11) # キーワード引数で指定も可能
+Point._make([11, 22]) # 既存のiterableから作る場合
+
+p[0] + p[1]     # 通常のタプルのようにアクセス
+x, y = p    # アンパック
+p.x, p.y    # フィールド変数のようにアクセス
+
+```
+
+継承すればメソッドを追加することもできる
+
+```python
+class Point(namedtuple('PointMixin', ('x', 'y'))):
+
+    def distance(self, p2):
+        xdiff = (self.x - p2.x) ** 2
+        xdiff = (self.y - p2.y) ** 2
+        return math.sqrt(xdiff + ydiff)
+```
+
+`csv`や`sqlite3`が返すタプルのフィールドに名前を付けるときにとても便利
+
+```python
+EmployeeRecord = namedtuple('EmployeeRecord', 'name, age, title, department, paygrade')
+import csv
+for emp in map(EmployeeRecord._make, csv.reader(open("employees.csv", "rb"))):
+    print(emp.name, emp.title)
+
+```
+
+
 ### PyYaml
 
 `pip install pyyaml`でインストールする
