@@ -1652,8 +1652,11 @@ pyenv insatll anaconda3-2.0.1
 
 よって、`~/.pyenv/shims`のパスが`/usr/local/`等よりも先に来ていないと正常に環境を構築できない可能性がある
 
-まれに`samtools`等、pipでインストールできないコマンドがある。その時は`~/.pyenv/shims/samtools`を消すとか、`pip
-install pysam`とかで解決する場合がある
+まれに`samtools`等、pipでインストールできないコマンドがある。その時は`~/.pyenv/shims/samtools`を消すとか、~~`pip
+install pysam`とかで解決する場合がある。~~ ->
+これは`~/.pyenv/versions/<現在のバージョン名>/bin/`以下に本体へのシンボリックリンクを貼ることでも解消できる。
+
+
 
 ##### python自体
 `~/.pyenv/versions`に入っている
@@ -2483,6 +2486,7 @@ for i in s:
 ```
 
 #### `Counter`
+
 辞書を継承している
 単語などの出現頻度を数えるのに便利
 
@@ -2490,15 +2494,63 @@ for i in s:
 from collections import Counter
 count = Counter('aabbccc')
 print(count)    #=> Counter({'c': 3, 'b': 2, 'a': 1})
-count.most_commont(2)   #[('c', 3), ('b', 2)]
+count.most_common(2)   # => [('c', 3), ('b', 2)]
+count.most_common()([:-n-1:-1])    # n least common elements
 
 ```
 
+通常の`dict`とは、以下の点が異なる。
 
+1. 存在しないキーでアクセスした際に`KeyError`を出す代わりに、1を返す点
+
+#### `ChainMap`
+
+複数の辞書を高速に走査するための型
+
+例：コマンドライン引数、環境変数、デフォルト値の順に名前解決する例
+
+```python
+
+from collections import ChainMap
+defaults = {'color': 'red', 'user': 'guest'}
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-u', '--user')
+parser.add_argument('-c', '--color')
+namespace = parser.parse_args()
+command_line_args = {k:v for k, v in vars(namespace).items() if v}
+
+combined = ChainMap(command_line_args, os.environ, defaults)
+
+print(combined['color'])
+print(combined['user'])
+
+```
+
+探索はチェーン全体に大して行われるが、書き込みは最初のマッピングに対してのみしか行われない。
+深い書き込みと削除を望むなら、チェーンの深いところで見つかったキーを更新するサブクラスを簡単に書ける
+
+```python
+class DeepChainMap(ChainMap):
+    def __setitem__(self, key, value):
+        for mapping in self.maps:
+            if key in mapping:
+                mapping[key] = value
+                return
+        self.maps[0][key] = value
+
+    def __delitem__(self, key):
+        for mapping in self.maps:
+            if key in mapping:
+                del mapping[key]
+                return
+        raise KeyError(key)
+```
 
 #### `namedtuple`
 
 ### PyYaml
+
 `pip install pyyaml`でインストールする
 ```python
 import yaml
@@ -2506,6 +2558,7 @@ import yaml
 で使用する。読み込みと書き込みを行える。
 
 ### json
+
 標準ライブラリ、jsonのよみかきが行える
 `json.load()`で辞書型になる
 
