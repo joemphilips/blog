@@ -14,7 +14,7 @@ params:
     truncate: "true"
     highlight: "sunburst"
     tagline: "Purpose of life is to not think about Purpose of life"
-    AuthorName: "JoeMPhilips"
+    AuthorName: ""
     SidebarRecentLimit: 5
     disqusShortname: "joemphilips"
     theme: "theme-base-0b"
