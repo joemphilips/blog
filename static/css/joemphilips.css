@@ -46,3 +46,20 @@
 .fa:hover{
     transform: rotate(360deg);
 }
+
+.post{
+    background-color: white;
+}
+
+.container.content{
+    background-color: rgb(240, 240, 240);
+}
+
+.post {
+    margin-bottom: 1.5rem;
+    box-shadow: 1.5px;
+    border-bottom-style: groove;
+    border-bottom-width: 2px;
+    border-bottom-color: green;
+    border-right: 2px, groove, green;
+}
