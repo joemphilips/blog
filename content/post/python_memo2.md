@@ -187,4 +187,22 @@ matplotlib.use("Agg")
 
 ## luigi
 
+基本は以下の構成
 
+```
+class Task1(luigi.Task):
+
+    def requires(self):
+        return []   # 一番最初のタスクは空リストを返す
+
+    def output(self):
+        return luigi.LocalTarget('hoge.txt')    # 出力対象となるファイルを指定、S3Target 等もある
+
+    def run(self):  # 出力先ファイルに書き込む
+        with self.output().open('w') as f:
+            for i in range(1, 11):
+                f.write("{}\n".format(i))
+
+```
+
+このようなタスククラスをたくさん定義して走らせる。
