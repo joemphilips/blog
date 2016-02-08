@@ -63,3 +63,16 @@
     border-bottom-color: green;
     border-right: 2px, groove, green;
 }
+
+
+.post .post-date{
+    background-color: rgba(30, 170, 50, 0.7);;
+    color:white;
+    font-size: smaller;
+    margin-right: 370px;
+}
+
+.content.container{
+  background-image: url(joemphilips.com/static/rock_background.jpg);
+  background-repeat: repeat-x;
+}
