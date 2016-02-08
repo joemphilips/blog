@@ -1,0 +1,48 @@
+.sidebar-nav-item li{
+    transition: all 0.2s;
+    padding-left: 60px;
+}
+
+.fa{
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    transition-property: color;
+    transition-duration: 0.1s;
+}
+
+.fa:hover{
+}
+
+.fa-github-square:hover {
+    color: black;
+}
+
+.fa-bitbucket-square:hover{
+    color: #35465c;
+}
+.fa-twitter-square:hover {
+    color: #55acee;
+}
+
+.fa-rss-square:hover {
+    color: #ff8c00;
+}
+
+.fa-slideshare:hover{
+    color: #ffb900;
+}
+
+.fa-google-plus-square:hover{
+    color: #dd4b39;
+}
+
+.fa-facebook-square:hover{
+    color: #315096;
+}
+
+.fa-linkedin-square:hover{
+    color: #0079ba;
+}
+
+.fa:hover{
+    transform: rotate(360deg);
+}
