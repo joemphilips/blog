@@ -126,6 +126,28 @@ y += np.abs(f_true * y) * np.random.randn(N)
 y += yerr * np.random.randn(N)
 ```
 
+### スライスの挙動
+
+通常のpythonと違い、代入もできる
+
+```python
+ndarr1 = np.array([0, 1, 2, 3, 4, 5])
+ndarr1[3:6] = [100., 200., 300.,]
+print(ndarr1)
+# => [0 1 2 100 200 300]
+
+# スライスではなく数値を入れるとブロードキャストされる
+
+ndarr1[3:5] = 20
+print(ndarr1)
+[0 1 2 20 20 5]
+
+# スライスしたものを別の変数に入れると参照になり、元の配列の一部とつながる
+# よってふくせいしたいときはcopy()メソッドを使用する
+ndarr2 = ndarr1[3:5].copy()
+
+```
+
 ## scipy
 
 
