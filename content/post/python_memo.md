@@ -1586,6 +1586,7 @@ logger.debug('debug message')
 コマンドラインには`2005-03-19 15:10:26,618 - simple_example - DEBUG - debug message`とでる
 
 ### Filter
+
 あんまり使わない
 
 ## バージョンの違い、処理系
@@ -1596,8 +1597,12 @@ logger.debug('debug message')
 pypy…pythonインタプリタだがそれ自体pythonで記述されている。RPythonで書かれている。
 
 ### pip
+
 パッケージマネージャ
 `pip install git+url`でgithubから直接落とせる
+
+[get-pip.py](https://bootstrap.pypa.io/get-pip.py)を使用すれば`pip insatll`で実行できることなら大体できる。
+これは本来はpip自体のインストール用スクリプト
 
 
 ### python自体のバージョン管理
@@ -2459,6 +2464,36 @@ def hello():
     """My first task."""
     print 'hello', options.foo, options.bar
 ```
+
+### daemon
+
+デーモンを簡単に書けるようにするためのパッケージ
+
+- `DaemonContext`をwith文で使用する
+- (`daemon.runner.DaemonRunner`に`run`メソッドを持つクラスを渡す)[http://qiita.com/asdf4321/items/27210be12350050768db]
+の2通りがある
+
+```python
+import daemon
+
+def daemon_process():
+    # 適当な処理…
+    while True:
+        print("I am working !")
+        time.sleep(5)
+
+context = daemon.DaemonContext(
+    working_directory="/path/to/workdir",
+    stdout = open("hogefile.txt", "w+"),
+    stderr = open("stderr_file.txt", "w+")
+)
+
+if __name__ == '__main__':
+    with context:
+        daemon_process
+
+```
+
 
 
 ### collections
