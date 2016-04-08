@@ -1,4 +1,4 @@
 <li>
     <div><a href="{{ .Permalink }}">{{ .Title }}</a></div>
-    {{ .Summary }}
+    {{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}
 </li>
