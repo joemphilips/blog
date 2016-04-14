@@ -299,6 +299,88 @@ fn x_or_y<'a>(x: &'a str, y: &'a str) -> &'a str{}
 
 ```
 
+### なぜ所有権が必要か？
+
+例えば以下の例の場合、fはyのscopeの中に納まっているためエラーにはならない
+
+```rust
+
+struct Foo<'a> {
+    x: &'a i32,
+}
+
+fn main() {
+    let y = &5;           // -+ y goes into scope
+    let f = Foo { x: y }; // -+ f goes into scope
+    // stuff              //  |
+                          //  |
+}                         // -+ f and y go out of scope}
+
+```
+
+しかし、以下はエラーになる
+
+```rust
+struct Foo<'a> {
+    x: &'a i32,
+}
+
+fn main() {
+    let x;                    // -+ x goes into scope
+                              //  |
+    {                         //  |
+        let y = &5;           // ---+ y goes into scope
+        let f = Foo { x: y }; // ---+ f goes into scope
+        x = &f.x;             //  | | error here
+    }                         // ---+ f and y go out of scope
+                              //  |
+    println!("{}", x);        //  |
+}                             // -+ x goes out of scope
+
+```
+
+これからスコープを抜ける`f`に対してリファレンス`x`を作っているのでエラーになるらしい(正直まだよくわからん)
+
+### `'static`
+
+特殊なlifetimesの一つとして`'static`というものがある。
+
+これを宣言した場合、その対象はプログラム実行時間常にメモリ上に確保され続ける。(実行バイナリの中に保持される?)
+
+```rust
+
+let x: &'static str = "Hello, world.";
+// あるいは
+static Foo: i32 = 5;
+let x: &'static i32 = &FOO;
+
+```
+
+lifetime にはinput lifetime とoutput lifetimeの2種類がある。
+
+```rust
+
+fn foo<'a>(bar: &'a str)            // input lifetime
+fn foo<'a>(bar: &'a str)            // output lifetime
+fn foo<'a>(bar: &'a str) -> &'a str // both
+
+```
+
+### lifetimeの省略
+
+lifetimeを明示しないでおくと、自動で判断する。その際のルールは非常にシンプルで、以下の3つがすべて
+
+- 省略されたすべてのlifetimeは変数ごとの別々のパラメータになる
+- input lifetimeが一つしかない場合、省略の有無にかかわらず、それが全てのoutput
+  lifetimeになる。
+- input lifetime が複数あり、そのうちの一つが`&self`か`&mut self`のものだった場合、それがすべてのoutput lifetimeに適用される
+
+これらに当てはまらない場合にoutput lifetimeを省略するとerrorになる。
+
+### 型
+
+#### 列挙型(`Enums`)
+
 
 
 ## python  との連携

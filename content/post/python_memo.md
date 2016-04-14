@@ -2620,6 +2620,42 @@ for emp in map(EmployeeRecord._make, csv.reader(open("employees.csv", "rb"))):
 
 ```
 
+#### `Enum`
+
+列挙型とも。`namedtuple`に似ている。すべての要素がSingleton
+
+##### いつ使う?
+
+定数の値のセットがあり、それぞれを列挙してアクセスする必要があるような場合。
+
+
+```python
+
+from enum import Enum
+
+class Color(Enum):
+    red = 1
+    green = 2
+    blue = 3
+
+# または
+
+Color = Enum('Class', 'red green blue')
+
+```
+
+
+
+```python
+
+# 要素にアクセスする方法は3通り
+Color.red
+Color(1)
+Color["red"]
+
+# いずれも
+
+```
 
 ### PyYaml
 
