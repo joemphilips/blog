@@ -382,6 +382,30 @@ lifetimeを明示しないでおくと、自動で判断する。その際のル
 #### 列挙型(`Enums`)
 
 
+#### match
+
+Cで言う`case`
+
+```rust
+
+let x = 5;
+
+match x {
+    1 => println!("one"),
+    2 => println!("two"),
+    3 => println!("three"),
+    4 => println!("four"),
+    5 => println!("five"),
+    _ => println!("something else"),
+}
+
+```
+
+### 並列処理
+
+
+
+
 
 ## python  との連携
 

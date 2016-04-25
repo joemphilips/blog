@@ -581,7 +581,9 @@ re.sub(r'(\d)(\d+)', r"abc\1-\2", "A123B")  # => 'Aabc1-23B'
 
 
 ### ファイル操作
+
 open関数によってファイルオブジェクトを生成し、そのメソッドを用いて操作を行う
+
 #### クラシックなやり方
 ```python
 f = open("hoge.txt")
@@ -756,7 +758,8 @@ one()   # => one(1,2,3)
 ```
 アスタリスクを2個にするとリストではなく辞書で受け取る。
 
-アスタリスクが1つの場合も2つの場合も関数に引数を渡すときにすべて一気に渡すための構文が用意されている。例
+ア
+スタリスクが1つの場合も2つの場合も関数に引数を渡すときにすべて一気に渡すための構文が用意されている。例
 ```python
 >>> list1 = [1, 2, 3]
 >>> def foo(a, b, c):
@@ -957,6 +960,15 @@ class MyClass():
     def mystaticmethod():
         print "%s, class_var: %s" % (MyClass, MyClass.class_var)
 ```
+
+- `classmethod` ... クラスに束縛される
+- `staticmethod` ... Superクラスに束縛される
+- メソッド ... インスタンスに束縛される
+
+と覚えておけばよい。
+
+`MyClass.mymethod` は`<unbound method MyClass.mymethod>`と表示されるが
+`my_instance.mymethod`は`<unbound method __main__.MyClass instance at 0x000000>`のように表示される
 
 #### クラス変数
 pythonクラス変数はシングルトンであるので以下のような挙動を示す。
