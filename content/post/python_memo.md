@@ -2448,6 +2448,21 @@ proc.returncode # 終了ステータス
 
 ```
 
+### `functools`
+
+3.2 以降なら `lru_cache`で簡単に関数の返り値をキャッシュすることができる。
+
+```python
+
+@functools.lru_cache()
+def test(x):
+    return x**2
+
+```
+
+`test.cache_info()`でどれくらいの値がキャッシュされているかわかる。内部では辞書を使用しているらしく
+`lru_cache(maxsize=None)`とすると値を無限に保持できる(デフォルトは128)
+
 ### paver
 makeとfabricの中間
 
