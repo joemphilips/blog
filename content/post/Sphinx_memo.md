@@ -326,17 +326,23 @@ uml図が作れる
 
 
 1. `sphinx.ext.graphviz`を使用して図を描く ... `graphviz::`ディレクティブを使用する。抽象度が低い分単純な図しか書けない。
+<<<<<<< 3e3ee7fa446df011cc50153cc02346b1e72373aa
 2. `sphinxcontrib.plantuml`を使用してJavaっぽい図を描く ... `pip install sphinxcontrib-plantuml`でインストールしたのち、`.. uml::`ディレクティブを使用する。3に比べて自由な図をかける点にメリットがある。
 3. `sphinx.ext.inheritance_diagram`を使用する。... ソースコードの状態が反映される。
 
 ######`inheritance_diagram`
+2. `sphinxcontrib.plantuml`を使用してJavaっぽい図を描く ... `pip install sphinxcontrib-plantuml`でインストールしたのち、`.. uml::`ディレクティブを使用する。3に比べて自由な図をかける点にメリットがある。ただ、ssh経由で実行する場合は、x windowの設定をしなくてはならないのでめんどくさい
+3. `sphinx.ext.inheritance_diagram`を使用する。... ソースコードの状態が反映される。
+
 
 内容は詳しく書かなくともよい。
 `parts`で名前をどれだけ深く表示するかを決める(例： 2ならば`matplotlib.patches.Patch`は`patches.Patch`と表示される。)
 
+ややこしいのだが、`conf.py`中では`sphinx.ext.inheritance_diagram`と、アンダーバーを使用しているが、ディレクティブはアンダーバーではなく`-`を使用する。
+
 ```rst
 
-.. inheritance_diagram:: matplotlib.patches matplotlib.lines matplotlib.text
+.. inheritance-diagram:: matplotlib.patches matplotlib.lines matplotlib.text
     :parts: 2
 
 ```
