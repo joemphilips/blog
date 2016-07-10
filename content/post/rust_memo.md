@@ -406,7 +406,6 @@ match x {
 
 
 
-
 ## python  との連携
 
 (cpython)[https://github.com/dgrunwald/rust-cpython]を用いる

@@ -55,3 +55,5 @@ end
 using MyPackage
 using
 ```
+
+## Juliaの型システムについて

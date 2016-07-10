@@ -1,4 +1,4 @@
-#!/usr/bin/sh
+#!/usr/bin/env bash
 hugo
 aws s3 sync ./public/ s3://joemphilips.com
 git add .
