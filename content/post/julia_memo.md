@@ -1,8 +1,8 @@
 ---
 categories: ["hack", "memo"]
-date: 2016-01-04T15:44:07+09:00
+date: 2016-07-10T16:15:49+09:00
 description: "personal memo for Julialang"
-draft: true
+draft: false
 keywords: ["Julia"]
 title: julia_memo
 ---
