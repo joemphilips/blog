@@ -229,11 +229,16 @@ This Idea is originally from [Ref]_
 
 
 #### TODO
+
 ```
 .. todo:: ブロック図を描く
 
 .. todolist::   #文書中の全てのTODOリストを集めて表示
 ```
+
+#### よく使うSphinx拡張ディレクティブ
+
+*
 
 ## Sphinx
 SphinxはreSTから以下の形式のドキュメントを出力するプログラム
@@ -274,13 +279,17 @@ html_theme_options = {
 詳しく[こちら][http://docs.sphinx-users.jp/theming.html#using-a-theme]
 
 ### Sphinx拡張
+
 下で書いているもの以外にもdocstringをドキュメント中に組み込んだり、Graphviz、継承関係図、カバレッジなどを取り込むことができる
+
 #### sphinx.ext.todo
+
 rstファイルの中で
 `.. todo::`という記法でtodoを作成できる
 `.. todolist::`ディレクティブを使用すると、ドキュメント内のすべてのTODOをリストにして表示する
 
 #### sphinx.ext.jsmath、Sphinx.ext.pngmath
+
 それぞれjsMath(Java
 script)、dvipngを利用して数式を表示する
 *現在はjsmathではなく、mathjax*を使う
@@ -347,3 +356,11 @@ uml図が作れる
 
 ```
 
+### docstringの取り込み
+
+docstringがReSTで書かれていればそのまま取り込めるが、Google Style, Numpy styleで書かれている場合は`sphinx.ext.napoleon`を使用してpreprocessしなくてはならない。
+
+* `.. automodule:: MyModule`
+    - 再帰的に取り込みたい場合は`:members:`オプションを追加する
+    - `:undoc-members:`でdocstringのないメンバーも追加できる。
+    - `:special-members:`で`__add__`のような特殊なメンバーもついか
