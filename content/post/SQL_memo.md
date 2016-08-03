@@ -28,7 +28,9 @@ SELECT COUNT(DISTINCT <列名>)
 ### join
 
 ### sqlite
+
 #### コマンドラインでのコマンド
+
 `sqlite3 <database_name>` ... データベースの作成とインタプリタの起動。データベース名はなんでもよいが拡張子名には`db`あるいは`sqlite3`とつける
 
 

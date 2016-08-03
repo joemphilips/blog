@@ -501,6 +501,7 @@ s.splitlines()  # => ['hogehoge', 'fugafuga']
 
 
 #### 文字列エンコーディングについて
+
 pythonはすべてUnicodeとして格納している
 ```python
 s = '深入　python'
@@ -508,12 +509,14 @@ len(s) #9を返す
 ```
 
 ##### replace
+
 文字列を置換する
 ```python
 "hoge".replace("og", "OG")  # => "hOGe"
 ```
 
 #### 正規表現
+
 `re`パッケージを使う.
 最も単純な使い方はこんな感じ
 ```python
@@ -538,6 +541,7 @@ if matchobj:
     print matchobj.end() #マッチの終了位置
     print matchobj.span() #start()およびend()の両方をタプルで返す
 ```
+
 `re.compile()`に指定できる引数には
 - `re.I` ... 大文字小文字を無視
 - `re.M` ... 複数行マッチ
@@ -553,17 +557,22 @@ if matchobj:
 - `split` ... 元の文字列を分割したものを返す
 
 ##### 後方参照
+
 `re.sub`の場合`\1`,`\2`で参照する。
 
 ```python
+
 re.sub(r'(\d)(\d+)', r"abc\1-\2", "A123B")  # => 'Aabc1-23B'
+
 ```
 マッチオブジェクトの場合、`group`で参照する。後述
 
 #### マッチオブジェクトのメソッド
+
 マッチオブジェクトのゲッターには上に書いたような`end()`、`span()`、`group()`、`start()`などがある。
 
 ##### `match.group()`
+
 - `match.group(0)`  マッチした文字列全体を返す。
 - `match.group(1)`  正規表現中に丸括弧()がある場合、1番目の()の中身を返す(後方参照)
 
