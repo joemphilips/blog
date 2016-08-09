@@ -132,21 +132,20 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 
 インラインでない通常のリテラルは::の後に、インデントを入れることで記述可能
 
->next paragraph is source code::
-
->               #ここの空白は必須
-
->    1 + 1
+```
+next paragraph is source code::
+               #ここの空白は必須
+    1 + 1
+```
 
 `..code-block::`を使ったほうが良いかも。htmlの例
 
->..code-block::html
+```
+..code-block::html
+    :linenos:  # 行番号を表示
 
->    :linenos:  # 行番号を表示
-
->
-
->    <h1>hogehoge</h1>
+    <h1>hogehoge</h1>
+```
 
 外部ファイルをインクルードする場合は
 
