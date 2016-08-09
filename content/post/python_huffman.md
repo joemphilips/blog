@@ -4,7 +4,7 @@ Description = "Memo for python"
 Tags = ["python"]
 date = "2015-12-30T15:45:36+09:00"
 title = "pythonでhuffman codingを実装する"
-draft = false
+draft = true
 
 +++
 
