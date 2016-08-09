@@ -68,10 +68,16 @@ h5やh6はない
 
 #### replace
 
+```
 .. |hoge| replace:: ほげ
+```
+
 と書いておくとほかの|hoge|がほげに変換される。いっぱいあるときは、別ファイルに書いておいて
 
+```
 .. include:: definition.txt
+```
+
 とする
 
 #### リンク
@@ -81,12 +87,19 @@ h5やh6はない
 markdownと違い、外部参照のリンクはドキュメントの末尾にまとめて書かれる。
 
 ここでのポイントは、..と\_
+
+
 >`Plone CMS`_ を試してみてください。これはすばらしいですよ！ Zope_ 上に作られています。
 
+>
+
 >.. _`Plone CMS`: http://plone.org
+
 >.. _Zope: http://zope.org
 
+
 末尾でなくともOK
+
 > `python <www.python.org>`_
 
 #### 内部リンク
@@ -98,8 +111,11 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 ほげほげ
 ---------------
 
+```
+
 このように、章や節の上に記述して定義する。
 
+```
 --------
 他の場所
 --------
@@ -111,29 +127,37 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 #### ソースコードの記述
 
 インラインリテラルは\`\`を2つずつつける必要がある。
+
 `print("hoge")` -> reST中では\`\`print("hoge")\`\`
 
 インラインでない通常のリテラルは::の後に、インデントを入れることで記述可能
 
 >next paragraph is source code::
+
 >               #ここの空白は必須
+
 >    1 + 1
 
 `..code-block::`を使ったほうが良いかも。htmlの例
 
 >..code-block::html
+
 >    :linenos:  # 行番号を表示
+
 >
+
 >    <h1>hogehoge</h1>
 
 外部ファイルをインクルードする場合は
 
-> ..literalinclude::filename
->    :linenos:
->    :language: python
->    :lines: 1, 3-5
->    :start-after: 3
->    :end-before: 5
+```
+ ..literalinclude::filename
+    :linenos:
+    :language: python
+    :lines: 1, 3-5
+    :start-after: 3
+    :end-before: 5
+```
 
 #### テーブル
 
@@ -182,11 +206,15 @@ Sphinx拡張のものと、rst標準のものがある
 
 #### 目次
 
+```
 .. contents::
+```
 
 #### toctree
 
 章や節に番号を振りたいときは
+
+```
 .. toctree::
    :maxdepth: 2
    :numbered:
@@ -194,27 +222,35 @@ Sphinx拡張のものと、rst標準のものがある
    overview
    design
    implementation
+```
 
 `:glob:`をtoctreeの下に追加するとglob表現で複数の対象を一括指定できる
 
 #### 画像
 
+```
 .. image:: gnu.png
+```
+
 で画像を表示できる。`gnu.png`のところは、rstファイルからの相対パスや絶対パスも指定できる。
 html出力すると、`_static`のようなディレクトリにコピーされる。
 
 #### note(ノートブロック)の表示
 
-> .. seealso:: This is a simple **seealso** note
-> .. note:: note that ...
-> .. warning:: be careful not to ...
+```
+.. seealso:: This is a simple **seealso** note
+.. note:: note that ...
+..  warning:: be careful not to ...
+```
 
 #### 脚注、footnote
 
 `[#]_`を使用する
 
-> hogehoge [#f1]_.
-> .. [#f1] hogehogeに特に意味は無い
+```
+hogehoge [#f1]_.
+.. [#f1] hogehogeに特に意味は無い
+```
 
 あるいは`[1]`のように普通に番号を振っても良い
 
@@ -223,9 +259,11 @@ html出力すると、`_static`のようなディレクトリにコピーされ�
 
 Sphinx拡張の機能
 
+```
 This Idea is originally from [Ref]_
 
 .. [Ref] Book or article reference or url
+```
 
 
 #### TODO
@@ -238,22 +276,11 @@ This Idea is originally from [Ref]_
 
 #### よく使うSphinx拡張ディレクティブ
 
-*
 
-## Sphinx
-SphinxはreSTから以下の形式のドキュメントを出力するプログラム
-
-- html
-- man
-- ePub
-- laTeX
-- PDF ... 拡張機能
-- docx ... 拡張機能
-
-### インストール
-`sudo apt-get install python-sphinx`
+# Sphinxについて
 
 ### 始める
+
 `sphinx-quickstart`,以下のディレクトリとファイルを作成する
 
 - Makefile
@@ -268,7 +295,9 @@ SphinxはreSTから以下の形式のドキュメントを出力するプログ�
 `make latex`,`make latexpdf`、`make html`等でrenderする.詳細は`make help`で
 
 ### テーマの変更
+
 Sphinx組み込みのテーマなら簡単。
+
 ```
 html_theme = "classic"
 html_theme_options = {
@@ -276,7 +305,8 @@ html_theme_options = {
     "relbarbgcolor": "black"
 }
 ```
-詳しく[こちら][http://docs.sphinx-users.jp/theming.html#using-a-theme]
+
+詳しくは[こちら](http://docs.sphinx-users.jp/theming.html#using-a-theme)
 
 ### Sphinx拡張
 
@@ -285,12 +315,13 @@ html_theme_options = {
 #### sphinx.ext.todo
 
 rstファイルの中で
-`.. todo::`という記法でtodoを作成できる
-`.. todolist::`ディレクティブを使用すると、ドキュメント内のすべてのTODOをリストにして表示する
+
+* `.. todo::`という記法でtodoを作成できる
+* `.. todolist::`ディレクティブを使用すると、ドキュメント内のすべてのTODOをリストにして表示する
 
 #### sphinx.ext.jsmath、Sphinx.ext.pngmath
 
-それぞれjsMath(Java
+それぞれjsMath(java
 script)、dvipngを利用して数式を表示する
 *現在はjsmathではなく、mathjax*を使う
 
@@ -298,7 +329,7 @@ script)、dvipngを利用して数式を表示する
 
 `.. math::`ディレクティブを使用できるようになる。その中ではlatex記法で書く。例
 
-```rst
+```
 .. math:: e^{i\pi} + 1 = 0
     :label: euler
 
@@ -312,10 +343,12 @@ script)、dvipngを利用して数式を表示する
 :label:を付けると、数式にラベルと数式番号を付けることができ、:eq:を用いて参照することができる。例 :eq:\`euler\`
 
 #### plnatuml
+
 uml図が作れる
 
 
 #### S6
+
 スライドショーが作れる
 
 #### 作図
@@ -335,21 +368,13 @@ uml図が作れる
 
 
 1. `sphinx.ext.graphviz`を使用して図を描く ... `graphviz::`ディレクティブを使用する。抽象度が低い分単純な図しか書けない。
-<<<<<<< 3e3ee7fa446df011cc50153cc02346b1e72373aa
 2. `sphinxcontrib.plantuml`を使用してJavaっぽい図を描く ... `pip install sphinxcontrib-plantuml`でインストールしたのち、`.. uml::`ディレクティブを使用する。3に比べて自由な図をかける点にメリットがある。
 3. `sphinx.ext.inheritance_diagram`を使用する。... ソースコードの状態が反映される。
 
-######`inheritance_diagram`
-2. `sphinxcontrib.plantuml`を使用してJavaっぽい図を描く ... `pip install sphinxcontrib-plantuml`でインストールしたのち、`.. uml::`ディレクティブを使用する。3に比べて自由な図をかける点にメリットがある。ただ、ssh経由で実行する場合は、x windowの設定をしなくてはならないのでめんどくさい
-3. `sphinx.ext.inheritance_diagram`を使用する。... ソースコードの状態が反映される。
-
-
-内容は詳しく書かなくともよい。
-`parts`で名前をどれだけ深く表示するかを決める(例： 2ならば`matplotlib.patches.Patch`は`patches.Patch`と表示される。)
 
 ややこしいのだが、`conf.py`中では`sphinx.ext.inheritance_diagram`と、アンダーバーを使用しているが、ディレクティブはアンダーバーではなく`-`を使用する。
 
-```rst
+```
 
 .. inheritance-diagram:: matplotlib.patches matplotlib.lines matplotlib.text
     :parts: 2
