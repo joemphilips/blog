@@ -89,18 +89,19 @@ markdownと違い、外部参照のリンクはドキュメントの末尾にま
 ここでのポイントは、..と\_
 
 
->`Plone CMS`_ を試してみてください。これはすばらしいですよ！ Zope_ 上に作られています。
+```
+`Plone CMS`_ を試してみてください。これはすばらしいですよ！ Zope_ 上に作られています。
 
->
-
->.. _`Plone CMS`: http://plone.org
-
->.. _Zope: http://zope.org
+.. _`Plone CMS`: http://plone.org
+.. _Zope: http://zope.org
+```
 
 
 末尾でなくともOK
 
-> `python <www.python.org>`_
+```
+`python <www.python.org>`_
+```
 
 #### 内部リンク
 
