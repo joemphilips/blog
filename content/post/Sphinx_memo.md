@@ -1,11 +1,10 @@
 ---
 categories: ["hack", "memo"]
-Description: "Memo for reSTructuredText and Sphinx"
 date: 2016-05-30T19:25:26+09:00
-description: ""
+description: "Memo for reSTructuredText and Sphinx"
 draft: false
-keywords: []
-title: reSt, Sphinxメモ
+keywords: ["ReST", "python", "julia"]
+title: "reSt, Sphinxメモ"
 ---
 
 
