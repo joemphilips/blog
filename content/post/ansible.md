@@ -3,7 +3,7 @@ Categories = ["hack", "memo"]
 Description = "Memo for ansible"
 Tags = ["python", "ansible"]
 date = "2016-08-23T15:45:36+09:00"
-title = "ansibleメモ"
+title = "ansibleの基本"
 draft = false
 
 +++
@@ -165,4 +165,5 @@ ansibleは`sudo`などの、別のユーザになるためのコマンドを`bec
   * `ansible_user` ... docker内でのユーザー名。指定する必要ないのでは？
   * `ansible_become` ... `true`の場合、`become_user`で指定したユーザになる
   * `ansible_docker_extra_args` ... dockerデーモンに追加で渡される引数。リモートのDockerデーモンをいじるのに使用する。
+
 
