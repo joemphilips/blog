@@ -2,3 +2,4 @@ public/
 ./fetched_bymyself/
 themes
 ./.python-version
+*.swp
