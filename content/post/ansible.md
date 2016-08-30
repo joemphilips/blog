@@ -2,7 +2,7 @@
 Categories = ["hack", "memo"]
 Description = "Memo for ansible"
 Tags = ["python", "ansible"]
-date = "2015-12-30T15:45:36+09:00"
+date = "2016-08-23T15:45:36+09:00"
 title = "ansibleメモ"
 draft = false
 
