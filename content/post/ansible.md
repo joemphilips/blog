@@ -154,6 +154,7 @@ northeast
 * `ansible_become_pass` sudoのパス。セキュアでないのでこれではなく、`--ask-become-pass`で指定しましょう
 
 ansibleは`sudo`などの、別のユーザになるためのコマンドを`become`として抽象化しているので、最後の3つは概ね`sudo`のオプションと同じ
+
 * `ansible_shell_type` 使用するシェル
 * `ansible_python_interpreter` 使用するpythonインタプリタ。他の言語も同じ形式で指定可能
 
