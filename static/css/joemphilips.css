@@ -43,6 +43,11 @@
     color: #0079ba;
 }
 
+.ai-researchgate-square:hover{
+    color: #C0C0C0;
+}
+
+
 .fa:hover{
     transform: rotate(360deg);
 }
