@@ -4,7 +4,7 @@ date: 2016-07-10T16:15:49+09:00
 description: "personal memo for Julialang"
 draft: false
 keywords: ["Julia"]
-title: julia_memo
+title: juliaの備忘録
 ---
 
 #Juliaメモ
