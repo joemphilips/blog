@@ -6,4 +6,6 @@ menu = 'main'
 
 +++
 
+ここには過去に作成したhtmlのスライドが置いてあります。
+
 * [ISMB2016論文読み会での発表](http://joemphilips.github.io/slides/ISMB2016/)
