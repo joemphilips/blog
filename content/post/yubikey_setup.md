@@ -360,7 +360,7 @@ PIVとして使用する場合、以下の４つのスロットに対応する�
 
 現実
 
-<img style="image-orientation: 90deg;" src="/images/yubikey/hand.jpg">
+<img style="image-orientation: 90deg" src="/images/yubikey/hand.jpg">
 
 amazonから適当に[首用](https://www.amazon.co.jp/gp/product/B0122DMW4Y/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)と[腕用](https://www.amazon.co.jp/gp/product/B00S0FPB7Y/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1)の鎖を購入したのだけれど、首用の鎖を腕に巻くのが意外といい感じ。たるみを利用して腕から外さずに挿入できる上に、必要があれば首に巻くこともできる。本当は専用のアクセサリを公式に作って欲しいんだけどなー
 
