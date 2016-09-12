@@ -32,7 +32,7 @@ title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決
 
 以下のような見た目で
 
-<img src="/static/images/yubikey/yubikey1.png">
+<img src="/images/yubikey/yubikey1.png">
 
 大きく以下の種類がある。
 
@@ -120,7 +120,7 @@ challenge and responceによる認証は以下の2つがある。
 
 [公式](https://www.yubico.com/products/services-software/yubicloud/technical-description/)より拝借した図
 
-<img src="/static/images/yubikey/YubiCloud-Technical-Description-602x369.png">
+<img src="/images/yubikey/YubiCloud-Technical-Description-602x369.png">
 
 [各種言語のAPIクライアントはこちらから](https://developers.yubico.com/OTP/Libraries/List_of_libraries.html)
 
@@ -318,7 +318,7 @@ sudo apt install -y yubico-piv-tool \ # cli tool
 
 GUIで立ち上げると初回は以下のような画面が出てくる。
 
-<img src="/static/images/yubikey/PIV_manager.png">
+<img src="/images/yubikey/PIV_manager.png">
 
 今回はCLIで行っていく
 
@@ -350,11 +350,11 @@ PIVとして使用する場合、以下の４つのスロットに対応する�
 
 当初のイメージ図
 
-<img src="/static/images/yubikey/hunter_001-1.jpg">
+<img src="/images/yubikey/hunter_001-1.jpg">
 
 現実
 
-<img src="/static/images/yubikey/hand.jpg">
+<img src="/images/yubikey/hand.jpg">
 
 amazonから適当に[首用](https://www.amazon.co.jp/gp/product/B0122DMW4Y/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)と[腕用](https://www.amazon.co.jp/gp/product/B00S0FPB7Y/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1)の鎖を購入したのだけれど、首用の鎖を腕に巻くのが意外といい感じ。たるみを利用して腕から外さずに挿入できる上に、必要があれば首に巻くこともできる。本当は専用のアクセサリを公式に作って欲しいんだけどなー
 
