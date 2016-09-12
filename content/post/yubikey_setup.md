@@ -2,7 +2,7 @@
 categories: ["hack", "secutiry", "device"]
 date: 2016-09-01T23:27:54+09:00
 description: "use yubikey to manage secutiry problems"
-draft: false
+draft: true
 keywords: ["yubikey"]
 title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決する。
 ---
@@ -26,7 +26,7 @@ title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決
 5. YubikeyをPIVカードとして使用し、秘密鍵の一元管理を行う。
 6. アクセサリにする。
 
-やっていくという気持ち
+やっていく気持ち
 
 # yubikeyとは
 
@@ -112,7 +112,7 @@ challenge and responceによる認証は以下の2つがある。
 | 認証方法           | pro                                                                       | con |
 | :--                | :--                                                                       | :-- |
 | Yubico OTP | 安全 | 自身でサーバを立てるのは面倒。YubiCloudを用いればその必要はないが、向こうを信用する必要がある。 |
-| HMAC-SHA1  | offlineでもOK。だがセキュリティ面はあまり向上していない気が。。。          |     |
+| HMAC-SHA1  | offlineでもOK。          |  セキュリティ面はあまり向上していない?   |
 
 #### YubiCloudについて
 
