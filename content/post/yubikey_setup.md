@@ -7,12 +7,17 @@ keywords: ["yubikey"]
 title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決する。
 ---
 
-
 # motivation
 
-セキュリティは面倒くさい。ベストプラクティスがわからない。いろいろなサイトでランダムに生成したパスワードを用いているが覚えきれない。職場のPCに秘密鍵をおいているが流出が怖い
+仕事柄秘匿性の高い情報を扱うことが多いのだが、色々と困ったことが発生する。例えば
 
-という問題を一挙に解決するためYubikey Neoを使用して
+* いろいろなサイトでランダムに生成したパスワードを用いているが覚えきれない。
+* 職場のPCに秘密鍵をおいているが流出が怖い
+* 職場のサーバのアクセス権限を一時的に同僚に渡す必要が発生
+
+などである。Yubikey Neoを使用するといい感じになるという噂を聞いたので、勉強も兼ねて導入する。
+
+以下をやっていく。
 
 1. Github、Bitbucket、Google account、bitcoin web walletの認証をFIDO U2Fを使用した2段階認証にする。
 2. awsのroot account認証をOATH OTPで行う
@@ -21,7 +26,7 @@ title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決
 5. YubikeyをPIVカードとして使用し、秘密鍵の一元管理を行う。
 6. アクセサリにする。
 
-をやっていく。
+やっていくという気持ち
 
 # yubikeyとは
 
@@ -40,7 +45,7 @@ title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決
 
 1. FIDO U2F Special Security Key
 
-もというものもある。これはFIDO Universal 2nd Factor(U2F)での認証に特化している。安い
+というものもある。これはFIDO Universal 2nd Factor(U2F)での認証に特化している。安い
 
 #### One Time Password と U2Fの違いについて
 
