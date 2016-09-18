@@ -4,7 +4,7 @@ Description = "Memo for ansible vault"
 Tags = ["python", "ansible"]
 date = "2016-08-26T15:45:36+09:00"
 title = "ansible vaultのメモ"
-draft = false
+draft = true
 
 +++
 

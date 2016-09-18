@@ -4,7 +4,7 @@ date: 2016-09-01T23:27:54+09:00
 description: "use yubikey to manage secutiry problems"
 draft: true
 keywords: ["yubikey"]
-title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決する。
+title: yubikeyでセキュリティ筋力を鍛える
 ---
 
 # motivation
@@ -20,13 +20,14 @@ title: yubikeyを用いてセキュリティの面倒な諸々を一挙に解決
 以下をやっていく。
 
 1. Github、Bitbucket、Google account、bitcoin web walletの認証をFIDO U2Fを使用した2段階認証にする。
-2. awsのroot account認証をOATH OTPで行う
+2. awsのadmin認証をOATH OTPで行う
 3. PAM認証を使用してローカルの端末へのログインにYubikeyが必要なようにする。
 4. sshでの接続をYubikeyで制限する。
 5. YubikeyをPIVカードとして使用し、秘密鍵の一元管理を行う。
-6. アクセサリにする。
+6. パスワードを暗号化して管理する。
+7. アクセサリにする。
 
-やっていく気持ち
+やっていく(気持ち)
 
 # yubikeyとは
 
@@ -168,11 +169,14 @@ OTP生成の設定は[公式のチュートリアル映像](https://www.yubico.c
 
 ### awsでの設定
 
-2016/09 時点で、awsはU2Fでの認証に対応していないので、[OATH-HOTP](https://en.wikipedia.org/wiki/HMAC-based_One-time_Password_Algorithm)を用いる。。。
+2016/09 時点で、awsはU2Fでの認証に対応していないので、yubikeyでの[OATH-HOTP](https://en.wikipedia.org/wiki/HMAC-based_One-time_Password_Algorithm)を用いる。。。
 
-と思ったのだが、情報が足りなくて断念。FIDO U2Fに対応してくれるまではスマホの仮想MFAで我慢しようと思う。
+と思ったのだが、情報が足りなくて断念。調査の末
 
-早く対応してくださいおねがいしますしんでしまいます。
+1. 後述するPIV modeで秘密鍵をストア
+2. スマホで2段階認証
+
+が最もセキュアかと判断。というわけで普通にGoogle Authenticatorを設定した。
 
 ## 2. U2F authentication
 
@@ -236,7 +240,7 @@ YubiKeyでローカルの端末をロックする場合、大きく2種類のケ
 
 いずれにせよセキュリティの向上という観点からはあまり意味がないが、下記の3点のメリットがある。
 
-1. passwordを覚える必要がなくなる
+1. デスクトップのpasswordを覚える必要がなくなる
 2. keyboard にタイピングする必要がなくなるため目で見てバレることがない。
 3. 権限を分割管理することで、より安全性が増す(sudoするにはYubikeyが要る。といったふうにするなど。)
 
@@ -311,11 +315,17 @@ auth required pam_yubico.so id=<id number> debug authfile=/path/to/mapping/file
 
 ## 5. PIV mode
 
+piv modeで使用するにあたっては、yubikey自体の仕様の前に[PGP](http://www.wakayama-u.ac.jp/~takehiko/pgp.html)についてよく理解している必要がある。[こちらに書いた](http://joemphilips.com/post/gpg_memo)
+
+[結城浩さんの暗号技術入門](http://www.hyuki.com/cr/)をよく読んで理解しておこう。(この本、以前はセキュリティ関係者の必読書だったが、最近は全IT関係者の必読書になりつつある印象。そのうち義務教育で教えることになりそう。)
+
 piv cardはCCID(Chip Card Interface Device)と呼ばれるプロトコルを介して接続される。これはUSB接続だけでセキュアなやり取りをするための規格
 
 最後までやってから気がついたのだが、日本に住んでいる限りPIV cardを使用する機会はないのであまり意味がないかもしれない。
 
-まずは専用のマネージャソフトをインストール
+はじめにyubikey NEO ManagerからCCIDmodeをオンにしておく必要がある。
+
+専用のマネージャソフトをインストール
 
 ```
 sudo apt install -y yubico-piv-tool \ # cli tool
@@ -326,7 +336,7 @@ GUIで立ち上げると初回は以下のような画面が出てくる。
 
 <img src="/images/yubikey/PIV_manager.png">
 
-今回はCLIで行っていく
+なんだか使いづらかったので今回はCLIで行っていく
 
 まずは状態確認
 
@@ -340,8 +350,37 @@ manを見ると使用可能なslotとactionの一覧が見れる。
 
 ```
 yubico-piv-tool -a change-pin # pinを変更(初期値は123456)
-yubico-piv-tool -s 9a -a generate -o public.pem # 9aというスロットに非対称鍵を作成(RSA2048がデフォルト)
+yubico-piv-tool -a change-puk # pukを変更(初期値は12345678)
 ```
+pinはユーザーレベルのパスワード。pukはrootレベルのパスワード。組織のIDとして使用するなら片方しか知らないというケースがありうるっぽいが、個人で使う場合はあんまり区別に意味はない。
+
+pinやpukをなくしたり、認証に失敗しすぎてブロックされた時は、
+
+```
+yubico-piv-tool -a reset
+```
+
+でリセットできる。予めわざと認証に失敗して(`yubico-piv-tool -a verify-pin`で)ブロックされておく必要がある。
+
+もちろんリセットの禁止も設定できる。
+
+次に使用する非対称鍵ペアを作成する。
+
+```
+yubico-piv-tool -s 9a -a generate -o public.pem -P <PIN番号> # 9aというスロットに秘密鍵を作成し、対応する公開鍵をpublic.pemに出力
+```
+
+暗号化アルゴリズムはRSA2048がデフォルトだが、強度を高めたければRSA4096にすることもできる。とはいえ、RSA2048で十分すぎるレベル。[調査](http://security.stackexchange.com/questions/65174/4096-bit-rsa-encryption-keys-vs-2048)[の](https://danielpocock.com/rsa-key-sizes-2048-or-4096-bits)[結果](https://www.yubico.com/2015/02/big-debate-2048-4096-yubicos-stand/)暗号強度は大差ない上に現時点では4096は可用性に難がある場合があることがわかったので、gpgのデフォルトでもある2048bitを用いる。
+
+ここで`Failed authentication with the application.`と出る謎の現象が起きて詰まる。Management Key (PIV card内部で使用されるKey。Yubikeyの場合は本来はPINと同一で問題ないはず)をPINとは別に設定し`-k`オプションで渡すと解決した。謎。
+
+`ssh-keygen`ではなくyubikeyで直接鍵を作るため、より流出の危険はせばまるが、代わりに秘密鍵のバックアップが取れなくなるため、Yubikeyをなくすと死ぬ可能性がある。
+
+### gpgで作成した鍵をYubikeyに載せる
+
+はじめから自分のgpg keyがある場合はそちらの秘密鍵をYubikeyにのせることもできる。この場合はRSA4096を使おうとすると面倒な
+
+### 自己証明書の作成
 
 自己証明書を作成すれば[PIV公式](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-73-4.pdf)に準拠した証明用カードとして使用できる。
 
@@ -351,6 +390,14 @@ PIVとして使用する場合、以下の４つのスロットに対応する�
 * 9c ... Digital Signature
 * 9d ... Key Management
 * 9e ... Card Authentication
+
+## `pass` コマンドと組み合わせてパスワードを管理する。
+
+`pass`はUnix標準のpasswordマネージャだが、実態はGPGのラッパ。
+
+1. `pass init "GPG key ID"` でパスワードフォルダ`~/.password-store`を作成し、GPG keyで暗号化する。
+2. `pass git init`でgitフォルダとして管理
+3. 後は`pass insert`, `pass rm`, `pass generate`などで鍵管理する。パスワード以外の情報(秘密の質問への答えなど)は`insert -m`で複数行ファイルにすることで管理。
 
 ## アクセサリにする。
 
@@ -362,7 +409,9 @@ PIVとして使用する場合、以下の４つのスロットに対応する�
 
 <img src="/images/yubikey/hand.png">
 
-amazonから適当に[首用](https://www.amazon.co.jp/gp/product/B0122DMW4Y/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)と[腕用](https://www.amazon.co.jp/gp/product/B00S0FPB7Y/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1)の鎖を購入したのだけれど、首用の鎖を腕に巻くのが意外といい感じ。たるみを利用して腕から外さずに挿入できる上に、必要があれば首に巻くこともできる。本当は専用のアクセサリを公式に作って欲しいんだけどなー
+amazonから適当に[首用](https://www.amazon.co.jp/gp/product/B0122DMW4Y/ref=oh_aui_detailpage_o01_s00?ie=UTF8&psc=1)と[腕用](https://www.amazon.co.jp/gp/product/B00S0FPB7Y/ref=oh_aui_detailpage_o00_s00?ie=UTF8&psc=1)の鎖を購入したのだけれど、首用の鎖を腕に巻くのが意外といい感じ。たるみを利用して腕から外さずに挿入できる上に、必要があれば首に巻くこともできる。
+
+本当は溶接したいのだが、使用する際に腕から離す必要がある場合もありうるのでできない。専用のアクセサリを公式に作って欲しいんだけどなー
 
 # 終わりに
 
