@@ -159,12 +159,21 @@ key serverに送信する。
 * `gpg -e -a -r <自分のメールアドレス> filename` ... 秘密鍵によるファイルの暗号化
 * `gpg filename` ... 復号化
 
+# ssh鍵としての使用
+
+1. gpg-agentがSSH-agentとしても機能するようにする。
+2. gpg秘密鍵をSSH鍵ペアとして使用する。
+
+
 
 
 # 参考
 
-[OpenPGP best practices guide][best]
-[Using OpenPGP subkeys in Debian development](https://wiki.debian.org/Subkeys?action=show&redirect=subkeys)
+[OpenPGP best practices guide][best],
+[Using OpenPGP subkeys in Debian development](https://wiki.debian.org/Subkeys?action=show&redirect=subkeys),
 [How To Use GPG to Encrypt and Sign Messages on an Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-use-gpg-to-encrypt-and-sign-messages-on-an-ubuntu-12-04-vps)
+[My Perfect GnuPG / SSH Agent Setup](http://www.bootc.net/archives/2013/06/09/my-perfect-gnupg-ssh-agent-setup/)
+[Using GnuPG for SSH authentication](https://incenp.org/notes/2014/gnupg-for-ssh-authentication.html)
+
 
 [best]: https://riseup.net/en/gpg-best-practices

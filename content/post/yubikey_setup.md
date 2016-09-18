@@ -388,7 +388,7 @@ PIVとして使用する場合、以下の４つのスロットに対応する�
 
 * 9a ... PIV Authentication
 * 9c ... Digital Signature
-* 9d ... Key Management
+* 9d ... Key Management (`gpg2 --card-status`で確認)
 * 9e ... Card Authentication
 
 ## `pass` コマンドと組み合わせてパスワードを管理する。
