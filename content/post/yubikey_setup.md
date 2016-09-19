@@ -1,8 +1,8 @@
 ---
 categories: ["hack", "secutiry", "device"]
-date: 2016-09-01T23:27:54+09:00
+date: 2016-09-20T00:46:15+09:00
 description: "use yubikey to manage secutiry problems"
-draft: true
+draft: false
 keywords: ["yubikey"]
 title: yubikeyでセキュリティ筋力を鍛える
 ---
@@ -297,6 +297,14 @@ auth sufficient pam_yubico.so id=[Your API Client ID] debug
 
 ## 4. ssh接続の制限
 
+「yubikeyでsshする」と言った場合、実際には2種類の可能性がある。
+
+1. sshd側の設定でYubikey認証をオンにする。
+2. yubikeyに登録した秘密鍵を用いて認証する。
+
+### sshdにYubikey IDをチェックさせる。
+
+
 sshdがpamの設定を使用していることを確かにするため、`/etc/ssh/sshd_config`を編集して`UsePAM yes`を書き込み、再起動する。
 
 Yubico OTP を利用するため、オンライン環境でないと不可能な認証方法であることに注意。オフラインで使用する場合はHMAC-SHA1などを用いる
@@ -313,17 +321,53 @@ auth required pam_yubico.so id=<id number> debug authfile=/path/to/mapping/file
 
 あとはsshdを再起動。
 
+### PIV内の秘密鍵を認証に用いる。
+
+https://blog.josefsson.org/2015/06/16/ssh-host-certificates-with-yubikey-neo/
+
+`gpgkey2ssh`を用いる。
+`gpg --card-status`で、内部秘密鍵のIDが見れるので、
+
+```
+
+gpgkey2ssh <秘密鍵のID>
+
+```
+
+でSSH公開鍵が手に入る
+
+続きは[こちら][gpgmemo]と同じ。
+
 ## 5. PIV mode
 
-piv modeで使用するにあたっては、yubikey自体の仕様の前に[PGP](http://www.wakayama-u.ac.jp/~takehiko/pgp.html)についてよく理解している必要がある。[こちらに書いた](http://joemphilips.com/post/gpg_memo)
+piv modeで使用するにあたっては、yubikey自体の仕様の前に[PGP](http://www.wakayama-u.ac.jp/~takehiko/pgp.html)についてよく理解している必要がある。[こちらに書いた][gpgmemo]
 
-[結城浩さんの暗号技術入門](http://www.hyuki.com/cr/)をよく読んで理解しておこう。(この本、以前はセキュリティ関係者の必読書だったが、最近は全IT関係者の必読書になりつつある印象。そのうち義務教育で教えることになりそう。)
+[結城浩さんの暗号技術入門](http://www.hyuki.com/cr/)もよく読んで理解しておこう。(この本、以前はセキュリティ関係者の必読書だったが、最近は全IT関係者の必読書になりつつある印象。そのうち義務教育で教えることになりそう。)
 
 piv cardはCCID(Chip Card Interface Device)と呼ばれるプロトコルを介して接続される。これはUSB接続だけでセキュアなやり取りをするための規格
 
-最後までやってから気がついたのだが、日本に住んでいる限りPIV cardを使用する機会はないのであまり意味がないかもしれない。
+以下の４つ(Yubikey 4の場合は24つ)のスロットに対応する機能が入る。これはYubikeyの仕様ではなく[PIVの仕様](http://csrc.nist.gov/groups/SNS/piv/standards.html)
 
-はじめにyubikey NEO ManagerからCCIDmodeをオンにしておく必要がある。
+* 9a ... PIV Authentication (認証)
+* 9c ... Digital Signature (署名)
+* 9d ... Key Management (`gpg2 --card-status`で確認)
+* 9e ... Card Authentication
+
+PIVとして使用する場合、はじめにyubikey NEO ManagerからCCIDmodeをオンにしておく必要がある。
+
+### modeの設定
+
+Yubikey NEOには、3種類のmodeがある。PIV
+
+1. 0x80 ... 通常のYubikeyと同様。OTPのみのmode
+2. 0x81 ... OpenPGP CCID only mode. smart cardとしては使えるが、OTPには使えない。
+3. 0x82 ... OTP, PIVの両方で使用できるモード
+
+とりあえず3にしておく。
+
+`ykpersonalize -m82`
+
+### PIV card としての初期設定
 
 専用のマネージャソフトをインストール
 
@@ -336,12 +380,14 @@ GUIで立ち上げると初回は以下のような画面が出てくる。
 
 <img src="/images/yubikey/PIV_manager.png">
 
-なんだか使いづらかったので今回はCLIで行っていく
+~~なんだか使いづらかったので今回はCLIで行っていく~~
+GUIのほうが楽でした。
 
 まずは状態確認
 
 ```
 yubico-piv-tool -a status # 状態確認
+gpg --card-edit # gpg側から見た状態
 ```
 
 manを見ると使用可能なslotとactionの一覧が見れる。
@@ -350,9 +396,29 @@ manを見ると使用可能なslotとactionの一覧が見れる。
 
 ```
 yubico-piv-tool -a change-pin # pinを変更(初期値は123456)
-yubico-piv-tool -a change-puk # pukを変更(初期値は12345678)
 ```
-pinはユーザーレベルのパスワード。pukはrootレベルのパスワード。組織のIDとして使用するなら片方しか知らないというケースがありうるっぽいが、個人で使う場合はあんまり区別に意味はない。
+
+### PINの仕様
+
+ややこしいことにpiv cardには3種類のパスワードがある。
+
+* PIN ... ユーザーレベルのパスワード。
+* PUK ... rootレベルのパスワード。
+* management key ... 24byte 3DESのkey
+
+#### PINのみで管理する。
+
+本来management keyは鍵の生成や証明書のimport時に必ず必要になるが、YubikeyではPINをそれらに用いることができる。その場合、技術的理由(詳細不明)からPUKはblockされ、使用不可になる。
+
+組織のIDとして使用する場合、PINとPUKを分けるというケースがありうるっぽいが、個人で使う場合はあまり区別に意味はないので、Management keyとPINは同一のものを用いるとよい。
+
+その場合、考慮しなくては行けないことが2点ある。
+
+1. 実際のmanagement keyはPINから自動的に生成したものが用いられるため、不一致を避けるため、**PINの変更は必ず上述のコマンドを用いてyubico-piv-toolで行わなくてはならない。** (`gpg --change-pin`はNG)
+2. PINがブロックされてもManagement keyば有効なので、Brute forceすることができる。 したがって十分長くて**推測不可能なPINを用いる必要がある**。
+
+
+#### PIVをリセット
 
 pinやpukをなくしたり、認証に失敗しすぎてブロックされた時は、
 
@@ -364,7 +430,34 @@ yubico-piv-tool -a reset
 
 もちろんリセットの禁止も設定できる。
 
-次に使用する非対称鍵ペアを作成する。
+### 鍵の作成
+
+2種類の作り方がある。
+
+
+ | 作成方法                   | pro                                            | con                          |
+ | :---                       | :---                                           | :---                         |
+ | GPGで作ったkeyをimportする | 情報が多い。backupを取れる。                   | 安全な環境で行う必要がある。 |
+ | Yubikeyで直接作る          | 秘密鍵を一切外に出す必要がないのでよりセキュア | Yubikeyをなくすと死ぬ        |
+
+#### gpgで作成した鍵をYubikeyに載せる
+
+**落とし穴が多すぎて挫折しました**。gpgは重要性の割にUIがヘボすぎて使いづらいっす…
+
+はじめから自分のgpg keyがある場合はそちらの秘密鍵をYubikeyにのせることもできる。作り方は[別に書いた][gpgmemo]
+
+
+```
+gpg2 --edit-key <master keyのID>
+
+gpg> key 2 # 上から2番めの鍵を選択
+gpg> keytocard # 選択した鍵をyubikeyに載せる
+```
+
+
+#### 直接作成する。
+
+使用する非対称鍵ペアを作成する。
 
 ```
 yubico-piv-tool -s 9a -a generate -o public.pem -P <PIN番号> # 9aというスロットに秘密鍵を作成し、対応する公開鍵をpublic.pemに出力
@@ -376,20 +469,12 @@ yubico-piv-tool -s 9a -a generate -o public.pem -P <PIN番号> # 9aというス�
 
 `ssh-keygen`ではなくyubikeyで直接鍵を作るため、より流出の危険はせばまるが、代わりに秘密鍵のバックアップが取れなくなるため、Yubikeyをなくすと死ぬ可能性がある。
 
-### gpgで作成した鍵をYubikeyに載せる
-
-はじめから自分のgpg keyがある場合はそちらの秘密鍵をYubikeyにのせることもできる。この場合はRSA4096を使おうとすると面倒な
+GUI
 
 ### 自己証明書の作成
 
 自己証明書を作成すれば[PIV公式](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-73-4.pdf)に準拠した証明用カードとして使用できる。
 
-PIVとして使用する場合、以下の４つのスロットに対応する機能が入る。
-
-* 9a ... PIV Authentication
-* 9c ... Digital Signature
-* 9d ... Key Management (`gpg2 --card-status`で確認)
-* 9e ... Card Authentication
 
 ## `pass` コマンドと組み合わせてパスワードを管理する。
 
@@ -415,7 +500,12 @@ amazonから適当に[首用](https://www.amazon.co.jp/gp/product/B0122DMW4Y/ref
 
 # 終わりに
 
-２段階認証に使うだけならば極めて簡単にできるが、PIV cardとして使ったりSSHの制限をかけたりするのは骨が折れるので、セキュリティによほど興味がある人以外はやめておいたほうがよい。
+２段階認証に使うだけならば極めて簡単にできるが、PIV cardとして使うのは骨が折れるので、セキュリティによほど興味がある人以外はやめておいたほうがよい。
 
-[dockerアプリをセキュアにしたり](https://www.yubico.com/why-yubico/for-businesses/developer-platforms/docker/)、ansible vaultと連携したりしていくこともできそうなので、これから行っていく。
+yubico-piv-toolなどはopenscやscdaemon、gpgとの連携においてまだまだサポートが不十分な印象。おそらくユーザーがまだ多くないせいだと思う。「ユーザーが少ない」というはセキュリティ的にも確実に悪影響なのでPIVとしての使用は保留にして2段階認証ように止めようと思う。
 
+gpg使いづらすぎ問題もある。余裕があればコミットしたいが忙しすぎて難しい…
+
+[dockerアプリをセキュアにしたり](https://www.yubico.com/why-yubico/for-businesses/developer-platforms/docker/)、ansible vaultと連携したりしていくこともできそうなので、これからユーザーが増えれば色々とマシになるとは思う。
+
+[gpgmemo]: https://joemphilips.com/post/gpg_memo

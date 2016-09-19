@@ -46,15 +46,19 @@ master keyを使用するのは以下の場合
 
 オフライン環境で、**一度もネットワークに繋いだことのないOSで実行する。**具体的には好きなLinuxのディストリビューションのboot imageを作成してそこで行う。くれぐれもソースの読めないOSで行わないこと。
 
+[QUBES OS](https://www.qubes-os.org/)がsandboxとして使いやすいかも
+
 gpgをローカルでインストールし(デフォルトで入っていることが多い)た後,`gpg --gen-key`コマンドを実行する。
 
-設定はすべてデフォルトでOK。RSAの鍵長を伸ばしてもセキュリティ強度はそこまで大きく変化しないという噂もあるが(参考: [yubicoによる解説](https://www.yubico.com/2015/02/big-debate-2048-4096-yubicos-stand/))、念の為RSA2048でなく、RSA4096で行う。ユーザー名と連絡先の記入の 後、エントロピーの取得のため、ガチャガチャした後、saveする。
+設定はすべてデフォルトでOK。RSAの鍵長を伸ばしてもセキュリティ強度はそこまで大きく変化しないという噂もあるが(参考: [yubicoによる解説](https://www.yubico.com/2015/02/big-debate-2048-4096-yubicos-stand/))、念の為RSA2048でなく、RSA4096で行う。ユーザー名と連絡先の記入の 後、エントロピーの取得のため、しばらくガチャガチャした後saveする。(結構長時間ガチャガチャする必要がある。だるい)
 
 `gpg --list-keys <ユーザー名>` でIDを取得できるので、これを後の処理で使用する。
 
 ここでは説明のために`MASTERID`というIDを用いる
 
 ## 顔写真の登録
+
+[こちらを参考に](https://blog.josefsson.org/2014/06/19/creating-a-small-jpeg-photo-for-your-openpgp-key/)適切なサイズと解像度のJPEGを作成する。
 
 `gpg --edit-key MASTERID`
 
@@ -71,6 +75,8 @@ gpgをローカルでインストールし(デフォルトで入っているこ�
 `gpg --edit-key MASTERID`
 
 から、`addkey`を実行。あとはmaster keyの時と同様だが、有効期限をつけるとベター
+
+署名と暗号化に同一の鍵を使うと、暗号化アルゴリズム依存の脆弱性が生じる場合があるので、暗号化、署名、認証のそれぞれに専用のsubkeyを作ると良い。
 
 ## master keyを保存
 
@@ -158,14 +164,41 @@ key serverに送信する。
 * `gpg --export --armor email@example.com` ... 署名した鍵を送り返す。
 * `gpg -e -a -r <自分のメールアドレス> filename` ... 秘密鍵によるファイルの暗号化
 * `gpg filename` ... 復号化
+* `gpg2 --card-status` ... PIV card の状態確認
 
 # ssh鍵としての使用
 
 1. gpg-agentがSSH-agentとしても機能するようにする。
 2. gpg秘密鍵をSSH鍵ペアとして使用する。
 
+の2種類を分けて考える必要がある。ここでは後者について述べる
+
+## gpg-agentがSSH-agentとしても機能するようにする。
+
+`~/.gnupg/gpg-agent.conf`に必要な設定を書き込むことができる。[コマンドラインから指定可能なオプション](https://www.gnupg.org/documentation/manuals/gnupg/Agent-Options.html)はすべて指定できるので、`enable-ssh-support`とお好みのオプションを書き込んで再起動する。
+
+##gpg秘密鍵をSSH鍵ペアとして使用する。
+
+[monkeyshpere](http://web.monkeysphere.info/why/) projectの一部としてopenpgpをsshとして使用するためのソフトウェア`pgp2ssh`を開発している。
+
+Note:
+    このMonkeysphereの、root CAを廃止してweb of trustを実現するという目標はそれ自体大変興味深いので、デジタル左翼の皆さんは一読の価値ありです。
+    なぜroot CAおよびHTTPSプロトコルそのものが邪悪なのかに関しては[同団体の人物が書いたTechnical Architecture shapes Social Structure](http://lair.fifthhorseman.net/~dkg/tls-centralization/)という文書が参考になります。
 
 
+`sshd`が解釈可能な形式に鍵を変換(ここでは`0A72B72`というsub key鍵IDを用いる。)
+
+```sh
+
+gpg2 --export-secret-subkeys \
+  --export-options export-reset-subkey-passwd 0A072B72! | \ # ! をつけないと、全兄弟keyをエクスポートしてしまう
+  openpgp2ssh 0A072B72 > gpg-auth-keyfile
+
+```
+
+`gpgkey2ssh <鍵ID>`でも可
+
+あとは普通のssh秘密鍵のように扱う。
 
 # 参考
 
@@ -174,6 +207,8 @@ key serverに送信する。
 [How To Use GPG to Encrypt and Sign Messages on an Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-use-gpg-to-encrypt-and-sign-messages-on-an-ubuntu-12-04-vps)
 [My Perfect GnuPG / SSH Agent Setup](http://www.bootc.net/archives/2013/06/09/my-perfect-gnupg-ssh-agent-setup/)
 [Using GnuPG for SSH authentication](https://incenp.org/notes/2014/gnupg-for-ssh-authentication.html)
+[GnuPG -- Archlinux][arch]
 
 
 [best]: https://riseup.net/en/gpg-best-practices
+[arch]: https://wiki.archlinuxjp.org/index.php/GnuPG
