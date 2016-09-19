@@ -1,8 +1,8 @@
 ---
 categories: ["hack", "security"]
-date: 2016-09-17T00:32:33+09:00
+date: 2016-09-20T00:49:37+09:00
 description: ""
-draft: true
+draft: false
 keywords: []
 title: GPGのセットアップ
 ---
