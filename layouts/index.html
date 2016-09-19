@@ -25,7 +25,6 @@
     {{ end }}
     {{ template "_internal/pagination.html" . }}
   </div>
-</div>
 
 {{ with .Site.DisqusShortname }}
 <script type="text/javascript">
@@ -38,4 +37,5 @@ var disqus_shortname = {{ . }};
 }());
 </script>
 {{ end }}
+
 {{ partial "foot.html" . }}

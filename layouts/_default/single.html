@@ -5,6 +5,34 @@
     {{ .TableOfContents }}
     {{ .Content }}
   </div>
+
+  <!-- bitcoin -->
+{{ with .Site.Params.bitcoin }}
+<div id="DIV_1">
+    bitcoinアドレスです。
+	<div id="DIV_2">
+        <span id="SPAN_3">{{ . }}</span>
+    </div> <a href="bitcoin:{{ . }}" id="A_4"><i id="I_5"></i> Pay from wallet</a> <a href="#" id="A_6"><i id="I_7"></i> Copy</a>
+	<div id="DIV_10">
+		Sending payment to the address from locally installed Bitcoin wallet app.
+	</div>
+	<div id="DIV_11">
+		Press CTRL + C or ⌘ + C to copy the Bitcoin address.
+	</div>
+	<div id="DIV_12">
+		<p id="P_13">
+			Scan the QR code with your mobile Bitcoin app to make the payment:
+		</p>
+		<div id="DIV_14">
+			<!-- Filled in by JS on action click -->
+
+		</div>
+    </div><br>
+    寄付を貰えると泣いて喜びます。
+</div>
+
+{{ end }}
+
   <div id="disqus_thread"></div>
   <script>
   /**
