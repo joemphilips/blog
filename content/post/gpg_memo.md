@@ -1,10 +1,10 @@
 ---
 categories: ["hack", "security"]
 date: 2016-09-20T00:49:37+09:00
-description: ""
+description: "how to use gpg"
 draft: false
 keywords: []
-title: GPGのセットアップ
+title: "GPGのセットアップ"
 ---
 
 * PGP ... Pritty Good Privacy, 公開鍵暗号のベストプラクティス。
