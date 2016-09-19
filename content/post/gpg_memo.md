@@ -4,7 +4,7 @@ date: 2016-09-20T00:49:37+09:00
 description: "how to use gpg"
 draft: false
 keywords: []
-title: "GPGのセットアップ"
+title: "GPGで自分用の秘密鍵を1つに統一する"
 ---
 
 * PGP ... Pritty Good Privacy, 公開鍵暗号のベストプラクティス。
@@ -202,12 +202,12 @@ gpg2 --export-secret-subkeys \
 
 # 参考
 
-[OpenPGP best practices guide][best],
-[Using OpenPGP subkeys in Debian development](https://wiki.debian.org/Subkeys?action=show&redirect=subkeys),
-[How To Use GPG to Encrypt and Sign Messages on an Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-use-gpg-to-encrypt-and-sign-messages-on-an-ubuntu-12-04-vps)
-[My Perfect GnuPG / SSH Agent Setup](http://www.bootc.net/archives/2013/06/09/my-perfect-gnupg-ssh-agent-setup/)
-[Using GnuPG for SSH authentication](https://incenp.org/notes/2014/gnupg-for-ssh-authentication.html)
-[GnuPG -- Archlinux][arch]
+* [OpenPGP best practices guide][best]
+* [Using OpenPGP subkeys in Debian development](https://wiki.debian.org/Subkeys?action=show&redirect=subkeys),
+* [How To Use GPG to Encrypt and Sign Messages on an Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-use-gpg-to-encrypt-and-sign-messages-on-an-ubuntu-12-04-vps)
+* [My Perfect GnuPG / SSH Agent Setup](http://www.bootc.net/archives/2013/06/09/my-perfect-gnupg-ssh-agent-setup/)
+* [Using GnuPG for SSH authentication](https://incenp.org/notes/2014/gnupg-for-ssh-authentication.html)
+* [GnuPG -- Archlinux][arch]
 
 
 [best]: https://riseup.net/en/gpg-best-practices
