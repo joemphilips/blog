@@ -2,9 +2,9 @@
 Categories = ["hack", "memo"]
 Description = "use ansible to automate virtual servers for example in ec2 and openstack"
 Tags = ["python", "aws", "ansible"]
-date = "2016-8-26T15:45:36+09:00"
+date = "2016-08-26T15:45:36+09:00"
 title = "ansible でawsなどの外部リソースを扱う"
-draft = false
+draft = true
 
 +++
 
