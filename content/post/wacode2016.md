@@ -2,7 +2,7 @@
 categories: ["diary"]
 date: 2016-08-21T14:46:40+09:00
 description: "wacode 2016でのpython講義"
-draft: true
+draft: false
 keywords: ["python"]
 title: wacode夏季講習でpythonの講義をしました
 ---
