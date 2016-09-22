@@ -4,7 +4,7 @@ date: 2016-03-20T18:30:44+09:00
 description: "personal memo for golang"
 draft: false
 keywords: ["golang"]
-title: "golang_memo"
+title: "golangメモ"
 ---
 
 # 基本構文
@@ -12,6 +12,7 @@ title: "golang_memo"
 ## 関数
 
 ```go
+
 ///関数の例
 func add (x int, y int) int {
     return x + y

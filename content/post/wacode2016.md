@@ -7,15 +7,16 @@ keywords: ["python"]
 title: wacode夏季講習でpythonの講義をしました
 ---
 
+
 [WACODE（わこうど）夏期講習 : Python, R, Juliaによるパッケージ開発を一日で学ぶ](https://atnd.org/events/79769)
 でpythonの講義を担当しました。
 
-#### 講義資料
+# 講義資料
 
 * https://github.com/wacode5/python1
 * https://github.com/joemphilips/doc2vec_wikipedia
 
-#### スライド
+# スライド
 
 * http://www.slideshare.net/JyouMiyamoto/wacode5thpython
 
