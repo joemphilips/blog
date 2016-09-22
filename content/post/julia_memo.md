@@ -7,7 +7,7 @@ keywords: ["Julia"]
 title: juliaの備忘録
 ---
 
-#Juliaメモ
+# Juliaメモ
 ---
 
 @備忘録
@@ -17,7 +17,7 @@ title: juliaの備忘録
 
 ##基本事項
 
-###パッケージ
+### パッケージ
 
 ```python
 Pkg.add("DataFrames")   #インストール
@@ -27,7 +27,7 @@ using DataFrames    #Rでいうlibrary()
 Pkg.update()    #インストールされているパッケージ全てをアップデート
 ```
 
-##Pythonの資産を使う
+## Pythonの資産を使う
 
 ```julia
 Pkg.add( "PyCall" )
@@ -39,6 +39,7 @@ nr.rand()   #=> 0.254253265675362が返る
 sklearn
 
 ##パッケージ作成
+
 `Pkg.generate("MyPackage", "MIT")` ... ひな形の作成(第二引数はライセンス)
 ファイルの中身は
 
@@ -56,4 +57,14 @@ using MyPackage
 using
 ```
 
-## Juliaの型システムについて
+### その他便利なパッケージ
+
+* Documenter.jl
+* Optim.jl
+* Pkg.Dev
+
+## TIPS
+
+使いやすいマクロ
+
+`@show` 変数をformatして表示
