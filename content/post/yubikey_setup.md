@@ -112,11 +112,8 @@ PGPの鍵を埋め込みたい場合は`yubikey-neo-manager`をインストー�
 challenge and responceによる認証は以下の2つがある。
 
 | 認証方法   | pro             | con                                                                                             |
-
 | :--        | :--             | :--                                                                                             |
-
 | Yubico OTP | 安全            | 自身でサーバを立てるのは面倒。YubiCloudを用いればその必要はないが、向こうを信用する必要がある。 |
-
 | HMAC_SHA1  | offlineでもOK。 | セキュリティ面はあまり向上していない?                                                           |
 
 #### YubiCloudについて
@@ -439,10 +436,10 @@ yubico-piv-tool -a reset
 2種類の作り方がある。
 
 
- | 作成方法                   | pro                                            | con                          |
- | :---                       | :---                                           | :---                         |
- | GPGで作ったkeyをimportする | 情報が多い。backupを取れる。                   | 安全な環境で行う必要がある。 |
- | Yubikeyで直接作る          | 秘密鍵を一切外に出す必要がないのでよりセキュア | Yubikeyをなくすと死ぬ        |
+| 作成方法                   | pro                                            | con                          |
+| :---                       | :---                                           | :---                         |
+| GPGで作ったkeyをimportする | 情報が多い。backupを取れる。                   | 安全な環境で行う必要がある。 |
+| Yubikeyで直接作る          | 秘密鍵を一切外に出す必要がないのでよりセキュア | Yubikeyをなくすと死ぬ        |
 
 #### gpgで作成した鍵をYubikeyに載せる
 
