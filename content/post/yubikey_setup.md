@@ -111,10 +111,10 @@ PGPの鍵を埋め込みたい場合は`yubikey-neo-manager`をインストー�
 
 challenge and responceによる認証は以下の2つがある。
 
-| 認証方法           | pro                                                                       | con |
-| :--                | :--                                                                       | :-- |
-| Yubico OTP | 安全 | 自身でサーバを立てるのは面倒。YubiCloudを用いればその必要はないが、向こうを信用する必要がある。 |
-| HMAC-SHA1  | offlineでもOK。          |  セキュリティ面はあまり向上していない?   |
+| 認証方法   | pro             | con                                                                                             |
+| :--        | :--             | :--                                                                                             |
+| Yubico OTP | 安全            | 自身でサーバを立てるのは面倒。YubiCloudを用いればその必要はないが、向こうを信用する必要がある。 |
+| HMAC_SHA1  | offlineでもOK。 | セキュリティ面はあまり向上していない?                                                           |
 
 #### YubiCloudについて
 
@@ -477,7 +477,14 @@ GUI
 自己証明書を作成すれば[PIV公式](http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-73-4.pdf)に準拠した証明用カードとして使用できる。
 
 
-## `pass` コマンドと組み合わせてパスワードを管理する。
+## 静的パスワードの管理。
+
+今のところ２つ選択肢がある。
+
+1. `pass`コマンドで管理 ... yubikeyではなくgpgで管理。
+2. [LassPass](https://lastpass.com/yubico)の２段階認証に使う ... 有料プランに登録しなくてはならない。
+
+### `pass`コマンドで管理
 
 `pass`はUnix標準のpasswordマネージャだが、実態はGPGのラッパ。
 
