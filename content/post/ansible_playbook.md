@@ -37,7 +37,6 @@ tasks:
 actionが長すぎる場合はindentしてもよい
 
 
-
 ## modules
 
 * `command`, `shell` ... シェルを実行する。冪統制はなく、必ず実行される。
