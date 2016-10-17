@@ -74,7 +74,7 @@ Diaspora式（訳注: [分散型SNSの一種](https://en.wikipedia.org/wiki/Dias
 
 ## 基礎技術: 秘密分散
 
-理論的な話をスキップして応用を知りたい方は[こちら](http://joemphilips.com/SecretSharingDAOs/#応用)をクリックしてください。
+理論的な話をスキップして応用を知りたい方は目次から**応用**に飛んでください。
 
 秘匿情報の計算ネットワーク(Secret computation network)は情報を分散して保持するために、２つの基礎技術に依拠しています。その一つが[秘密分散(secret sharing)](https://en.wikipedia.org/wiki/Secret_sharing)です。
 
