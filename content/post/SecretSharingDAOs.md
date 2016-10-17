@@ -84,7 +84,7 @@ Diaspora式（訳注: [分散型SNSの一種](https://en.wikipedia.org/wiki/Dias
 
 数学的な説明をしましょう。点が２つあれば、そこを通る直線は一意に決まるということはわかりますね？
 
-<img src="/static/images/SecretSharingDAOs/twopoints.png">
+<img src="/images/SecretSharingDAOs/twopoints.png">
 
 ですので、`2-of-N`の秘密分散（`K = 2`）を構築することを考えます。分散したい情報を`S`とすると、まずランダムな傾き`m`をとり、`y = mx + S`という直線を作成します。そして`N`人それぞれに直線上の点`(1, m + S)`, `(2, 2m + S)`, `(3, 3m + S)`を教えます。
 
@@ -94,7 +94,7 @@ Diaspora式（訳注: [分散型SNSの一種](https://en.wikipedia.org/wiki/Dias
 
 `3-of-N`の秘密分散を適用する場合、直線を放物線（二次関数）に変えればOKです。
 
-<img src="/static/images/SecretSharingDAOs/threepoints.png">
+<img src="/images/SecretSharingDAOs/threepoints.png">
 
 ２つの点がわかっただけならば、その点を通る放物線は無限に考えられますが、３つの点を通る放物線は一意に求まります。したがって上と同様の原理で復元できます。
 
@@ -119,7 +119,7 @@ Diaspora式（訳注: [分散型SNSの一種](https://en.wikipedia.org/wiki/Dias
 
 SMPCによる加算は単純です。説明のために先ほどの「2点が直線を作る」例を用いましょう。ただし今回は2つの直線が出てきます。
 
-<img src="/static/images/SecretSharingDAOs/twolines.png">
+<img src="/images/SecretSharingDAOs/twolines.png">
 
 二つの直線`A`, `B`と`x=1`とのそれぞれの交点`A(1)`, `B(1)`をノード`P[1]`が保持していると考えます。
 同様に`x=2`上の2点を`P[2]`が保持しているとします。
@@ -129,11 +129,11 @@ SMPCによる加算は単純です。説明のために先ほどの「2点が直
 
 新しい直線ができます。
 
-<img src="/static/images/SecretSharingDAOs/twolinesum.png">
+<img src="/images/SecretSharingDAOs/twolinesum.png">
 
 `C = A + B`が`x=1`と`x=2`で成り立つのは自明ですが、興味深いことに、`C`は **すべての** 点において`A + B`と等しくなっています。
 
-<img src="/static/images/SecretSharingDAOs/twolinesum2.png">
+<img src="/images/SecretSharingDAOs/twolinesum2.png">
 
 故に以下が成り立ちます。
 
@@ -147,7 +147,7 @@ SMPCによる加算は単純です。説明のために先ほどの「2点が直
 
 計算を行いたい値`a`と`b`があり、`P[1]` ... `P[n]`のそれぞれが保持する秘密分散の値を`a[i]`、`b[i]`とします。つまり以下のような状態から開始します。
 
-<img src="/static/images/SecretSharingDAOs/secretmultiply.png">
+<img src="/images/SecretSharingDAOs/secretmultiply.png">
 
 加法の場合と同じ考えで行くと、それぞれのノードが`c[i] = a[i] + b[i]`を計算して`c = a + b`を作れば良いということになりますが、可能なのでしょうか？
 
@@ -160,11 +160,11 @@ SMPCによる加算は単純です。説明のために先ほどの「2点が直
 まず、 ノード`P[i]`が`a`、`b`と同じ次数のランダムな多項式を新しく生成します。ただし`c[i] = a[i] * b[i]`がゼロになるようにします。
 次に、その多項式`c`上の点を全ノードに分散させます。
 
-<img src="/static/images/SecretSharingDAOs/secretmultiply2.png">
+<img src="/images/SecretSharingDAOs/secretmultiply2.png">
 
 よって、`P[j]`は全ての`i`に対して`c[i][j]`を持つことになるので、`c[j]`を計算することが可能になります。つまり全員が`a`、`b`と同じ次数の多項式`c`の秘密分散を持つということです。
 
-<img src="/static/images/SecretSharingDAOs/secretmultiply3.png">
+<img src="/images/SecretSharingDAOs/secretmultiply3.png">
 
 これは、秘密分散プロトコルの気の利いたトリックによって達成されています。
 秘密分散の数学的背景からは、加算と定数の乗算しか出てこないため、操作の順序が交換可能であることを利用しているのです。
@@ -228,7 +228,7 @@ GET: [from_pubkey, from_id, sig]
 
 データベースは以下のフォーマットで`N`個のノードで管理されます。
 
-<img src="/static/images/SecretSharingDAOs/accounts.png">
+<img src="/images/SecretSharingDAOs/accounts.png">
 
 要素が３つのタプルでアカウントを表現し、データベースはその集合になります。
 ３要素とは所持者の公開鍵、Nonce、対照表です。
