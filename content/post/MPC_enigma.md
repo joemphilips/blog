@@ -7,6 +7,8 @@ keywords: ["blockchain", "enigma", "cryptography"]
 title: enigmaの解説
 ---
 
+
+
 ## なぜSMPCは難しいか
 
 1. 乗算は極めて使用頻度の高い演算であるが、乗算のたびに通信をする必要がある。例えば大小比較や統合判定ですら複数の和と積から構成される
