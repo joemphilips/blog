@@ -19,6 +19,7 @@ title: "pythonメモ2　データ分析編"
 `%edit` ... エディタを開いて編集
 
 ### ipython serverのセットアップ
+
 [ここ](https://thomassileo.name/blog/2012/11/19/setup-a-remote-ipython-notebook-server-with-numpyscipymaltplotlibpandas-in-a-virtualenv-on-ubuntu-server/)を参考にする
 
 ### マジックコマンド
@@ -27,17 +28,20 @@ title: "pythonメモ2　データ分析編"
 `%`を付けて実行すると、引数を関数の外に書くことができる。例
 
 ```python
+
 ## 実行時間を計測
 %timeit range(1000)
 
 ## %%にすると複数行にわたって書ける
 %%timeit x = range(10000)
 max(x)
+
 ```
 
 **`%matplitlib inline`を実行して置かないとplotできないので注意**
 
 #### 別のフォーマットへの変換
+
 - `ipython nbconvert --to html hoge.ipynb` ... htmlへ
 - `ipython nbconvett --to html --template basic hoge.ipynb` ... ヘッダーなどのないよりシンプルなhtml
 - `--to slides`
@@ -58,6 +62,7 @@ RISEと呼ばれるパッケージを入れると、notebookの右上にボタ�
 最近はStanでも、共益事前分布の場合は勝手に変分近似してくれるらしい
 
 ### BayesPy
+
 python3のパッケージ。指数型分布族(ガウス、ガンマ、ディリクレなど)にしか使えないっぽい？
 もともと変分ベイズ用のパッケージは
 
@@ -78,6 +83,7 @@ et al., 2008)
 
 
 ### stan
+
 `.stan`という拡張子でstanコードを書く。ガウス混合分布をフィッティングする例
 
 ```stan
@@ -111,6 +117,7 @@ Stanコードには4つのブロックがある
 - `model` ... モデルを記述する。
 
 ## numpy
+
 線形のランダムノイズを載せた生成モデルからのデータを作るスクリプト
 
 ```python
@@ -153,6 +160,7 @@ ndarr2 = ndarr1[3:5].copy()
 
 
 ### stats
+
 `scipy.stats.norm` ... 正規分布の
 
 - `norm.rvs(loc, scale, size)` ... 平均(正確には期待値)`loc`,標準偏差`scale`の正規分布から`loc`個の確率変数を取得。(rvsはrandom variates)
