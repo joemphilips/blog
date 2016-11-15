@@ -8,6 +8,7 @@ title: NEM Catapultのホワイトペーパーを翻訳しました
 ---
 
 日本語版： http://mijin.io/catapult_whitepaper_ja.pdf
+
 英語版: https://www.nem.io/catapultwhitepaper.pdf
 
 詳しくは[こちらのプレスリリース](http://prtimes.jp/main/html/rd/p/000000047.000012906.html)を参照してください。
