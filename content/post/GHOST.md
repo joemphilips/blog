@@ -22,6 +22,22 @@ Ethereumでは開発当初からこの点を改善すべく色々工夫してい
 ## Proof of Stakeとは
 
 * もともとは[PPCoin](https://peercoin.net/assets/paper/peercoin-paper-jp.pdf)で使用されていた
+基本は
+
+```
+SHA256(prevhash + address + timestamp) <= 2^256 * balance /diff
+```
+
+を満たすときに採掘に成功するというプロトコル
+
+* timestamp ... Unix時間。秒ごとなので1秒に一回採掘できるということになる
+* diff ... 難易度。ブロックタイムが平均12秒になるよう調整される。
+* balance ... 保持しているUTXO
+
+
+問題点はフォークが発生した際にその両方でマイニングすることが容易である点にある。言い換えるとフォークを収束させるメリットがマイナーにない。
+なので何らかの懲罰的アルゴリズムを導入する必要がある。
+>>>>>>> update GHOST and start writing translation annoucement
 
 
 ## GHOST
@@ -61,6 +77,8 @@ EthereumではこのGHOSTに若干の修正を加えている。
 
 [Slasher](https://blog.ethereum.org/2014/01/15/slasher-a-punitive-proof-of-stake-algorithm/)
 
+### Proof of Excelence, bandwidth, storage, identity
+
 
 ### Proof of Importance
 
@@ -68,7 +86,28 @@ EthereumではこのGHOSTに若干の修正を加えている。
 
 Ethereumではなく[NEM](https://blog.nem.io/)では、Proof of Importance(PoI)というコンセンサスアルゴリズムを用いる
 
-PoWはマタイの法則で一箇所にETHが集まってしまい、貯蔵を促進する傾向がある。
+PoSはマタイの法則で一箇所にETHが集まってしまい、貯蔵を促進する傾向がある。
+
 
 * トランザクションの履歴は有向非巡回グラフになるので、GoogleのPageRankに似たアルゴリズムで、ランクを付ける
 * 決済時間は60秒
+
+ノード数削減のため10000XEM以上を所持しているノードについて
+以下の条件を満たすトランザクションを対象とする。
+
+1. 1000XEM以上
+2. 最新43200ブロック(約一ヶ月)に含まれる
+3. 取引の相手も1000XEM以上をもつ
+
+新しいトランザクションを重要視するように重みを付けた後、行(送信元)でノーマライズした行列を作る。コレをアウトリンク行列`$ O $`と呼ぶ
+
+難点としては
+
+1. 複雑すぎる
+2. 原理主義者からみると十分Decentralizedではない
+
+## 参考
+
+[NEM公式リファレンス](https://www.nem.io/NEM_techRef.pdf)
+
+
