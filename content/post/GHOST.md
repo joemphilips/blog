@@ -16,11 +16,12 @@ title: EthereumのProof of Stakeの仕組み
 
 Ethereumでは開発当初からこの点を改善すべく色々工夫している。
 
-はじめはメモリ容量をたくさん使わざるを得ないようなPoWにして、GPUやASICによる採掘を避けようとしてきたが、
+はじめはDaggerと呼ばれるメモリ容量をたくさん使わざるを得ないようなPoWにして、GPUやASICによる採掘を避けようとしてきたが、
 これは実装が面倒なのと、ハッシュパワーほどではないにしろ大量の電力と計算資源を無駄に消費する必要があるため、途中から採掘力が保持されているEtherの量に比例するような仕組みである*Proof of Stake*を使用するようになった。
 
 ## Proof of Stakeとは
 
+* もともとは[PPCoin](https://peercoin.net/assets/paper/peercoin-paper-jp.pdf)で使用されていた
 
 
 ## GHOST
@@ -55,6 +56,11 @@ EthereumではこのGHOSTに若干の修正を加えている。
 
 1. 選ばれたブロックの「おじ」(uncle)のマイナーにも若干のマイニング料を与える。(トランザクション手数料は無し)
 2. おじは、7世代前までのみを考慮する。(効率性のため)
+
+## Slasher
+
+[Slasher](https://blog.ethereum.org/2014/01/15/slasher-a-punitive-proof-of-stake-algorithm/)
+
 
 ### Proof of Importance
 
