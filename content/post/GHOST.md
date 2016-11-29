@@ -37,7 +37,6 @@ SHA256(prevhash + address + timestamp) <= 2^256 * balance /diff
 
 問題点はフォークが発生した際にその両方でマイニングすることが容易である点にある。言い換えるとフォークを収束させるメリットがマイナーにない。
 なので何らかの懲罰的アルゴリズムを導入する必要がある。
->>>>>>> update GHOST and start writing translation annoucement
 
 
 ## GHOST
