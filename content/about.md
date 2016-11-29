@@ -12,8 +12,8 @@ menu = 'main'
 {
 
     "mail": "joemphilips_gmail.com", # replace _ with @
-
     "bitcoin address": "16BQGsTmsKtbMMT2Zwj4qNZnnAncnVCtWo"
+
 }
 ```
 
