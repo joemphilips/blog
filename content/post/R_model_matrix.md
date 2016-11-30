@@ -4,7 +4,7 @@ date: 2016-11-09T13:54:12+09:00
 description: "How R's model.matrix and model.formula .etc works"
 draft: false
 keywords: ["R", "statistics"]
-title: Rのmodel.matrixやformulaの説明
+title: Rのmodel.matrixの説明
 ---
 
 `glmnet`や`randomForest`といったパッケージで教師有り学習（回帰）を行う際に、Rのformulaを直接与えると、
