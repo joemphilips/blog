@@ -12,7 +12,7 @@
 {{ with .Site.Params.bitcoin }}
 <div class="btc">
     BTC address: {{ .address }}
-    <img src={{ .qr }}></img>
+    <img src={{ .qr }} width="160" height="160"></img>
 </div>
 {{ end }}
 
