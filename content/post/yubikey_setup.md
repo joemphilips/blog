@@ -375,7 +375,16 @@ Yubikey NEOには、3種類のmodeがある。PIV
 ```
 sudo apt install -y yubico-piv-tool \ # cli tool
     yubikey-piv-manager # gui tool
+
 ```
+
+
+```
+
+sudo apt-get install -y gnupg2 gnupg-agent pinentry-curses scdaemon pcscd yubikey-personalization libusb-1.0-0-dev
+
+```
+
 
 GUIで立ち上げると初回は以下のような画面が出てくる。
 
@@ -418,15 +427,6 @@ yubico-piv-tool -a change-pin # pinを変更(初期値は123456)
 1. 実際のmanagement keyはPINから自動的に生成したものが用いられるため、不一致を避けるため、**PINの変更は必ず上述のコマンドを用いてyubico-piv-toolで行わなくてはならない。** (`gpg --change-pin`はNG)
 2. PINがブロックされてもManagement keyば有効なので、Brute forceすることができる。 したがって十分長くて**推測不可能なPINを用いる必要がある**。
 
-
-#### PIVをリセット
-
-pinやpukをなくしたり、認証に失敗しすぎてブロックされた時は、
-
-```
-yubico-piv-tool -a reset
-```
-
 でリセットできる。予めわざと認証に失敗して(`yubico-piv-tool -a verify-pin`で)ブロックされておく必要がある。
 
 もちろんリセットの禁止も設定できる。
@@ -464,7 +464,7 @@ gpg> keytocard # 選択した鍵をyubikeyに載せる
 yubico-piv-tool -s 9a -a generate -o public.pem -P <PIN番号> # 9aというスロットに秘密鍵を作成し、対応する公開鍵をpublic.pemに出力
 ```
 
-暗号化アルゴリズムはRSA2048がデフォルトだが、強度を高めたければRSA4096にすることもできる。とはいえ、RSA2048で十分すぎるレベル。[調査](http://security.stackexchange.com/questions/65174/4096-bit-rsa-encryption-keys-vs-2048)[の](https://danielpocock.com/rsa-key-sizes-2048-or-4096-bits)[結果](https://www.yubico.com/2015/02/big-debate-2048-4096-yubicos-stand/)暗号強度は大差ない上に現時点では4096は可用性に難がある場合があることがわかったので、gpgのデフォルトでもある2048bitを用いる。
+暗号化アルゴリズムはRSA2048がデフォルトだが、強度を高めたければRSA4096にすることもできる。とはいえ、RSA2048で十分すぎるレベル。[調査](http://security.stackexchange.com/questions/65174/4096-bit-rsa-encryption-keys-vs-2048)[の](https://danielpocock.com/rsa-key-sizes-2048-or-4096-bits)[結果](https://www.yubico.com/2015/02/big-debate-2048-4096-yubicos-stand/)暗号強度は大差ない上に、Yubikey NEOは2048までしか扱えない(yubikey 4 ならば問題ない)ことがわかったので、gpgのデフォルトでもある2048bitを用いる。
 
 ここで`Failed authentication with the application.`と出る謎の現象が起きて詰まる。Management Key (PIV card内部で使用されるKey。Yubikeyの場合は本来はPINと同一で問題ないはず)をPINとは別に設定し`-k`オプションで渡すと解決した。謎。
 

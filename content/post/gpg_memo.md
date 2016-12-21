@@ -42,6 +42,12 @@ master keyを使用するのは以下の場合
 
 # 鍵登録までの手順
 
+## インストール
+
+```
+sudo apt install gnupg gnupg-agent gpgsm
+```
+
 ## master keyの作成。
 
 オフライン環境で、**一度もネットワークに繋いだことのないOSで実行する。**具体的には好きなLinuxのディストリビューションのboot imageを作成してそこで行う。くれぐれもソースの読めないOSで行わないこと。
