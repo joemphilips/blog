@@ -131,7 +131,16 @@ CasperではPoWのように**チェーン**ごと（つまりブロックヘッ�
 
 BitSharesで用いられている。
 
+### Tendermint PBFT
+
+[オリジナルのPBFT](http://pmg.csail.mit.edu/papers/osdi99.pdf)がSticky leader systemならば、こちらはラウンドロビンっぽいやり方でリーダー（承認者）を決める。
+
+これにより、承認者がダイナミックに変更できる。
+BitTorrent/LibSwiftにインスパイアされたアルゴリズムを用いる。
+
+
 ### Proof of Excelence
+
 
 コンピューティングパワーを投票に使用するという点ではPoWと同じだが、コンピューティング資源を無駄にしないように、「人類にとって有用な問題」を解かせようというアイディア
 
@@ -179,5 +188,5 @@ PageRankは、Webのグラフをマルコフ連鎖とみなして、その確率
  * [Understanding Serenity, Part 2: Casper](https://blog.ethereum.org/2015/12/28/understanding-serenity-part-2-casper/)
 
 * [Ethereum wiki: Problems](https://github.com/ethereum/wiki/wiki/Problems)
-
+* [Practical Byzantine Fault Tolerance](http://pmg.csail.mit.edu/papers/osdi99.pdf)
 
