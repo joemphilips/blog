@@ -112,7 +112,7 @@ EthereumではこのGHOSTに若干の修正を加えている。
 
 など
 
-### CASPER
+## CASPER
 
 「上で説明したGhostとCasperをいい感じに組み合わせたもの」くらいの理解をしている。
 
@@ -135,13 +135,13 @@ EthereumではこのGHOSTに若干の修正を加えている。
 
 [Casperは集中化を招く](http://themerkle.com/casper-may-cause-centralized-staking-by-rich-ethereum-holders/)という指摘があり、The DAO事件とあいまってEthereumコミュニティの閉鎖性に対する批判のやり玉となっている。
 
-### Delegated Proof of Stake (DPOS)
+## Delegated Proof of Stake (DPOS)
 
 BitSharesやLiskで用いられている。
 
 [こちらのまとめ](http://www.jpbitcoinblog.info/entry/20160518/1463549490)が詳しい。
 
-### Tendermint PBFT
+# Tendermint PBFT
 
 [オリジナルのPBFT](http://pmg.csail.mit.edu/papers/osdi99.pdf)がSticky leader systemならば、こちらはラウンドロビンっぽいやり方でリーダー（承認者）を決める。
 これにより承認者がダイナミックに変更できる。
@@ -151,7 +151,7 @@ PBFTのようにファイナリティを持たせつつ、CasperのようにStak
 BitTorrent/LibSwiftにインスパイアされたアルゴリズムを用いている（…らしいが、どこをどうインスパイアされたのかよくわからない。）
 
 
-### Proof of Excelence
+# Proof of Excelence
 
 
 コンピューティングパワーを投票に使用するという点ではPoWと同じだが、コンピューティング資源を無駄にしないように、「人類にとって有用な問題」を解かせようというアイディア
@@ -160,11 +160,11 @@ BitTorrent/LibSwiftにインスパイアされたアルゴリズムを用いて�
 
 アイディアとしては面白いがかなりの変化球であることは間違いない。Difficultyを固定できないとまずいのではという気はする。
 
-### Proof of bandwidth, storage, identity
+# Proof of bandwidth, storage, identity
 
 不明
 
-### Proof of Importance
+# Proof of Importance
 
 Ethereumではなく[NEM](https://blog.nem.io/)では、Proof of Importance(PoI)というコンセンサスアルゴリズムを用いる
 
