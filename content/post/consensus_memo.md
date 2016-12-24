@@ -1,8 +1,8 @@
 ---
 categories: ["hack", "crypto", "memo"]
-date: 2016-11-02T00:04:15+09:00
+date: 2016-12-25T00:25:16+09:00
 description: "personal memo for consensus algorithms"
-draft: true
+draft: false
 keywords: ["ethereum", "blockchain"]
 title: コンセンサスアルゴリズムの比較メモ
 ---
