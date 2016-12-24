@@ -2,7 +2,7 @@
 categories: ["poem", "hack"]
 date: 2016-12-11T22:42:37+09:00
 description: "why blockchain matters for scientists"
-draft: false
+draft: true
 keywords: ["blockchain", "cryptocurrency"]
 title: なぜブロックチェーン技術は科学者にとって重要なのか
 ---
