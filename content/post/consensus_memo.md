@@ -54,6 +54,14 @@ SHA256(prevhash + address + timestamp) <= 2^256 * balance /diff
 
 の違いしかないと言える。
 
+PoWはブロックの作成とハッシュパワーによる賭けが同時に行われていたのに対し、
+PoSではブロックの作成が気軽に行えるので、どんどんブロックを作ってしまって、あとからStake Holderによる賭けで決めてしまえばよいという発想を採用している。
+
+ただ、もちろんこれはネットワーク帯域の消費量が大きいという欠点があるので、
+[Sharding](https://github.com/ethereum/wiki/wiki/Sharding-FAQ)を導入することが重要になってくる。
+これは全ノードが全トランザクションを検証するのではなく、一部のノードだけが検証することでスケーラビリティを担保する方法
+
+
 ## 問題点
 
 1. 二重投票が容易（どころか最適戦略）
@@ -132,10 +140,10 @@ EthereumではこのGHOSTに若干の修正を加えている。
 
 ## CASPER
 
-「上で説明したGhostとCasperをいい感じに組み合わせたもの」くらいの理解をしている。
-
+「上で説明したGhostとSlasherをいい感じに組み合わせたもの」くらいの理解をしている。
 
 [Casperは集中化を招く](http://themerkle.com/casper-may-cause-centralized-staking-by-rich-ethereum-holders/)という指摘があり、The DAO事件とあいまってEthereumコミュニティの閉鎖性に対する批判のやり玉となっている。
+
 
 ## Delegated Proof of Stake (DPOS)
 
