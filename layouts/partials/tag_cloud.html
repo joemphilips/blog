@@ -1,4 +1,0 @@
-<!DOCTYPE html>
-{{ range .Params.tags }}
-    <a href="{{ $baseurl }}tags/{{ . | urlize }}" class="btn btn-default btn-xs" role="button"><small><span class="glyphicon glyphicon-tag" aria-hidden="true"></span> {{ . }}</small></a>
-{{ end }}
