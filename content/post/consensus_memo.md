@@ -27,7 +27,7 @@ Ethereumでは開発当初からこの点を改善すべく色々工夫してい
 
 定式化すると
 
-```
+```python
 SHA256(prevhash + address + timestamp) <= 2^256 * balance /diff
 ```
 
@@ -189,9 +189,13 @@ PageRankは、Webのグラフをマルコフ連鎖とみなして、その確率
 
 ## PoIの利点
 
-1. PoSの「富めるものがますます富む」という問題がかなり弱まっている。
+### 1. PoSの「富めるものがますます富む」という問題がかなり弱まっている。
 
 Ethereumは[インサイダーが信用できない](https://www.cryptocoinsnews.com/source-ethereum-insiders-believe-dao-hack-inside-job/)という大きな問題があり、正直この点がアキレス腱になっていると思うので、これは大きい。
+
+### 2. 監査証跡が可能
+
+Fungibilityがないことと表裏一体、後述
 
 ## PoIの欠点
 
