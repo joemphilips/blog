@@ -203,8 +203,6 @@ Fungibilityがないことと表裏一体、後述
 
 トランザクショングラフを書く必要があるので、原理上Fungibilityを担保することは無理（多分）
 
-Fungibilityが問題となるのは大きく２点
-
 ### 2. Spammingに対する耐性が完全ではない。
 
 上限があるとはいえ、[トランザクションを繰り返すことで多少Importanceを挙げることができる。](http://nemmanual.net/NEM_Technical_reference_JA/PoI/7.6.html)
