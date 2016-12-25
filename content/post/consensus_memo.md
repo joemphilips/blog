@@ -216,7 +216,7 @@ Fungibilityが問題となるのは大きく２点
 
 ### 2. Spammingに対する耐性が完全ではない。
 
-上限があるとはいえ、トランザクションを繰り返すことで多少Importanceを挙げることができる。
+上限があるとはいえ、[トランザクションを繰り返すことで多少Importanceを挙げることができる。](http://nemmanual.net/NEM_Technical_reference_JA/PoI/7.6.html)
 
 この点、改良の余地はあるのか、グラフ理論の専門家の意見が気になる。
 
