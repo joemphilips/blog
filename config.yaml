@@ -24,9 +24,9 @@ params:
     github: "https://github.com/joemphilips"
     facebook: "https://www.facebook.com/profile.php?id=100004310417464"
     bitbucket: "https://bitbucket.org/joemphilips/"
-    bitcoin:
-      address: "16BQGsTmsKtbMMT2Zwj4qNZnnAncnVCtWo"
-      qr: "/images/bitcoinaddress.png"
+    # bitcoin:
+    #    address: "16BQGsTmsKtbMMT2Zwj4qNZnnAncnVCtWo"
+    #   qr: "/images/bitcoinaddress.png"
     NEM:
       address: "NBZ5WW-S53QRZ-DO73Z7-B6CA6I-R2PNS4-PLR24N-NKZJ"
       qr: "/images/NEM_public_address_QR.png"
