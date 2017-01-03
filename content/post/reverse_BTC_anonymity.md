@@ -4,7 +4,7 @@ date: 2016-12-13T04:03:45+09:00
 description: "why KYC is not the problem for blockchain"
 draft: true
 keywords: ["blockchain", "cryptocurrency"]
-title: ブロックチェーン上での電子投票が必然である理由
+title: ビットコインを匿名性に関して反転させる
 ---
 
 
