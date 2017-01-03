@@ -160,9 +160,7 @@ QRコードをスキャンするか、アドレスを送って別のウォレッ
 
 <img src="/images/LedgerNano_review/Ledger_Wallet_send2.png">
 
-完了すると以下のように画面にその旨が出る。
-
-<img src="/images/LedgerNano_review/Ledger_Wallet_send3.png">
+完了すると受信時と同様に画面にその旨が出る。
 
 ### その他のapp
 
