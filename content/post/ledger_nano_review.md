@@ -144,13 +144,15 @@ appの左上の「受信」タブをクリックすると以下のような画�
 
 QRコードをスキャンするか、アドレスを送って別のウォレットから送信
 
+以下のように結果が画面に表示される。
+
 <img src="/images/LedgerNano_review/Ledger_Wallet_Receive2.png">
 
 ### 支払ってみる
 
 受け取りと同様に「送信」タブをクリックすると以下の画面に。
 
-<img src="/images/LedgerNano_review/Ledger_Wallet_Receive2.png">
+<img src="/images/LedgerNano_review/Ledger_Wallet_send.png">
 
 アドレス（カメラが付いているデバイス上ならQRコードも使える）と代金を入力し、手数料を3段階のうちから一つ選び、送信する。
 
@@ -160,7 +162,7 @@ QRコードをスキャンするか、アドレスを送って別のウォレッ
 
 完了すると以下のように画面にその旨が出る。
 
-<img src="/images/LedgerNano_review/Ledger_Wallet_send2.png">
+<img src="/images/LedgerNano_review/Ledger_Wallet_send3.png">
 
 ### その他のapp
 
