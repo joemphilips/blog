@@ -7,6 +7,9 @@ keywords: ["bitcoin", "cryptocurrency"]
 title: Proof of Activityについて
 ---
 
+[コンセンサスアルゴリズムの比較メモ](http://joemphilips.com/post/consensus_memo/)の続きです。
+
+
 # [Proof of Activity](https://eprint.iacr.org/2014/452.pdf)
 
 マイニング報酬がなくなり、マイナーのインセンティブが手数料にだけになった後に用いるコンセンサスアルゴリズムの提案
