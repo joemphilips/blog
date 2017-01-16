@@ -12,6 +12,8 @@ title: Proof of Activityについて
 
 # [Proof of Activity](https://eprint.iacr.org/2014/452.pdf)
 
+元論文 ... https://eprint.iacr.org/2014/452.pdf
+
 マイニング報酬がなくなり、マイナーのインセンティブが手数料にだけになった後に用いるコンセンサスアルゴリズムの提案
 
 * PoW ... コインの新規発行にコスト(ハッシュパワー = 電力 = 外部の資本)を支払わなければならないので、開始時の公平性を担保できる。
