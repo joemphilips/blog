@@ -1,7 +1,7 @@
 ---
 categories: ["cryptocurrency", "memo"]
 date: 2017-01-16T15:07:44+09:00
-description: "about CoA"
+description: "about PoA"
 draft: false
 keywords: ["bitcoin", "cryptocurrency"]
 title: Proof of Activityについて
