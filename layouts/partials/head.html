@@ -7,6 +7,13 @@
   <!-- Enable responsiveness on mobile devices-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 
+  <!-- meta tags for putting facebook share button -->
+  <meta property="og:url"           content="{{ .Permalink }}" />
+  <meta property="og:type"          content="website" />
+  <meta property="og:title"         content="{{ .Title }}" />
+  <meta property="og:description"   content="{{ .Description }}" />
+  <meta property="og:image"         content="https://www.gravatar.com/avatar/{{ .Site.Params.gravatarHash }}?s=200" />
+
   <title>{{ .Title }} &middot; {{ .Site.Author.name }}</title>
 
   <!-- CSS -->
@@ -55,6 +62,15 @@ MathJax.Hub.Config({
 });
 </script>
 
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v2.8";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
 
   <!-- Icons -->
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ "/touch-icon-144-precomposed.png" | absURL }}">
