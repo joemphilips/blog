@@ -100,4 +100,12 @@ img {
   line-height: 1.2;
 }
 
+.tagcloud-box {
+    float: left;
+    clear: right;
+}
+
+.tagcloud-container {
+    overflow: hidden;
+}
 .

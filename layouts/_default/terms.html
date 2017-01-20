@@ -1,27 +1,60 @@
 <!DOCTYPE html>
-{{ with .Site.LanguageCode }}<html lang="{{ . }}">{{ else }}<html>{{ end }}
-<head>
-<meta charset="utf-8">
-<title>{{ .Title }} Cloud -- {{ .Site.Title }}</title>
-<style>
-ul.cloud {
-    list-style: none;
-    padding: 0
-}
-ul.cloud > li {
-    display: inline-block;
-    margin: 0 0.5rem;
-}
-</style>
-</head>
-<body>
-<h1>{{ .Title }} Cloud</h1>
 
-<ul class="cloud">{{ $plural := .Data.Plural }}
-{{ range $key, $value := .Data.Terms }}
-    <li><a href="/{{ $plural }}/{{ $key | urlize }}">{{ $key }}</a> ({{ len $value }})</li>
-{{ end }}
-</ul>
+{{ partial "head.html" . }}
+<div class="content container">
+    <div class="post">
+        <div class="tagcloud-container">
+            <h1>Tag Cloud</h1>
+            <div class="tagcloud-box">
+                <h2>Tags</h2>
+                <ul class="cloud">{{ $plural := .Site.Taxonomies.tags.ByCount }}
+                    {{ range $key, $value := .Data.Terms }}
+                    <li><a href="/{{ $plural }}/{{ $key | urlize }}">{{ $key }}</a> ({{ len $value }})</li>
+                    {{ end }}
+                </ul>
+           </div>
+            <div class="tagcloud-box">
+                <h2>Sections</h2>
+                <ul class="cloud">{{ $plural := .Data.Plural }}
+                    {{ range $key, $value := .Data.Terms }}
+                    <li><a href="/{{ $plural }}/{{ $key | urlize }}">{{ $key }}</a> ({{ len $value }})</li>
+                    {{ end }}
+                </ul>
+           </div>
+        </div>
+    </div>
+    <a href="https://twitter.com/share" class="twitter-share-button">Tweet This Page</a> <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
-</body>
+    <!-- share button for facebook -->
+    <div class="fb-share-button"
+         data-href="{{ .Permalink }}"
+         data-layout="button_count">
+    </div>
+
+
+    <div id="disqus_thread"></div>
+    <script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+ * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+ */
+    /*
+       var disqus_config = function () {
+       this.page.url = PAGE_URL; // Replace PAGE_URL with your page's canonical URL variable
+       this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+       };
+     */
+    (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//joemphilips.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+</div>
+{{ partial "foot.html" . }}
 <html>
