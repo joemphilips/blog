@@ -3,7 +3,7 @@ categories: []
 date: 2017-01-16T15:01:57+09:00
 description: ""
 draft: true
-keywords: []
+tags: []
 title: chain_of_activity
 ---
 

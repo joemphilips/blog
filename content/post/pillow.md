@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-05-09T20:35:31+09:00
 description: "pythonの画像ライブラリpillow(PIL)のメモ"
 draft: true
-keywords: ["python"]
+tags: ["python"]
 title: pillow
 ---
 

@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-02-09T10:27:46+09:00
 description: "Memo for Rustlang"
 d raft: false
-keywords: ["rust"]
+tags: ["rust"]
 title: rustメモ
 ---
 

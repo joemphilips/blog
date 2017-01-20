@@ -3,7 +3,7 @@ categories: ["hack", "crypto"]
 date: 2016-10-17T21:31:56+09:00
 description: "translation for 「Secret sharing DAO」 in ethereum blog"
 draft: false
-keywords: ["blockchain", "ethereum"]
+tags: ["blockchain", "ethereum"]
 title: 秘密分散DAO、 もう一つの暗号2.0
 ---
 

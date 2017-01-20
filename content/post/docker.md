@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-06-13T15:24:42+09:00
 description: ""
 draft: true
-keywords: []
+tags: []
 title: ebsでdocker imageを管理する
 ---
 

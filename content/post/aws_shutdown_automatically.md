@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-01-01T19:57:08+09:00
 draft: true
 description: "how to use AWS lambda and Data PipeLine to auto shutdown if EC2 not running"
-keywords: ["Shell", "AWS", "Linux"]
+tags: ["Shell", "AWS", "Linux"]
 title: "EC2が計算を行っていないときに自動的にシャットダウンする"
 ---
 

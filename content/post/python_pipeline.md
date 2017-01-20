@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2016-01-01T19:17:22+09:00
 description: "luigi, multiprocessingなど"
-keywords: ["python"]
+tags: ["python"]
 draft: true
 title: "pythonでのパイプライン処理における考察"
 ---

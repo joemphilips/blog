@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-10-24T23:21:13+09:00
 description: "explanation of Proof of Custody"
 draft: false
-keywords: ["blockchain"]
+tags: ["blockchain"]
 title: ゼロ知識証明によるProof of Custodyの仕組み
 ---
 

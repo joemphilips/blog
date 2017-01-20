@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-11-09T13:54:12+09:00
 description: "How R's model.matrix and model.formula .etc works"
 draft: false
-keywords: ["R", "statistics"]
+tags: ["R", "statistics"]
 title: Rのmodel.matrixの説明
 ---
 

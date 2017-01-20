@@ -3,7 +3,7 @@ categories: ["hack", "security"]
 date: 2016-09-20T00:49:37+09:00
 description: "how to use gpg"
 draft: false
-keywords: []
+tags: []
 title: "GPGで自分用の秘密鍵を1つに統一する"
 ---
 

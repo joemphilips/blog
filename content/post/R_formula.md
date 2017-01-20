@@ -3,7 +3,7 @@ categories: ["memo", "hack"]
 date: 2016-10-25T17:07:58+09:00
 description: "how formula in R works"
 draft: true
-keywords: ["R", "statistics"]
+tags: ["R", "statistics"]
 title: "Rのformulaの仕様に関するメモ"
 ---
 

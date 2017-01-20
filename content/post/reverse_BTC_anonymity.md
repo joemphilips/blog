@@ -3,7 +3,7 @@ categories: []
 date: 2016-12-13T04:03:45+09:00
 description: "why KYC is not the problem for blockchain"
 draft: true
-keywords: ["blockchain", "cryptocurrency"]
+tags: ["blockchain", "cryptocurrency"]
 title: ビットコインを匿名性に関して反転させる
 ---
 

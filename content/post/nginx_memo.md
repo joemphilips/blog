@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-02-23T17:10:05+09:00
 description: "memo for nginx"
 draft: true
-keywords: []
+tags: []
 title: nginx_memo
 ---
 

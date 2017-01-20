@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-09-29T23:06:12+09:00
 description: "category of Multi Factor authentication method"
 draft: true
-keywords: ["device", "security"]
+tags: ["device", "security"]
 title: "2段階認証の方法まとめ"
 ---
 

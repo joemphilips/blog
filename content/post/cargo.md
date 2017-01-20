@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-02-09T10:27:46+09:00
 description: "Memo for Rustlang-Cargo"
 draft: false
-keywords: ["rust", "memo"]
+tags: ["rust", "memo"]
 title: "Rustのパッケージマネージャcargoに関するメモ"
 ---
 
@@ -21,7 +21,7 @@ name = ""
 version = "0.0.1" # semantic versioningに従うこと
 authors = ["名前 <hogehoge@gmail.com>"]
 license = "MIT/Apache-2.0"
-keywords = [""]
+tags = [""]
 repository = "https://github.com/ "
 homepage = "https://github.com/ "
 documentation = "http:// "

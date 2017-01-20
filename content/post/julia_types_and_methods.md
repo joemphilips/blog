@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-07-10T00:34:46+09:00
 description: "Juliaの型システムについて"
 draft: false
-keywords: ["julia"]
+tags: ["julia"]
 title: juliaの型とメソッドの言語仕様に関するメモ
 ---
 

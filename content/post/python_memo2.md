@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2016-01-01T19:17:22+09:00
 description: "Pandas,numpy,scipyなど"
-keywords: ["python"]
+tags: ["python"]
 title: "pythonメモ2　データ分析編"
 ---
 

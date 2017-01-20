@@ -7,17 +7,17 @@
             <h1>Tag Cloud</h1>
             <div class="tagcloud-box">
                 <h2>Tags</h2>
-                <ul class="cloud">{{ $plural := .Site.Taxonomies.tags.ByCount }}
-                    {{ range $key, $value := .Data.Terms }}
-                    <li><a href="/{{ $plural }}/{{ $key | urlize }}">{{ $key }}</a> ({{ len $value }})</li>
+                <ul class="cloud">
+                    {{ range $key, $value := .Site.Taxonomies.tags.ByCount }}
+                    <li><a href="/tags/{{ $value.Name | urlize }}">{{ $value.Name }}</a> ({{ $value.Count }})</li>
                     {{ end }}
                 </ul>
            </div>
             <div class="tagcloud-box">
                 <h2>Sections</h2>
-                <ul class="cloud">{{ $plural := .Data.Plural }}
-                    {{ range $key, $value := .Data.Terms }}
-                    <li><a href="/{{ $plural }}/{{ $key | urlize }}">{{ $key }}</a> ({{ len $value }})</li>
+                <ul class="cloud">
+                    {{ range $key, $value := .Site.Taxonomies.categories.ByCount }}
+                    <li><a href="/categories/{{ $value.Name | urlize }}">{{ $value.Name }}</a> ({{ $value.Count }})</li>
                     {{ end }}
                 </ul>
            </div>

@@ -3,7 +3,7 @@ categories: ["hack", "crypto", "memo"]
 date: 2016-12-26T02:30:21+09:00
 description: "personal memo for consensus algorithms"
 draft: false
-keywords: ["ethereum", "blockchain"]
+tags: ["ethereum", "blockchain"]
 title: コンセンサスアルゴリズムの比較メモ
 ---
 

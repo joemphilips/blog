@@ -3,7 +3,7 @@ categories: ["memo"]
 date: 2016-07-19T13:27:41+09:00
 description: ""
 draft: true
-keywords: ["aws"]
+tags: ["aws"]
 title: aws-cliの仕様について
 ---
 

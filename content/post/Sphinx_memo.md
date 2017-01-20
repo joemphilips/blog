@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-05-30T19:25:26+09:00
 description: "Memo for reSTructuredText and Sphinx"
 draft: false
-keywords: ["ReST", "python", "julia"]
+tags: ["ReST", "python", "julia"]
 title: "reSt, Sphinxメモ"
 ---
 

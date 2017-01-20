@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-01-15T21:37:27+09:00
 description: "personal memo for vim and vimrc"
 draft: true
-keywords: ["vim"]
+tags: ["vim"]
 title: "vim_memo"
 ---
 

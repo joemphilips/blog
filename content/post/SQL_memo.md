@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2016-01-01T19:14:42+09:00
 description: "personal memo for SQL and RDBMS"
-keywords: ["SQL", "RDBMS"]
+tags: ["SQL", "RDBMS"]
 title: "SQLメモ"
 ---
 

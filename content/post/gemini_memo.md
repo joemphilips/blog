@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2016-01-01T19:29:28+09:00
 description: "GEMINIはvcfにアノテーションをつけるためのsqliteのラッパー"
-keywords: ["Bioinformatics", "RDBMS"]
+tags: ["Bioinformatics", "RDBMS"]
 title: "GEMINIメモ"
 ---
 

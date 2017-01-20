@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2016-01-01T19:08:13+09:00
 description: "Memo for Makefile"
-keywords: ["Make"]
+tags: ["Make"]
 title: "Makeメモ"
 ---
 

@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2016-01-01T19:20:02+09:00
 description: "personal memo for JS,CSS,html"
-keywords: ["javascript"]
+tags: ["javascript"]
 title: "javascriptメモ"
 ---
 
@@ -143,7 +143,7 @@ jadeの中ではjavascriptオブジェクトを定義して、それをテンプ
 var package = {
   title: '最高にクールなホームページ',
   description: '最高にクールなホームページです。見ないと損です。',
-  keywords: [
+  tags: [
     '最高',
     'クール',
     '世界一',
@@ -166,8 +166,8 @@ html
     meta(charset='UTF-8')
     title= package.title
     meta(name='description', content=package.description)
-    meta(name='keywords', keywords=package.keywords)
-    meta(name='robots', keywords=package.robots)
+    meta(name='tags', tags=package.tags)
+    meta(name='robots', tags=package.robots)
   body
     h1= package.title
     p #{package.title} にようこそ。

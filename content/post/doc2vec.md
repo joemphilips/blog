@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2016-01-01T19:17:22+09:00
 description: "doc2vec実行時の備忘録など"
-keywords: ["python"]
+tags: ["python"]
 draft: true
 title: "Doc2Vec and gensim"
 ---

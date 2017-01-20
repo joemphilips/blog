@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-03-20T18:30:44+09:00
 description: "personal memo for golang"
 draft: false
-keywords: ["golang"]
+tags: ["golang"]
 title: "golangメモ"
 ---
 

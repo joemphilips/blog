@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-01-01T19:57:08+09:00
 draft: false
 description: "personal memo for mount options in linux"
-keywords: ["Shell", "Bash", "Linux"]
+tags: ["Shell", "Bash", "Linux"]
 title: "linuxでのマウント関係の仕様、特にfstabとautomountに関するメモ"
 ---
 

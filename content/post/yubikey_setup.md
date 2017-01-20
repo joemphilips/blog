@@ -3,7 +3,7 @@ categories: ["hack", "secutiry", "device"]
 date: 2016-09-20T00:46:15+09:00
 description: "use yubikey to manage secutiry problems"
 draft: false
-keywords: ["yubikey"]
+tags: ["yubikey"]
 title: yubikeyでセキュリティ筋力を鍛える
 ---
 

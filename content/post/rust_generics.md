@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-06-25T01:01:41+09:00
 description: "Rustのジェネリクスの規則についてメモ"
 draft: true
-keywords: []
+tags: []
 title: rust_generics
 ---
 

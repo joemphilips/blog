@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-10-20T00:11:35+09:00
 description: ""
 draft: true
-keywords: ["blockchain", "enigma", "cryptography"]
+tags: ["blockchain", "enigma", "cryptography"]
 title: enigmaの解説
 ---
 
