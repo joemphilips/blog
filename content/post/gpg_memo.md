@@ -1,9 +1,9 @@
 ---
-categories: ["hack", "security"]
+categories: ["hack", "crypto"]
 date: 2016-09-20T00:49:37+09:00
 description: "how to use gpg"
 draft: false
-tags: []
+tags: ["device"]
 title: "GPGで自分用の秘密鍵を1つに統一する"
 ---
 

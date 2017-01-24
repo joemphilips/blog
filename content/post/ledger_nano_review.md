@@ -1,9 +1,9 @@
 ---
-categories: ["hack", "crypto", "device"]
+categories: ["hack", "crypto"]
 date: 2017-01-03T19:50:34+09:00
 description: "review for Ledger products"
 draft: false
-tags: ["cryptocurrency"]
+tags: ["cryptocurrency", "device"]
 title: Ledger nanoの導入とLedger製品のレビュー
 ---
 

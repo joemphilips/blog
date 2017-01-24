@@ -1,5 +1,5 @@
 ---
-categories: ["cryptocurrency", "memo"]
+categories: ["crypto", "memo"]
 date: 2017-01-16T15:07:44+09:00
 description: "about PoA"
 draft: false
