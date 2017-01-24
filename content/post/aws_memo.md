@@ -1,7 +1,7 @@
 ---
-categories: ["memo"]
+categories: ["memo", "hack"]
 date: 2016-07-19T13:27:41+09:00
-description: ""
+description: "memo about aws-cli"
 draft: true
 tags: ["aws"]
 title: aws-cliの仕様について

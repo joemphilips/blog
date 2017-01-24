@@ -3,7 +3,7 @@ categories: ["hack"]
 date: 2016-09-29T23:06:12+09:00
 description: "category of Multi Factor authentication method"
 draft: true
-tags: ["device", "security"]
+keywords: ["device", "security"]
 title: "2段階認証の方法まとめ"
 ---
 
@@ -80,7 +80,7 @@ M-Pinとは[英MIRACL社](f3c63d8e7073b1fa0830e6b30194128930a6b170)が開発し�
 
 #### バリエーション
 
-以下のバリエーションが有り、いずれにおいてもMIMAと[KCI(Key Compromise Impoersonation)](http://d.hatena.ne.jp/jovi0608/20150821/1440117459)への耐性がある。
+以下のバリエーションが有り、いずれにおいてもMIMAと[KCI(Key Compromise Impersonation)](http://d.hatena.ne.jp/jovi0608/20150821/1440117459)への耐性がある。
 
 1. M-Pin-1 ... IoTデバイス用の電子署名による認証方式
 2. M-Pin-2 ... ブラウザ用の認証方式

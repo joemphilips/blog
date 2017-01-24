@@ -1,10 +1,10 @@
 ---
 categories: ["hack", "memo"]
-date: 2016-01-01T19:17:22+09:00
-description: "doc2vec実行時の備忘録など"
+date: 2017-01-24T15:17:27+09:00
+description: "memo about Doc2Vec and gensim"
 tags: ["python"]
-draft: true
-title: "Doc2Vec and gensim"
+draft: false
+title: "doc2vec実行時の備忘録"
 ---
 
 # `gensim`
