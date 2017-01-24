@@ -3,7 +3,7 @@ categories: ["hack", "memo"]
 date: 2016-01-01T19:34:42+09:00
 description: "personal memo for RDF and SPQRQL"
 tags: ["Bioinformatics", "RDF", "Semantic Web", "SPARQL"]
-title: "RDF_SPARQLメモ"
+title: "RDF, SPARQLメモ"
 ---
 
 

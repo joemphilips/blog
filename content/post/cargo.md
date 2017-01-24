@@ -4,7 +4,7 @@ date: 2016-02-09T10:27:46+09:00
 description: "Memo for Rustlang-Cargo"
 draft: false
 tags: ["rust", "memo"]
-title: "Rustのパッケージマネージャcargoに関するメモ"
+title: "Rustのパッケージマネージメントについて"
 ---
 
 # cargo.tomlの書き方
