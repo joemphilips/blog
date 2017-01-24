@@ -1,6 +1,6 @@
 ---
 categories: ["hack", "memo"]
-date: 2017-01-24T15:17:27+09:00
+date: 2016-08-24T15:17:27+09:00
 description: "memo about Doc2Vec and gensim"
 tags: ["python"]
 draft: false
