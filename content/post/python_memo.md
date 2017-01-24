@@ -2,8 +2,8 @@
 Categories = ["hack", "memo"]
 Description = "Memo for python"
 Tags = ["python"]
-date = "2017-01-24T15:14:58+09:00"
-title = "pythonでhuffman codingを実装する"
+date = "2016-01-24T15:14:58+09:00"
+title = "pythonメモ"
 draft = false
 
 +++
