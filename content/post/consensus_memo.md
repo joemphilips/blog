@@ -208,6 +208,11 @@ Fungibilityがないことと表裏一体、後述
 
 この点、改良の余地はあるのか、グラフ理論の専門家の意見が気になる。
 
+## (追記): 他のコンセンサスアルゴリズム
+
+[Proof of Activity](http://joemphilips.com/post/PoA/)
+[Proof of Human-work](http://joemphilips.com/post/Proof_of_Humanwork/)
+
 ## 参考
 
 * [NEM公式リファレンス](https://www.nem.io/NEM_techRef.pdf)
