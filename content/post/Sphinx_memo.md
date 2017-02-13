@@ -387,4 +387,18 @@ docstringがReSTで書かれていればそのまま取り込めるが、Google 
 * `.. automodule:: MyModule`
     - 再帰的に取り込みたい場合は`:members:`オプションを追加する
     - `:undoc-members:`でdocstringのないメンバーも追加できる。
-    - `:special-members:`で`__add__`のような特殊なメンバーもついか
+    - `:special-members:`で`__add__`のような特殊なメンバーも追加
+
+## sphinx-apidoc
+
+実際にプロジェクトのAPIドキュメントを作成する際は、`sphinx-apidoc -F -o docs/ ${ソースコードのディレクトリ}` でよい。
+
+* `-F` ... makeファイルなどを同時に作成する。
+* `-o` ... `.rst`ファイルをアウトプットするディレクトリを指定。
+* `-f` ... すでにファイルが出力先に存在する場合に上書きする。
+
+実際に作成する際のベストプラクティスは
+
+1. `sphinx-apidoc -F -o docs/ apps/` で`docs`以下を初期化
+2. `docs/conf.py`の`extensions`に`sphinx.ext.napoleon`を追加してGoogle StyleとNumpy Styleのドキュメントを追加
+3. `sphinx-apidoc -f -o docs/ apps/`で上書き

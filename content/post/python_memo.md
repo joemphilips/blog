@@ -1,4 +1,4 @@
-+++
+++
 Categories = ["hack", "memo"]
 Description = "Memo for python"
 Tags = ["python"]
@@ -885,7 +885,8 @@ if __name__ == "__main__"
 
 ---
 
-pythonではスコープを作るのはclass,function,moduleのみでありif,try, except,with等には関係ないよって以下は正常に動作する
+pythonではスコープを作るのはclass,function,moduleのみでありif,try, except,with等には関係ない。
+よって以下は正常に動作する
 
 ```python
 if True:
@@ -1834,6 +1835,7 @@ eggではなくこれを使うのが今風らしい
 
 
 ### packageの中身
+
 httplib2というパッケージの場合、以下のようなディレクトリ構成になる
 ```
 httplib2/
@@ -1876,6 +1878,7 @@ setup(name='Distutils',
 `lib/foo/__init__.py`が存在することを確約したことになる
 
 #### `setup()`内で指定可能な要素
+
 - `install_requires` ... dependency packageの文字列リスト
 - `dependency_links` ... `install_requires`がPyPIにない時、こちらでgithubのリポジトリURLの文字列(のリスト)を指定する
 - `tests_require`=['mock', 'nose']
@@ -1887,7 +1890,9 @@ setup(name='Distutils',
 import funniest.commandline
 funniest.command_line.main()
 ```
+
 が実行可能なら、以下のように書いておけば`funniest-joke`というコマンドラインツールができる
+
 ```python
 setup(
     ...
@@ -1898,7 +1903,9 @@ setup(
 )
 ```
 
+
 #### Manifest.inについて
+
 これを書かないと、配布物のうち`*.py`ファイル以外は配布対象にならない
 
 ```python
@@ -1906,22 +1913,28 @@ include hoge    #rootディレクトリのhogeという名前のファイルを�
 recursive-include huga *.html *.css #rootディレクトリ以外でも、その名前のファイルがあれば含める。
 ```
 
-#### \_\_init\_\_.pyについて
+#### `__init__.py`について
+
 空ファイルで構わない。おいておくと、そのファイルの存在するディレクトリ名がパッケージ名になり
 `from <__init__.pyのあるパッケージ名>.<script名> import <関数名>`の形でinportできるようになる
 
 ##### 複数ディレクトリを1つのパッケージとしてまとめる
+
 場合によっては以下のように書く場合もある
+
 ```python
 from pkgutil import extend_path
 __path__ = extend_path(__path__, __name__)
 ```
+
 こうすると、複数の異なるディレクトリにまたがったパッケージを一つのディレクトリにある普通のパッケージとして扱えるらしい。
 
 ##### exportする関数を限定
+
 `__all__ = []`を定義しておくと、`from <pkg> import *`した時に、all内の要素のみをimportする
 
 ##### 初期実行
+
 `__init__.py`内のコードはそのディレクトリ内のものをインポートした際に一度だけ実行される
 
 
@@ -2245,13 +2258,17 @@ p.sort_stats("time").print_stats(10)
 - 低レベルAPI `pyev`
 
 #### 並列処理
+
 `multiprocessing`でプロセスベースの並列処理
+
 オーバーヘッドが大きいので、十数秒以上かかる処理の時のみ用いること
+
 `Process`クラスのインスタンスを作る方法と`Pool`クラスのインスタンスを作る方法の2種類がある。後者の方が手軽
 
 `multiprocessing.cpu_count()` ... cpuの数を取得
 
 ##### Processクラス
+
 インスタンスを複数作成したのち、`start()`すると別プロセスとして起動する。最後に`join`する
 ```python
 import multiprocessing as mp
@@ -2265,7 +2282,9 @@ p.join()
 
 ##### poolクラス
 ###### pool.map
+
 mapを手軽に並列化
+
 ```python
 from multiprocessing import Pool
 import math
@@ -2277,6 +2296,7 @@ pool.join()
 ```
 
 ###### pool.apply_async
+
 forを手軽に並列化
 
 ```python
@@ -2815,259 +2835,9 @@ gitrepo = core.GitRepo('/home/miyamoto/mygitproject')
 
 ```
 
-## reSTructuredText
-`pip install docutils`すると
-`rst2html`でhtmlにできる。
-`rst2s5`でhtmlスライドにできる
+## reSTructuredTextおよびSphinx
 
-### markdownと違う点
-
-#### 見出し
-
-##### h1見出し
-
-```
-========
-title 1
-========
-
-```
-ここで、title1が上下の線より長いと怒られる。
-
-##### h2
-下だけ`=`
-```
-title 2
-========
-```
-
-##### h3
-ハイフンで囲む
-
-```
--------
-title 3
--------
-```
-
-##### h4
-下だけハイフン
-
-```
-title 4
--------
-```
-
-h5やh6はない
-#### ラインブロック
-`|`で囲む
-
-
-\|ここの部分の
-\|文章はそのまま
-\|生の文字列になる
-
-#### replace
-
-.. |hoge| replace:: ほげ
-と書いておくとほかの|hoge|がほげに変換される。いっぱいあるときは、別ファイルに書いておいて
-
-.. include:: definition.txt
-とする
-
-#### リンク
-#### 外部リンク
-markdownと違い、外部参照のリンクはドキュメントの末尾にまとめて書かれる。
-
-ここでのポイントは、..と\_
->`Plone CMS`_ を試してみてください。これはすばらしいですよ！ Zope_ 上に作られています。
-
->.. _`Plone CMS`: http://plone.org
->.. _Zope: http://zope.org
-
-#### 内部リンク
-
-```
-.. _ex-hoge:
-
----------------
-ほげほげ
----------------
-
-このように、章や節の上に記述して定義する。
-
---------
-他の場所
---------
-
-ほげほげに関しては :ref:`ほげほげ<ex-hoge>` として任意のテキストで参照します。
-
-```
-
-#### ソースコードの記述
-インラインリテラルは\`\`を2つずつつける必要がある。
-`print("hoge")` -> reST中では\`\`print("hoge")\`\`
-
-インラインでない通常のリテラルは::の後に、インデントを入れることで記述可能
-
->next paragraph is source code::
->               #ここの空白は必須
->    1 + 1
-
-#### テーブル
-
-```
-=====  =====  =======
-A      B      A and B
-=====  =====  =======
-False  False  False
-True   False  False
-False  True   False
-True   True   True
-=====  =====  =======
-
-```
-
-ただし、これは書くのが難しいのでcsvやListを使用する
-
-```
-.. csv-table:: Frozen Delights!
-   :header: "Treat", "Quantity", "Description"
-   :widths: 15, 10, 30
-
-   "Albatross", 2.99, "On a stick!"
-   "Crunchy Frog", 1.49, "If we took the bones out, it wouldn't be
-   crunchy, now would it?"
-   "Gannet Ripple", 1.99, "On a stick!"
-
-
-.. list-table:: Frozen Delights!
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Treat
-     - Quantity
-     - Description
-   * - Crunchy Frog
-     - 1.49
-     - If we took the bones out, it wouldn't be
-       crunchy, now would it?
-
-```
-
-### ディレクティブ
-Sphinx拡張のものと、rst標準のものがある
-
-#### 目次
-
-.. contents::
-
-#### toctree
-章や節に番号を振りたいときは
-.. toctree::
-   :maxdepth: 2
-   :numbered:
-
-   overview
-   design
-   implementation
-
-#### 画像
-.. image:: gnu.png
-で画像を表示できる。`gnu.png`のところは、rstファイルからの相対パスや絶対パスも指定できる。
-html出力すると、`_static`のようなディレクトリにコピーされる。
-
-#### 引用
-Sphinx拡張の機能
-
-This Idea is originally from [Ref]_
-
-.. [Ref] Book or article reference or url
-
-
-#### TODO
-```
-.. todo:: ブロック図を描く
-
-.. todolist::   #文書中の全てのTODOリストを集めて表示
-```
-
-## Sphinx
-SphinxはreSTから以下の形式のドキュメントを出力するプログラム
-
-- html
-- man
-- ePub
-- laTeX
-- PDF ... 拡張機能
-- docx ... 拡張機能
-
-### インストール
-`sudo apt-get install python-sphinx`
-
-### 始める
-`sphinx-quickstart`,以下のディレクトリとファイルを作成する
-
-- Makefile
-- _build
-- _static ... CSSとか？
-- _templates　… htmlテンプレートの置場
-- conf.py ... 設定ファイル。拡張モジュールのpathや言語の設定などをかける。
-- index.rst　...　ソースファイル
-- make.bat
-途中で言語を聞かれるがjaを選択する
-
-`make latex`,`make latexpdf`、`make html`等でrenderする.詳細は`make help`で
-
-### テーマの変更
-Sphinx組み込みのテーマなら簡単。
-```
-html_theme = "classic"
-html_theme_options = {
-    "rightsidebar": "true",
-    "relbarbgcolor": "black"
-}
-```
-詳しく[こちら][http://docs.sphinx-users.jp/theming.html#using-a-theme]
-
-### Sphinx拡張
-下で書いているもの以外にもdocstringをドキュメント中に組み込んだり、Graphviz、継承関係図、カバレッジなどを取り込むことができる
-#### sphinx.ext.todo
-rstファイルの中で
-`.. todo::`という記法でtodoを作成できる
-`.. todolist::`ディレクティブを使用すると、ドキュメント内のすべてのTODOをリストにして表示する
-
-#### sphinx.ext.jsmath、Sphinx.ext.pngmath
-それぞれjsMath(Java
-script)、dvipngを利用して数式を表示する
-*現在はjsmathではなく、mathjax*を使う
-
-#### mathjax
-
-`.. math::`ディレクティブを使用できるようになる。その中ではlatex記法で書く。例
-
-```rst
-.. math:: e^{i\pi} + 1 = 0
-    :label: euler
-
-.. math::
-    :label: quite
-
-    (a + b)^2 &= (a + b)(a + b) \\
-              &= a^2 + 2ab + b^2
-```
-
-:label:を付けると、数式にラベルと数式番号を付けることができ、:eq:を用いて参照することができる。例 :eq:\`euler\`
-
-#### plnatuml
-uml図が作れる
-
-
-#### S6
-スライドショーが作れる
-
-#### sphinx.ext.inheritance_diagram
-継承関係図を表示
+[こちらに書いた](http://joemphilips.com/post/Sphinx_memo.md)
 
 ## Web Application Flamework
 

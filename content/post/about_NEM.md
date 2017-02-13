@@ -14,12 +14,13 @@ title: NEMの問題点と解決案について
 # PoIの問題点
 
 
-
 これには簡単な解決策がある。一人一つしかアカウントを作れないようにしてしまえばよい。
 「簡単な」というのはもちろん嘘だが、方法がないわけではない。
 
 
-これには2重の効用がある。[匿名性](http://e-collection.library.ethz.ch/eserv/eth:48205/eth-48205-01.pdf)
+これには2重の効用がある。
+
+[匿名性](http://e-collection.library.ethz.ch/eserv/eth:48205/eth-48205-01.pdf)
 
 1. インサイダーが可視化される。
 
