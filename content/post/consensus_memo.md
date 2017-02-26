@@ -188,9 +188,18 @@ PageRankは、Webのグラフをマルコフ連鎖とみなして、その確率
 
 ## PoIの利点
 
-### 1. PoSの「富めるものがますます富む」という問題がかなり弱まっている。
+### ~~1. PoSの「富めるものがますます富む」という問題がかなり弱まっている。~~
 
-Ethereumは[インサイダーが信用できない](https://www.cryptocoinsnews.com/source-ethereum-insiders-believe-dao-hack-inside-job/)という大きな問題があり、正直この点がアキレス腱になっていると思うので、これは大きい。
+~~Ethereumは[インサイダーが信用できない](https://www.cryptocoinsnews.com/source-ethereum-insiders-believe-dao-hack-inside-job/)という大きな問題があり、正直この点がアキレス腱になっていると思うので、これは大きい。~~
+
+2017/02/26更新
+
+実際には
+
+1. 「同じインカムとアウトカムがある場合、コインをより多く保有している方が有利」
+2. 流動性を「浪費」したものではなく「行使」したものにrewardが与えられる(Casperと真逆の発想)
+
+であることから、上記の問題は全く解決されていないのではないかと思っている。
 
 ### 2. 監査証跡が可能
 
