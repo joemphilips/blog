@@ -35,28 +35,55 @@ MITメディアラボが行っている時点で将来的にはブロックチ�
 
 ## 予測市場(prediction market)
 
-エセ科学信奉者は徐々に淘汰されていく
+### 現時点の科学出版の問題点
 
-ピアレビューの廃止
+1. [サイエンティフィックジャーナルの購読料は高すぎる](https://www.theguardian.com/science/2012/apr/24/harvard-university-journal-publishers-prices)
+が、自由競争が働いていないので放置されている。
+ * 「編集には手間がかかる」というのが出版社側の意見だが、[それにしても高すぎる](http://econ.ucsb.edu/~tedb/Journals/jeprevised.pdf)
+2. 細分化が進みすぎて[理解が追いつかない](http://www.the-scientist.com/?articles.view/articleNo/34196/title/Opinion--Communication-Crisis-in-Research/)
+3. [同分野内の学者にすら理解されない論文](https://en.wikipedia.org/wiki/Sokal_affair)の出版を招くようなインセンティブ構造がある。
+4. サブミットからパブリッシュするまでに異様に長い年月がかかる。
+5. レビュアーに誠実にレビューするインセンティブがない。（それどころか邪魔をするインセンティブすらある。）
+6. これらの帰結として、
+[多くの](http://www.economist.com/news/briefing/21588057-scientists-think-science-self-correcting-alarming-degree-it-not-trouble)
+[研究には](http://www.jove.com/blog/2012/05/03/studies-show-only-10-of-published-science-articles-are-reproducible-what-is-happening)
+[再現性がない](http://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124)
+
+とはいえ、科学出版以外の方法にも問題はある。
+
+1. マスコミによる報道 ... 意見の偏りや利益追求的なポジショントーク
+2. Wikipedia, SNS ... 責任の不在。[自分に都合のいい情報だけがみえる現象。](https://en.wikipedia.org/wiki/Echo_chamber_(media)))
+
 
 ### なぜ予測市場が科学に向いているのか
 
-1. 自然にはインサイダーがいない
+予測市場が最もよく機能する条件は
 
+1. 問題の解釈が多様な観点を必要とし、情報源が一つ出ないこと
+2. 結果の解釈が定量的にでき、曖昧な点がないこと
+3.
 例えば「山田太郎は来年までに死ぬ」という命題は殺人への強いインセンティブを与えるが、科学的な命題の場合はそうではない。
 
 ### Q. なぜパブリックブロックチェーン上で行う必要があるのか？
 
-A. 胴元を「消す」(あるいは分散化させる)ため
+#### A1. 胴元を「消す」(あるいは分散化させる)ため
 
 1. マーケットが小さいと
  * 賭けが成立しない
  * 市場の不安定性が増し、投機によるバブルが発生しやすくなる。
-2. マーケットが大きいと胴元の利益が大きすぎる
+2. マーケットが大きいと
  * 胴元の利益には正当なマージンに加えてインサイダー利益もある。
+ * 検閲（権力者にとって不利な賭けを操作したり、賭けの対象にすることを禁じたり）することによる利点が大きすぎる。
 
 一言でいうと「大きすぎるマーケットは胴元が常にパレート優越でないと機能しないから」
 といえる。ビットコインが必要である理由と全く同じ。
+
+### Q. なぜサイドチェーンが必要なのか
+
+1. 「投票の結果に応じて賭け金を分配する」というところを自動化するため
+ * 単純なスマートコントラクト機構が必要
+2. Votecoinの扱いが、ビットコインのブロックチェーンには組み込まれていないため
+
 
 ### ゼロサムゲームなので無意味では
 
@@ -97,7 +124,16 @@ A. 回収に40年かかる株式に投資しても、40年待たずに売って�
 あるいは（彼らが金持ちのままで居たいなら）「真摯な科学者」を自分で見抜く強いインセンティブが与えられる。
 
 
+### 答えを「操作」できるのでは？
+
+
+
 # Truthcoin/Hivemind
+
+
+
+
+
 
 ## 仕様
 
@@ -111,6 +147,9 @@ A. 回収に40年かかる株式に投資しても、40年待たずに売って�
 
 * 17世紀に科学的事実の予測と科学者の動機づけに市場原理を使うことを提唱していた証拠 ... Debus, A. (1970) Science and Education in the Seventeenth Century, MacDonald, London.)
 * [Could Gambling Save Science](http://mason.gmu.edu/~rhanson/gamble.html)
+* [Market Empricism](http://bitcoinhivemind.com/papers/1_Purpose.pdf)
+* [Hivemind: Prediction Market Myths](http://bitcoinhivemind.com/papers/4_PM_Myths.pdf)
+* [Capitalizing on Market Manipulation with “Augmentation"](http://bitcoinhivemind.com/papers/5_PM_Manipulation.pdf)
 
 # 脚注
 
