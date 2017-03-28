@@ -7,4 +7,7 @@ tags: []
 title: Truthcoin・Hivemind学習帳
 ---
 
+
+リダイレクトします。
+
 <meta http-equiv="refresh" content="0;URL=https://joemphilips.github.io/Truthcoin_test/Truthcoin_memo.html">

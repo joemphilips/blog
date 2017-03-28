@@ -7,4 +7,7 @@ tags: []
 title: Automated Market Maker関連論文のメモ
 ---
 
+
+リダイレクトします。
+
 <meta http-equiv="refresh" content="0;URL=https://joemphilips.github.io/Truthcoin_test/Market_Making_Framework.html">
