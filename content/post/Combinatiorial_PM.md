@@ -2,7 +2,7 @@
 categories: ["hack", "memo"]
 date: 2017-03-29T01:33:18+09:00
 description: ""
-draft: true
+draft: false
 tags: []
 title: Bayesian Market Makerなどの論文読書メモ
 ---
