@@ -1,5 +1,5 @@
 ---
-categories: ["hack", "cryptocurency"]
+categories: ["hack", "finance"]
 date: 2017-03-20T22:48:18+09:00
 description: "explanation and visualization for market score function in Prediction Market"
 draft: false
