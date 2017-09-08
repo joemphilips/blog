@@ -4,7 +4,7 @@ date: 2017-09-04T21:45:24+09:00
 description: "Slides for explaining the bitcoin Lightning Network"
 draft: false
 tags: ["blockchain", "cryptocurrency", "bitcoin"]
-title: "ビットコインLightnint Networkの説明用スライド"
+title: "ビットコインLightning Networkの説明用スライド"
 ---
 
 [Blockchips](https://www.facebook.com/groups/757917104389080/?fref=ts) で、bitcoinのレイヤー２ソリューションについて講演しました。
