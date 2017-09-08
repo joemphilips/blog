@@ -1,12 +1,18 @@
 ---
 categories: ["hack", "memo", "web"]
 date: 2017-05-11T20:08:34+09:00
-description: "memo for learning express.js node.js"
+description: "memo for learning MEAN stack"
 draft: false
 tags: ["javascript", "web"]
-title: "node.jsとexpress.js関連のメモ"
+title: "MEAN stack(mongodb, express, angular, express)関連のメモ"
 ---
 
+# mongodb
+
+
+
+
+# node.js
 
 ## Logging
 
@@ -57,5 +63,20 @@ const logger = new (winston.Logger)(getLoggerSettings(true));
 logger.error('error!')
 
 ```
+
+#### Transaports
+
+ログの出力先。デフォルトは `Htpp` , `Console` , `File` の３つ
+
+#### ロギングレベル
+
+ロギングレベルには、
+
+1. node.js準拠のもの（デフォルト） ... `{ error: 0, warn: 1, info: 2, verbose: 3, debug: 4, silly: 5 }`
+2. RFC5424準拠のもの ... `{ emerg: 0, alert: 1, crit: 2, error: 3, warning: 4, notice: 5, info: 6, debug: 7 }`
+
+の２種があり `winston.setLevels(winston.config.syslog.levels);` か
+ `logger.setLevels(winston.config.syslog.levels);` で変えることができる。
+
 
 ### `morgan` を利用したlogging
