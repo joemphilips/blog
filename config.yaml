@@ -25,11 +25,8 @@ params:
     facebook: "https://www.facebook.com/profile.php?id=100004310417464"
     bitbucket: "https://bitbucket.org/joemphilips/"
     bitcoin:
-      address: "16BQGsTmsKtbMMT2Zwj4qNZnnAncnVCtWo"
+      address: "3LE3PUT28KqftPooQEcsAufLj96X5gihW1"
       qr: "/images/bitcoinaddress.png"
-    litecoin:
-      address: "LZuEiJecMZFN48k6jRhoRQZvH8VS1MBuGc"
-      qr: "/images/litecoin-address.png"
     twitter: "https://twitter.com/joemphilips"
     linkedin: "https://www.linkedin.com/in/%E4%B8%88-%E5%AE%AE%E6%9C%AC-64a264b7"
     slideshare: "http://www.slideshare.net/JyouMiyamoto"
