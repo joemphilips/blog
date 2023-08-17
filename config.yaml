@@ -17,21 +17,16 @@ params:
     SidebarRecentLimit: 5
     disqusShortname: "joemphilips"
     theme: "theme-base-0b"
-    googleplus: "https://plus.google.com/111859800635638855012/posts"
     googleAnalytics: "UA-70447645-1"
     bitcoin: "16BQGsTmsKtbMMT2Zwj4qNZnnAncnVCtWo"
     github: "https://github.com/joemphilips"
-    facebook: "https://www.facebook.com/profile.php?id=100004310417464"
-    bitbucket: "https://bitbucket.org/joemphilips/"
     bitcoin:
       address: "3LE3PUT28KqftPooQEcsAufLj96X5gihW1"
       qr: "/images/bitcoinaddress.png"
     twitter: "https://twitter.com/joemphilips"
     linkedin: "https://www.linkedin.com/in/%E4%B8%88-%E5%AE%AE%E6%9C%AC-64a264b7"
-    slideshare: "https://www.slideshare.net/JyouMiyamoto"
-    researchgate: "https://www.researchgate.net/profile/Joe_Miyamoto"
-    rss: true
     gravatarHash: 154408de16dfa049bac95d8a062a0b96
+defaultContentLanguage: "ja"
 languageCode: "ja"
 countryCode: "ja"
 ...
