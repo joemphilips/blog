@@ -3,6 +3,6 @@ public/
 ./.python-version
 *.swp
 
-static/images/.DS_Store
-
-static/images/LedgerNano_review/.DS_Store
+public/
+.hugo_build.lock
+resources/
