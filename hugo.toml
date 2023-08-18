@@ -71,7 +71,7 @@ disqusShortname = 'joemphilips'
   # Note: image is not rendered if the resource(avatar image) is not found. No error is displayed.
   intro = "Joe Miyamoto's personal blog"
   name = "Joe Miyamoto"
-  description = "memorandom, showerthoughts, etc."
+  description = "memorandom about Bitcoin, programming, OSS, and trips"
 
 # Allow to override webmanifest options
 [params.webmanifest]
@@ -91,3 +91,4 @@ url = "https://twitter.com/joemphilips"
 [[params.socialIcons]]
 name = "Rss"
 url = "index.xml"
+
