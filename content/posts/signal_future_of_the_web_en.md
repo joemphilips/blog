@@ -8,7 +8,7 @@ title: Signal app, ABC, Lightning, and the future of the web
 ---
 
 
-Redirecting...
+Redirecting to an external website in 5 seconds...
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/20210225/">
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20210225/">
 

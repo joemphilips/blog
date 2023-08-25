@@ -8,6 +8,6 @@ title: Announcing NLoop, Generic Lightning Loop
 ---
 
 
-Redirecting...
+Redirecting to an external website in 5 seconds...
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/nloop-announcement-en/">
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/nloop-announcement-en/">
