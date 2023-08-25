@@ -8,7 +8,11 @@ title: チャットアプリ Signal に Web の未来を見た話
 ---
 
 
-リダイレクトします
+以下のURLに移行しました
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/20210209/">
+<a href="https://tech.bitbank.cc/20210209/">https://tech.bitbank.cc/20210209/</a>
+
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20210209/">
 

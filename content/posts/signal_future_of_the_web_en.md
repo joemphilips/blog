@@ -7,8 +7,7 @@ tags: []
 title: Signal app, ABC, Lightning, and the future of the web
 ---
 
+The content has been moved to the following URL
 
-Redirecting to an external website in 5 seconds...
-
-<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20210225/">
+<a href="https://tech.bitbank.cc/20210225/">https://tech.bitbank.cc/20210225/</a>
 

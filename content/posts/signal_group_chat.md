@@ -7,8 +7,11 @@ tags: []
 title: Signal group chat の仕組み
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://tech.bitbank.cc/20210308/">https://tech.bitbank.cc/20210308/</a>
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/20210308/">
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20210308/">
 

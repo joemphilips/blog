@@ -7,7 +7,10 @@ tags: []
 title: 予測市場におけるLMSR関数の解説と可視化
 ---
 
+以下のURLに移行しました
 
-リダイレクトします。
+<a href="https://joemphilips.github.io/Truthcoin_test/LMSR_function_demo.html">https://joemphilips.github.io/Truthcoin_test/LMSR_function_demo.html</a>
 
-<meta http-equiv="refresh" content="0; URL='https://joemphilips.github.io/Truthcoin_test/LMSR_function_demo.html'" />
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5; URL='https://joemphilips.github.io/Truthcoin_test/LMSR_function_demo.html'" />

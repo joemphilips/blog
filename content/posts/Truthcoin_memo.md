@@ -8,6 +8,10 @@ title: Truthcoin・Hivemind学習帳
 ---
 
 
-リダイレクトします。
+以下のURLに移行しました
 
-<meta http-equiv="refresh" content="0;URL=https://joemphilips.github.io/Truthcoin_test/Truthcoin_memo.html">
+<a href="https://joemphilips.github.io/Truthcoin_test/Truthcoin_memo.html">https://joemphilips.github.io/Truthcoin_test/Truthcoin_memo.html</a>
+
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://joemphilips.github.io/Truthcoin_test/Truthcoin_memo.html">

@@ -7,7 +7,10 @@ tags: []
 title: NLoop について
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://tech.bitbank.cc/nloop-announcement-jp/">https://tech.bitbank.cc/nloop-announcement-jp/</a>
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/nloop-announcement-jp/">
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/nloop-announcement-jp/">

@@ -7,8 +7,10 @@ tags: []
 title: 2nd layer での Escrow プロトコルの現状まとめ
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://tech.bitbank.cc/20201219/">https://tech.bitbank.cc/20201219/</a>
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/20201219/">
+5秒後にリダイレクトします
 
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20201219/">

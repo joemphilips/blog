@@ -7,8 +7,11 @@ tags: []
 title: Bayesian Market Makerなどの論文読書メモ
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://joemphilips.github.io/Truthcoin_test/Combinatorial_PM.html">https://joemphilips.github.io/Truthcoin_test/Combinatorial_PM.html</a>
 
-<meta http-equiv="refresh" content="0;URL=https://joemphilips.github.io/Truthcoin_test/Combinatorial_PM.html">
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://joemphilips.github.io/Truthcoin_test/Combinatorial_PM.html">
 

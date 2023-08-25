@@ -8,7 +8,11 @@ title: C#とRustが両方備わり最強に見える
 ---
 
 
-リダイレクトします
+以下のURLに移行しました
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/20201204/">
+<a href="https://tech.bitbank.cc/20201204/">https://tech.bitbank.cc/20201204/</a>
+
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20201204/">
 

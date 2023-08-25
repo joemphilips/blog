@@ -8,7 +8,7 @@ title: How signal group chat works and how it integrates with Lightning
 ---
 
 
-Redirecting to an external website in 5 seconds...
+The content has been moved to the following URL
 
-<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20210309/">
+<a href="https://tech.bitbank.cc/20210309/">https://tech.bitbank.cc/20210309/</a>
 

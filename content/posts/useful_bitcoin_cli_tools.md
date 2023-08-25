@@ -7,8 +7,11 @@ tags: []
 title: 開発によく使うbitcoin関連cliツール
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://medium.com/blockchain-engineer-blog/%E9%96%8B%E7%99%BA%E3%81%AB%E3%82%88%E3%81%8F%E4%BD%BF%E3%81%86bitcoin-%E9%96%A2%E9%80%A3cli%E3%83%84%E3%83%BC%E3%83%AB-12006691b4a1">https://medium.com/blockchain-engineer-blog/%E9%96%8B%E7%99%BA%E3%81%AB%E3%82%88%E3%81%8F%E4%BD%BF%E3%81%86bitcoin-%E9%96%A2%E9%80%A3cli%E3%83%84%E3%83%BC%E3%83%AB-12006691b4a1</a>
 
-<meta http-equiv="refresh" content="0;URL=https://medium.com/blockchain-engineer-blog/%E9%96%8B%E7%99%BA%E3%81%AB%E3%82%88%E3%81%8F%E4%BD%BF%E3%81%86bitcoin-%E9%96%A2%E9%80%A3cli%E3%83%84%E3%83%BC%E3%83%AB-12006691b4a1">
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://medium.com/blockchain-engineer-blog/%E9%96%8B%E7%99%BA%E3%81%AB%E3%82%88%E3%81%8F%E4%BD%BF%E3%81%86bitcoin-%E9%96%A2%E9%80%A3cli%E3%83%84%E3%83%BC%E3%83%AB-12006691b4a1">
 

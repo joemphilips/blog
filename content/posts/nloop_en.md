@@ -7,7 +7,6 @@ tags: []
 title: Announcing NLoop, Generic Lightning Loop
 ---
 
+The content has been moved to the following URL
 
-Redirecting to an external website in 5 seconds...
-
-<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/nloop-announcement-en/">
+<a href="https://tech.bitbank.cc/nloop-announcement-en/">https://tech.bitbank.cc/nloop-announcement-en/</a>

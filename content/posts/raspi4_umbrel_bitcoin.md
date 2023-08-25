@@ -7,8 +7,11 @@ tags: []
 title: Raspberry Pi 4 + Umbrel でビットコイン環境構築
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://tech.bitbank.cc/20220323/">https://tech.bitbank.cc/20220323/</a>
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/20220323/">
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20220323/">
 

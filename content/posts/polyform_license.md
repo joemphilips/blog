@@ -7,7 +7,10 @@ tags: []
 title: OSS ライセンスの最近の潮流 PolyForm License について
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://tech.bitbank.cc/20210823/">https://tech.bitbank.cc/20210823/</a>
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/20210823/">
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20210823/">

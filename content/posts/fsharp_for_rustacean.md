@@ -7,7 +7,10 @@ tags: []
 title: Rustacean のための F# 入門
 ---
 
+以下のURLに移行しました
 
-リダイレクトします
+<a href="https://tech.bitbank.cc/fsharp-for-rustacean/">https://tech.bitbank.cc/fsharp-for-rustacean/</a>
 
-<meta http-equiv="refresh" content="0;URL=https://tech.bitbank.cc/fsharp-for-rustacean/">
+5秒後にリダイレクトします
+
+<meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/fsharp-for-rustacean/">
