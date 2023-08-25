@@ -59,6 +59,8 @@ jobs:
             --baseURL "${{ steps.pages.outputs.base_url }}"
       - name: copy json file for using lnurl with my own domain through alby
         run: mkdir -p public/.well-known/lnurlp/ && cp alby_ln_address.json public/.well-known/lnurlp/joemphilips
+      - name: copy nostr.json for nip-05 verification
+        run: cp nostr.json public/.well-known/nostr.json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
