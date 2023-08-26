@@ -89,6 +89,10 @@ name = "twitter"
 url = "https://twitter.com/joemphilips"
 
 [[params.socialIcons]]
+name = "nostr"
+url = "https://snort.social/p/npub1cpzpxu5w86mkvvjncl6g4gm723u6vhqv34lj7dxtszsq9ed0nrqqqqsfvr"
+
+[[params.socialIcons]]
 name = "Rss"
 url = "index.xml"
 
