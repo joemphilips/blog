@@ -5,3 +5,11 @@ draft: false
 ---
 
 Personal blog for Joe Miyamoto
+
+### Mail address
+
+`joemphilips_gmail.com # replace _ with @`
+
+### Lightning address
+
+`joemphilips@joemphlips.com` or `joemphilips@getalby.com`

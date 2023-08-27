@@ -14,3 +14,4 @@ title: Adaptor署名を用いたDLCについて
 5秒後にリダイレクトします
 
 <meta http-equiv="refresh" content="5;URL=https://tech.bitbank.cc/20201214/">
+
