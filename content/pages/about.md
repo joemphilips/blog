@@ -10,6 +10,8 @@ Personal blog for Joe Miyamoto
 
 `joemphilips_gmail.com # replace _ with @`
 
-### Lightning address
+### Lightning addresses
 
-`joemphilips@joemphlips.com` or `joemphilips@getalby.com`
+* `joemphilips@joemphlips.com`
+* `joemphilips@getalby.com`
+* `joemphilips@getmash.cash`
