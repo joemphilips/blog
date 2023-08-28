@@ -15,3 +15,4 @@ Personal blog for Joe Miyamoto
 * `joemphilips@joemphlips.com`
 * `joemphilips@getalby.com`
 * `joemphilips@getmash.cash`
+* `joemphilips@bitrefill.me`
